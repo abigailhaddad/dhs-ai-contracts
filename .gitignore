@@ -1,0 +1,6 @@
+data/
+*.csv
+*.zip
+.env
+__pycache__/
+*.pyc

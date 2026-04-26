@@ -1,0 +1,63 @@
+name: Fetch DHS Contracts
+
+on:
+  workflow_dispatch:
+    inputs:
+      fy:
+        description: "Space-separated fiscal years (e.g. '2026 2025'). Blank = default 5 years."
+        required: false
+        default: ""
+      force:
+        description: "Re-download even if checkpoint exists"
+        type: boolean
+        default: false
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: fetch-dhs
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+
+    env:
+      CF_R2_ACCOUNT_ID: ${{ secrets.CF_R2_ACCOUNT_ID }}
+      CF_R2_BUCKET: ${{ secrets.CF_R2_BUCKET }}
+      CF_R2_ACCESS_KEY_ID: ${{ secrets.CF_R2_ACCESS_KEY_ID }}
+      CF_R2_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_SECRET_ACCESS_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests boto3
+
+      - name: Run fetch
+        id: fetch
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.fy }}" ]; then
+            ARGS="$ARGS --fy ${{ inputs.fy }}"
+          fi
+          if [ "${{ inputs.force }}" = "true" ]; then
+            ARGS="$ARGS --force"
+          fi
+          python fetch_dhs.py $ARGS
+          echo "status=$(cat data/scan_status.txt)" >> $GITHUB_OUTPUT
+
+      - name: Chain next run if IP blocked
+        if: steps.fetch.outputs.status == 'blocked'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "IP blocked — chaining next run with fresh runner IP"
+          gh workflow run fetch_dhs.yml --repo ${{ github.repository }}
