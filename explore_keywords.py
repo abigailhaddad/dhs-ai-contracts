@@ -26,38 +26,55 @@ DEFAULT_KEYWORDS = [
     # Core AI/ML terms
     "artificial intelligence",
     "machine learning",
+    "deep learning",
     "neural network",
     "AI/ML",
 
-    # Language models (note: bare "LLM" is noisy — Coast Guard vessel IDs)
+    # Generative AI
+    "generative AI",
+    "gen AI",
+    "GenAI",
+
+    # Language models
     "large language model",
     "language model",
+    "foundation model",
+    "GPT",
     "chatbot",
+    "conversational AI",
 
     # Specific ML techniques
     "natural language processing",
+    "NLP",
     "computer vision",
     "object detection",
+    "image recognition",
     "facial recognition",
     "anomaly detection",
+    "pattern recognition",
+    "sentiment analysis",
+    "text analytics",
     "optical character recognition",
 
     # Data/modeling work
     "data science",
     "predictive analytics",
+    "predictive model",
     "data labeling",
     "training data",
     "synthetic data",
-    "algorithm",          # broad but captures TSA/CBP detection work
+    "algorithm",          # broad; LLM pass handles noise
+    "knowledge graph",
 
-    # Automation adjacent (keep broad — LLM pass handles noise)
+    # Automation adjacent
     "intelligent automation",
     "robotic process automation",
     "decision support",
+    "cognitive computing",
     "autonomous systems",
 
     # DHS-specific signals
-    "biometric",          # big $$, broad — LLM pass will separate ops vs. AI
+    "biometric",          # high volume; LLM pass separates ops vs. AI
     "screening at speed", # DHS S&T AI program
 ]
 
