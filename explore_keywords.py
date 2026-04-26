@@ -18,37 +18,70 @@ from collections import Counter
 import requests
 
 USASPENDING_SEARCH = "https://api.usaspending.gov/api/v2/search/spending_by_award/"
-DHS_TOPTIER_CODE   = "070"
+USASPENDING_COUNT  = "https://api.usaspending.gov/api/v2/search/spending_by_award_count/"
+DHS_AGENCY_NAME    = "Department of Homeland Security"
 
 # Keywords to probe separately so we can see which ones find real signal
 DEFAULT_KEYWORDS = [
+    # Core AI/ML terms
     "artificial intelligence",
     "machine learning",
-    "large language model",
-    "generative AI",
-    "natural language processing",
-    "computer vision",
-    "predictive analytics",
-    "deep learning",
     "neural network",
     "AI/ML",
+
+    # Language models (note: bare "LLM" is noisy — Coast Guard vessel IDs)
+    "large language model",
+    "language model",
+    "chatbot",
+
+    # Specific ML techniques
+    "natural language processing",
+    "computer vision",
+    "object detection",
+    "facial recognition",
+    "anomaly detection",
+    "optical character recognition",
+
+    # Data/modeling work
+    "data science",
+    "predictive analytics",
+    "data labeling",
+    "training data",
+    "synthetic data",
+    "algorithm",          # broad but captures TSA/CBP detection work
+
+    # Automation adjacent (keep broad — LLM pass handles noise)
+    "intelligent automation",
+    "robotic process automation",
+    "decision support",
+    "autonomous systems",
+
+    # DHS-specific signals
+    "biometric",          # big $$, broad — LLM pass will separate ops vs. AI
+    "screening at speed", # DHS S&T AI program
 ]
+
+
+def _base_filters(keyword: str) -> dict:
+    return {
+        "keywords": [keyword],
+        "agencies": [{"type": "awarding", "tier": "toptier", "name": DHS_AGENCY_NAME}],
+        "award_type_codes": ["A", "B", "C", "D"],
+        "time_period": [{"start_date": "2021-10-01", "end_date": "2026-09-30"}],
+    }
+
+
+def count_awards(keyword: str) -> int:
+    r = requests.post(USASPENDING_COUNT,
+                      json={"filters": _base_filters(keyword), "subawards": False},
+                      timeout=30)
+    r.raise_for_status()
+    return r.json().get("results", {}).get("contracts", 0)
 
 
 def search_awards(keyword: str, limit: int = 10) -> list[dict]:
     payload = {
-        "filters": {
-            "keywords": [keyword],
-            "agencies": [
-                {
-                    "type": "awarding",
-                    "tier": "toptier",
-                    "toptier_code": DHS_TOPTIER_CODE,
-                }
-            ],
-            "award_type_codes": ["A", "B", "C", "D"],  # contracts only
-            "time_period": [{"start_date": "2021-10-01", "end_date": "2026-09-30"}],
-        },
+        "filters": _base_filters(keyword),
         "fields": [
             "Award ID",
             "Recipient Name",
@@ -56,7 +89,6 @@ def search_awards(keyword: str, limit: int = 10) -> list[dict]:
             "Award Amount",
             "Description",
             "Start Date",
-            "Contract Award Type",
             "NAICS Code",
             "NAICS Description",
             "PSC Code",
@@ -70,8 +102,7 @@ def search_awards(keyword: str, limit: int = 10) -> list[dict]:
     }
     r = requests.post(USASPENDING_SEARCH, json=payload, timeout=30)
     r.raise_for_status()
-    data = r.json()
-    return data.get("results", []), data.get("page_metadata", {}).get("total", 0)
+    return r.json().get("results", [])
 
 
 def main() -> None:
@@ -89,7 +120,8 @@ def main() -> None:
     totals = {}
     for kw in keywords:
         try:
-            results, total = search_awards(kw, limit=args.limit)
+            total = count_awards(kw)
+            results = search_awards(kw, limit=args.limit)
             totals[kw] = total
             print(f"\n### \"{kw}\"  —  {total:,} total matches")
             print("-" * 60)
