@@ -123,8 +123,13 @@ When in doubt, lean False — we want confirmed AI, not adjacent technology."""
 
 
 def get_award_detail(session: requests.Session, gid: str) -> dict:
-    r = session.get(AWARD_DETAIL.format(gid), timeout=20)
-    return r.json() if r.status_code == 200 else {}
+    try:
+        r = session.get(AWARD_DETAIL.format(gid), timeout=15)
+        return r.json() if r.status_code == 200 else {}
+    except requests.exceptions.Timeout:
+        return {}
+    except Exception:
+        return {}
 
 
 def get_transactions(session: requests.Session, gid: str) -> list[dict]:
@@ -159,16 +164,18 @@ def run_idv(session: requests.Session) -> None:
 
     # Collect unique parent IDV IDs
     parent_idvs: dict[str, str] = {}  # generated_id → piid
-    for c in d["contracts"]:
+    for i, c in enumerate(d["contracts"]):
         gid = c.get("generated_internal_id")
         if not gid:
             continue
+        if (i + 1) % 10 == 0:
+            print(f"  {i+1}/{len(d['contracts'])} award details fetched, {len(parent_idvs)} IDVs so far...")
         detail = get_award_detail(session, gid)
         parent = detail.get("parent_award") or {}
         pid = parent.get("generated_unique_award_id")
         if pid and pid not in parent_idvs:
             parent_idvs[pid] = parent.get("piid", pid)
-        time.sleep(0.2)
+        time.sleep(0.1)
 
     print(f"Found {len(parent_idvs)} unique parent IDIQs from {len(d['contracts'])} AI contracts")
 
@@ -184,6 +191,12 @@ def run_idv(session: requests.Session) -> None:
                 break
             results = r.json().get("results", [])
             for child in results:
+                # Skip task orders with no DHS connection — GSA awards on
+                # behalf of other agencies so check both awarding + funding
+                awarding = (child.get("awarding_agency") or "").lower()
+                funding  = (child.get("funding_agency")  or "").lower()
+                if "homeland security" not in awarding and "homeland security" not in funding:
+                    continue
                 child_gid = child.get("generated_unique_award_id", "")
                 child_aid = child_gid.split("_")[3] if child_gid else ""
                 if child_aid in known_award_ids or child_gid in already_found:
