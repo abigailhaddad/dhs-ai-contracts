@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DHS AI Contracts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+  <style>
+    :root {
+      --color-bg:           #F8FAFA;
+      --color-surface:      #FFFFFF;
+      --color-header:       #1B4332;
+      --color-text:         #111827;
+      --color-text-muted:   #6B7280;
+      --color-accent:       #1B4332;
+      --color-border:       #D1E4D1;
+      --font-heading:       'Inter', -apple-system, sans-serif;
+      --font-body:          'Inter', -apple-system, sans-serif;
+      --font-mono:          'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); line-height: 1.7; font-size: 1rem; margin: 0; }
+
+    header {
+      background: var(--color-header);
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    header h1 { font-size: 1.75rem; font-weight: 700; margin: 0 0 0.5rem; color: #fff; }
+    header p  { margin: 0; opacity: 0.85; font-size: 0.9375rem; max-width: 680px; }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+    .section-header {
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 2.5rem 0 0.75rem;
+      padding-bottom: 0.375rem;
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .stat-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 0.5rem;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(27,67,50,0.06);
+    }
+    .stat-card .value { font-size: 1.75rem; font-weight: 700; color: var(--color-header); font-family: var(--font-mono); }
+    .stat-card .label { font-size: 0.8125rem; color: var(--color-text-muted); margin-top: 0.2rem; }
+
+    .chart-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+    .chart-card h3 { font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; }
+    .chart-card canvas { max-height: 320px; }
+
+    .narrative { font-size: 0.9375rem; color: var(--color-text); line-height: 1.7; margin: 0 0 1.25rem; max-width: 720px; }
+    .narrative a { color: var(--color-accent); }
+
+    .note { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.5rem; line-height: 1.5; }
+
+    /* DataTable overrides */
+    table.dataTable thead th { background: var(--color-surface); font-weight: 600; font-size: 0.8125rem; }
+    table.dataTable tbody td { font-size: 0.8125rem; vertical-align: top; padding: 0.5rem 0.75rem; }
+    table.dataTable tbody tr:nth-child(odd)  { background: var(--color-bg); }
+    table.dataTable tbody tr:nth-child(even) { background: var(--color-surface); }
+    .num { text-align: right; font-family: var(--font-mono); }
+    .desc { max-width: 340px; }
+    .expl { max-width: 260px; color: var(--color-text-muted); font-style: italic; }
+    a.award-link { color: var(--color-accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; }
+    a.award-link:hover { text-decoration: underline; }
+
+    .method-box { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .method-box h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.75rem; }
+    .method-box p, .method-box li { font-size: 0.9rem; color: var(--color-text); line-height: 1.65; }
+    .kw-grid { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
+    .kw-pill {
+      background: #E8F4ED;
+      color: var(--color-header);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+    }
+    .kw-pill.zero { background: #F3F4F6; color: var(--color-text-muted); }
+
+    footer { border-top: 1px solid var(--color-border); padding: 1.5rem 0; margin-top: 2rem; font-size: 0.8125rem; color: var(--color-text-muted); }
+    footer a { color: var(--color-accent); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div style="max-width:960px;margin:0 auto;padding:0 1.5rem;">
+    <h1>DHS AI Contracts</h1>
+    <p>AI and machine learning contract spending at the Department of Homeland Security, FY2022–FY2026 — sourced from USASpending.gov and classified by LLM.</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="section-header">Overview</div>
+  <p class="narrative">
+    This analysis identifies DHS contracts that involve artificial intelligence or machine learning work.
+    Contract descriptions were searched for <span id="kw-count">—</span> AI-related keywords,
+    then each matching contract was reviewed by an LLM to filter out false positives
+    (e.g., fingerprint scanners labeled "biometric," or generic "algorithm" references in non-AI work).
+  </p>
+
+  <div class="stat-grid" id="stat-grid">
+    <div class="stat-card"><div class="value" id="stat-contracts">—</div><div class="label">AI contracts identified</div></div>
+    <div class="stat-card"><div class="value" id="stat-dollars">—</div><div class="label">Total dollars obligated</div></div>
+    <div class="stat-card"><div class="value" id="stat-agencies">—</div><div class="label">DHS sub-agencies with AI contracts</div></div>
+    <div class="stat-card"><div class="value" id="stat-filtered">—</div><div class="label">Keyword matches filtered out as non-AI</div></div>
+  </div>
+
+  <div class="section-header">AI Spending by Sub-Agency</div>
+  <div class="chart-card">
+    <h3>Total dollars obligated on AI contracts</h3>
+    <canvas id="agencyChart"></canvas>
+    <p class="note">Amounts reflect total obligated value reported in USASpending. Contracts may span multiple fiscal years.</p>
+  </div>
+
+  <div class="section-header">Contract Count by Sub-Agency</div>
+  <div class="chart-card">
+    <h3>Number of AI contracts awarded</h3>
+    <canvas id="agencyCountChart"></canvas>
+  </div>
+
+  <div class="section-header">All AI Contracts</div>
+  <p class="narrative">Every contract classified as AI/ML work, sorted by dollar value. Click an Award ID to view on USASpending.gov.</p>
+  <div style="overflow-x:auto;">
+    <table id="contractTable" class="dataTable display" style="width:100%">
+      <thead>
+        <tr>
+          <th>Award ID</th>
+          <th>Sub-Agency</th>
+          <th>Vendor</th>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Why AI?</th>
+        </tr>
+      </thead>
+      <tbody id="contractBody"></tbody>
+    </table>
+  </div>
+
+  <div class="section-header">Methodology</div>
+
+  <div class="method-box">
+    <h3>Data source</h3>
+    <p>
+      Contract data comes from the <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov</a> API,
+      which publishes all federal contract awards. This analysis covers DHS contracts awarded between
+      FY2022 (October 1, 2021) and FY2026 (September 30, 2026).
+      Only prime contract awards are included — not grants, IDV vehicles, or subawards.
+    </p>
+  </div>
+
+  <div class="method-box">
+    <h3>Keyword search</h3>
+    <p>
+      Contract descriptions were searched for the following terms. All terms were included regardless
+      of whether they returned results — zero-hit terms are shown to demonstrate search coverage.
+    </p>
+    <div class="kw-grid" id="kw-grid"></div>
+    <p style="margin-top:0.75rem;">
+      Broad terms like <code>algorithm</code>, <code>biometric</code>, and <code>decision support</code>
+      were kept intentionally — the LLM pass handles false positives.
+    </p>
+  </div>
+
+  <div class="method-box">
+    <h3>LLM classification</h3>
+    <p>
+      Each keyword-matched contract was passed to <strong>GPT-5.4-mini</strong> with the contract description,
+      vendor, sub-agency, NAICS code, and PSC code. The model was asked whether the contract is primarily
+      for AI or machine learning work, and to provide a one-sentence explanation.
+    </p>
+    <p>
+      The classifier was instructed to lean toward <em>true</em> for borderline cases — this analysis
+      aims to be comprehensive rather than conservative. Contracts where classification failed are excluded.
+    </p>
+  </div>
+
+  <div class="method-box">
+    <h3>Caveats</h3>
+    <ul>
+      <li>This captures only contracts whose <em>descriptions</em> mention AI-related terms. AI work embedded in larger IT contracts without explicit AI language will be missed.</li>
+      <li>Dollar amounts are total obligated value and may include option years not yet exercised.</li>
+      <li>The same work may appear as multiple contract actions; deduplication is by USASpending Award ID.</li>
+      <li>DHS sub-agencies include CBP, ICE, TSA, USCIS, FEMA, Coast Guard, Secret Service, and others.</li>
+    </ul>
+  </div>
+
+  <div class="method-box">
+    <h3>Source code</h3>
+    <p>All data collection, keyword search, and classification code is available at
+    <a href="https://github.com/abigailhaddad/dhs-ai-contracts" target="_blank">github.com/abigailhaddad/dhs-ai-contracts</a>.</p>
+  </div>
+
+  <footer>
+    Data from <a href="https://www.usaspending.gov/">USASpending.gov</a> (public domain) ·
+    Last updated <span id="generated-at">—</span>
+  </footer>
+
+</div>
+
+<script>
+async function load() {
+  const res = await fetch('data/results.json');
+  const d = await res.json();
+
+  // Stats
+  const s = d.summary;
+  document.getElementById('stat-contracts').textContent = s.total_ai_contracts.toLocaleString();
+  document.getElementById('stat-dollars').textContent   = '$' + (s.total_ai_dollars / 1e6).toFixed(1) + 'M';
+  document.getElementById('stat-agencies').textContent  = s.sub_agencies_with_ai.toLocaleString();
+  document.getElementById('stat-filtered').textContent  = s.not_ai_filtered_out.toLocaleString();
+  document.getElementById('kw-count').textContent       = d.keywords_searched.length;
+  document.getElementById('generated-at').textContent   = d.generated_at;
+
+  // Agency dollars chart
+  const topAgencies = d.by_agency.slice(0, 12);
+  new Chart(document.getElementById('agencyChart'), {
+    type: 'bar',
+    data: {
+      labels: topAgencies.map(a => a.agency),
+      datasets: [{
+        label: 'Dollars obligated',
+        data: topAgencies.map(a => a.dollars),
+        backgroundColor: '#2D6A4F',
+        borderRadius: 3,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { callback: v => '$' + (v/1e6).toFixed(0) + 'M' } },
+        y: { ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+
+  // Agency count chart
+  const topCount = [...d.by_agency].sort((a,b) => b.contracts - a.contracts).slice(0, 12);
+  new Chart(document.getElementById('agencyCountChart'), {
+    type: 'bar',
+    data: {
+      labels: topCount.map(a => a.agency),
+      datasets: [{
+        label: 'Contracts',
+        data: topCount.map(a => a.contracts),
+        backgroundColor: '#52B788',
+        borderRadius: 3,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: { y: { ticks: { font: { size: 11 } } } }
+    }
+  });
+
+  // Keywords
+  const kgrid = document.getElementById('kw-grid');
+  d.keywords_searched.forEach(kw => {
+    const hasHit = d.contracts.some(c => c.keyword === kw);
+    const pill = document.createElement('span');
+    pill.className = 'kw-pill' + (hasHit ? '' : ' zero');
+    pill.textContent = kw;
+    kgrid.appendChild(pill);
+  });
+
+  // Contract table
+  const tbody = document.getElementById('contractBody');
+  d.contracts.forEach(c => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><a class="award-link" href="${c.permalink}" target="_blank">${c.award_id}</a></td>
+      <td>${c.agency}</td>
+      <td>${c.vendor}</td>
+      <td class="num">$${(c.amount/1e6).toFixed(2)}M</td>
+      <td class="desc">${c.description}</td>
+      <td class="expl">${c.explanation}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  $('#contractTable').DataTable({
+    pageLength: 25,
+    order: [[3, 'desc']],
+    columnDefs: [{ targets: 3, type: 'num' }],
+  });
+}
+
+load().catch(console.error);
+</script>
+</body>
+</html>
