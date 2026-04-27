@@ -64,6 +64,10 @@
     .kw-grid { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
     .kw-pill { background: #E8F4ED; color: var(--color-header); font-family: var(--font-mono); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 1rem; }
     .kw-pill.zero { background: #F3F4F6; color: var(--color-text-muted); }
+    .source-badge { font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 3px; white-space: nowrap; }
+    .source-keyword-search    { background: #E8F4ED; color: var(--color-header); }
+    .source-modification-text { background: #FEF3C7; color: #92400E; }
+    .source-idv-expansion     { background: #EDE9FE; color: #5B21B6; }
 
     .tab-nav {
       display: flex;
@@ -140,6 +144,9 @@
     <div class="stat-card"><div class="value" id="stat-contracts">—</div><div class="label">AI contracts identified</div></div>
     <div class="stat-card"><div class="value" id="stat-dollars">—</div><div class="label">Total dollars obligated</div></div>
     <div class="stat-card"><div class="value" id="stat-agencies">—</div><div class="label">DHS sub-agencies with AI contracts</div></div>
+    <div class="stat-card"><div class="value" id="stat-keyword">—</div><div class="label">Keyword search</div></div>
+    <div class="stat-card"><div class="value" id="stat-mod">—</div><div class="label">Modification text</div></div>
+    <div class="stat-card"><div class="value" id="stat-idv">—</div><div class="label">IDV expansion</div></div>
   </div>
 
   <div class="section-header">AI Contracts by Sub-Agency</div>
@@ -170,6 +177,7 @@
           <th>Sub-Agency</th>
           <th>Vendor</th>
           <th>Amount ($M)</th>
+          <th>Source</th>
           <th>Keyword</th>
           <th>Description</th>
           <th>Why AI?</th>
@@ -251,6 +259,9 @@ async function load() {
   document.getElementById('stat-contracts').textContent = s.total_ai_contracts.toLocaleString();
   document.getElementById('stat-dollars').textContent   = '$' + (s.total_ai_dollars / 1e6).toFixed(1) + 'M';
   document.getElementById('stat-agencies').textContent  = s.sub_agencies_with_ai.toLocaleString();
+  document.getElementById('stat-keyword').textContent   = (s.from_keyword_search   || 0).toLocaleString();
+  document.getElementById('stat-mod').textContent       = (s.from_modification_text || 0).toLocaleString();
+  document.getElementById('stat-idv').textContent       = (s.from_idv_expansion    || 0).toLocaleString();
   document.getElementById('kw-count').textContent       = d.keywords_searched.length;
   document.getElementById('generated-at').textContent   = d.generated_at;
 
@@ -331,6 +342,7 @@ async function load() {
         <td>${escapeHtml(c.agency)}</td>
         <td>${escapeHtml(c.vendor)}</td>
         <td class="num">${(c.amount/1e6).toFixed(2)}</td>
+        <td><span class="source-badge source-${(c.source||'').replace(/_/g,'-')}">${escapeHtml((c.source||'').replace(/_/g,' '))}</span></td>
         <td><code style="font-size:0.75rem;color:var(--color-header)">${escapeHtml(c.keyword)}</code></td>
         <td class="desc">${escapeHtml(c.description)}</td>
         <td class="expl">${escapeHtml(c.explanation)}</td>
@@ -356,18 +368,22 @@ async function load() {
     toolbarId:   'filterToolbar',
     columns: [
       { name: 'Sub-Agency', field: 'agency',  filterType: 'multiselect' },
+      { name: 'Source',     field: 'source',  filterType: 'multiselect' },
       { name: 'Keyword',    field: 'keyword', filterType: 'multiselect' },
       { name: 'Vendor',     field: 'vendor',  filterType: 'text' },
       { name: 'Amount ($M)', field: 'amount', filterType: 'range' },
     ],
     filterOptions: {
       agency:  agencies.map(a => ({ value: a, label: a })),
+      source:  [...new Set(d.contracts.map(c => c.source||''))].sort().map(s => ({ value: s, label: s.replace(/_/g,' ') })),
       keyword: keywords.map(k => ({ value: k, label: k })),
     },
     onFilterChange(filters) {
       let rows = allRows;
       if (filters.agency?.values?.length)
         rows = rows.filter(r => filters.agency.values.includes(r.agency));
+      if (filters.source?.values?.length)
+        rows = rows.filter(r => filters.source.values.includes(r.source||''));
       if (filters.keyword?.values?.length)
         rows = rows.filter(r => filters.keyword.values.includes(r.keyword));
       if (filters.vendor?.value)
