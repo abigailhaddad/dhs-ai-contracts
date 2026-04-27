@@ -71,9 +71,26 @@ def llm_classify(description: str, context: str = "") -> dict | None:
 
     system = """\
 You are an expert on federal government contracting. Classify whether this DHS
-contract involves AI or machine learning work. AI/ML includes: training or
-deploying ML models, LLMs, computer vision, NLP, predictive modeling,
-AI-powered decision systems, AI research/SBIR. When in doubt, lean True."""
+contract involves AI or machine learning work.
+
+AI/ML work INCLUDES: training or deploying ML models, LLMs, computer vision,
+NLP, predictive modeling, AI-powered decision systems, AI research/SBIR.
+
+AI/ML work DOES NOT INCLUDE:
+- Robotic Process Automation (RPA) — rule-based scripting, NOT AI. UiPath,
+  Automation Anywhere, Blue Prism licenses are NOT AI contracts.
+- Generic biometric hardware that is purely enrollment/storage infrastructure
+  (e.g., fingerprint card readers, badge scanners, livescan stations) with
+  no matching or recognition component.
+- General IT operations, data storage, or infrastructure.
+
+IMPORTANT INCLUSIONS — these ARE AI:
+- Facial recognition systems (computer vision / ML-based matching)
+- Biometric identity matching systems (iris, face, fingerprint matching
+  at scale uses ML models)
+- Any system that performs automated identity verification or recognition
+
+When in doubt, lean False — we want confirmed AI, not adjacent technology."""
 
     prompt = f"Description:\n{description[:1200]}"
     if context:
@@ -111,14 +128,21 @@ def get_award_detail(session: requests.Session, gid: str) -> dict:
 
 
 def get_transactions(session: requests.Session, gid: str) -> list[dict]:
-    r = session.post(TRANSACTIONS, json={
-        "award_id": gid,
-        "fields": ["action_date", "modification_number",
-                   "action_type_description", "description",
-                   "federal_action_obligation"],
-        "sort": "action_date", "order": "asc", "page": 1, "limit": 100,
-    }, timeout=20)
-    return r.json().get("results", []) if r.status_code == 200 else []
+    try:
+        r = session.post(TRANSACTIONS, json={
+            "award_id": gid,
+            "fields": ["action_date", "modification_number",
+                       "action_type_description", "description",
+                       "federal_action_obligation"],
+            "sort": "action_date", "order": "asc", "page": 1, "limit": 100,
+        }, timeout=45)
+        return r.json().get("results", []) if r.status_code == 200 else []
+    except requests.exceptions.Timeout:
+        print(f"  timeout fetching transactions for {gid[:40]} — skipping")
+        return []
+    except Exception as e:
+        print(f"  error fetching transactions: {e} — skipping")
+        return []
 
 
 # ---------------------------------------------------------------------------
@@ -201,20 +225,24 @@ def run_idv(session: requests.Session) -> None:
 # Phase 5: Modification text re-classification
 # ---------------------------------------------------------------------------
 
+MOD_PROCESSED_JSON = Path("data/mod_processed.json")
+
 def run_modifications(session: requests.Session) -> None:
     print("\n=== Modification re-classification ===")
     rows = load_classified_csv()
     enriched = load_enriched()
 
-    already = {r["award_id"] for r in enriched["mod_reclassified"]}
+    already_flipped  = {r["award_id"] for r in enriched["mod_reclassified"]}
+    already_checked  = set(json.loads(MOD_PROCESSED_JSON.read_text()) if MOD_PROCESSED_JSON.exists() else [])
     no_rows = [
         r for r in rows
         if str(r.get("is_ai", "")).lower() == "false"
         and r.get("generated_internal_id")
-        and r.get("Award ID") not in already
+        and r.get("Award ID") not in already_flipped
+        and r.get("Award ID") not in already_checked
     ]
 
-    print(f"{len(no_rows)} 'no' contracts to re-check with modification text")
+    print(f"{len(no_rows)} 'no' contracts to re-check ({len(already_checked)} already done, {len(already_flipped)} already flipped)")
 
     for row in no_rows:
         gid = row["generated_internal_id"]
@@ -243,6 +271,10 @@ def run_modifications(session: requests.Session) -> None:
                 "mod_text":    combined_mod_text[:500],
                 **result,
             })
+            save_enriched(enriched)
+
+        already_checked.add(aid)
+        MOD_PROCESSED_JSON.write_text(json.dumps(sorted(already_checked)))
         time.sleep(0.3)
 
     save_enriched(enriched)
