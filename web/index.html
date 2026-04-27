@@ -105,8 +105,7 @@
     footer a { color: var(--color-accent); }
 
     /* Detail modal */
-    #detailModal { align-items: center; justify-content: center; }
-    #detailModal:not(.hidden) { display: flex !important; }
+    #detailModal { display: none; }
     .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1.5rem; margin-bottom: 1rem; }
     .detail-grid dt { font-size: 0.75rem; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
     .detail-grid dd { font-size: 0.875rem; margin: 0 0 0.25rem; font-family: var(--font-mono); color: var(--color-text); }
@@ -181,7 +180,7 @@
   </div>
 
   <!-- Detail modal -->
-  <div id="detailModal" class="filter-modal hidden" onclick="if(event.target===this)closeDetail()">
+  <div id="detailModal" class="filter-modal" onclick="if(event.target===this)closeDetail()">
     <div class="filter-popover" style="max-width:680px;width:95%;max-height:85vh;overflow-y:auto;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;">
         <div class="filter-title" id="modalTitle">Contract Detail</div>
@@ -310,18 +309,25 @@ async function load() {
   let allRows = d.contracts;
   const tbody = document.getElementById('contractBody');
 
+  // Index contracts by award_id for click lookup
+  const contractIndex = {};
+  allRows.forEach(c => { contractIndex[c.award_id] = c; });
+
+  // Event delegation via jQuery — DataTable strips data attributes but
+  // the award ID text in the first cell survives every redraw.
+  $('#contractTable tbody').on('click', 'tr', function(e) {
+    if (e.target.tagName === 'A') return;
+    const aid = $(this).find('td:first a').text().trim();
+    if (aid && contractIndex[aid]) openDetail(contractIndex[aid]);
+  });
+
   function renderTable(contracts) {
     tbody.innerHTML = '';
     contracts.forEach(c => {
       const tr = document.createElement('tr');
-      tr.dataset.agency  = c.agency;
-      tr.dataset.keyword = c.keyword;
-      tr.dataset.amount  = c.amount;
-      tr.dataset.vendor  = c.vendor.toLowerCase();
       tr.style.cursor = 'pointer';
-      tr.addEventListener('click', () => openDetail(c));
       tr.innerHTML = `
-        <td><a class="award-link" href="${c.permalink}" target="_blank" onclick="event.stopPropagation()">${escapeHtml(c.award_id)}</a></td>
+        <td><a class="award-link" href="${c.permalink}" target="_blank">${escapeHtml(c.award_id)}</a></td>
         <td>${escapeHtml(c.agency)}</td>
         <td>${escapeHtml(c.vendor)}</td>
         <td class="num">${(c.amount/1e6).toFixed(2)}</td>
@@ -383,7 +389,7 @@ load().catch(console.error);
 // ── Contract detail modal ─────────────────────────────────────────────────
 
 function closeDetail() {
-  document.getElementById('detailModal').classList.add('hidden');
+  document.getElementById('detailModal').style.display = 'none';
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
 
@@ -392,13 +398,23 @@ async function openDetail(contract) {
   const body  = document.getElementById('modalBody');
   document.getElementById('modalTitle').textContent = contract.vendor;
   body.innerHTML = '<p style="color:var(--color-text-muted);font-size:0.875rem;">Loading from USASpending…</p>';
-  modal.classList.remove('hidden');
+  modal.style.display = 'flex';
 
   try {
     const gid = contract.generated_internal_id;
-    const [awardRes, txRes] = await Promise.all([
-      fetch(`https://api.usaspending.gov/api/v2/awards/${gid}/`),
-      fetch('https://api.usaspending.gov/api/v2/transactions/', {
+    body.innerHTML = `<p style="font-size:0.8rem;color:var(--color-text-muted)">Fetching ${escapeHtml(gid)}…</p>`;
+
+    if (!gid) throw new Error('No generated_internal_id for this contract');
+
+    const awardRes = await fetch(`https://api.usaspending.gov/api/v2/awards/${gid}/`);
+    const award = await awardRes.json();
+    if (!awardRes.ok) throw new Error(`Award API: ${awardRes.status} — ${JSON.stringify(award)}`);
+
+    body.innerHTML = '<p style="font-size:0.8rem;color:var(--color-text-muted)">Loading transactions…</p>';
+
+    let tx = [];
+    try {
+      const txRes = await fetch('https://api.usaspending.gov/api/v2/transactions/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -406,12 +422,12 @@ async function openDetail(contract) {
           fields: ['action_date', 'modification_number', 'action_type_description', 'description', 'federal_action_obligation'],
           sort: 'action_date', order: 'asc', page: 1, limit: 50,
         }),
-      }),
-    ]);
-
-    const award = await awardRes.json();
-    const txData = await txRes.json();
-    const tx = txData.results || [];
+      });
+      const txData = await txRes.json();
+      tx = txData.results || [];
+    } catch(txErr) {
+      console.warn('Transactions fetch failed:', txErr);
+    }
     const ltcd = award.latest_transaction_contract_data || {};
     const pop  = award.period_of_performance || {};
     const parent = award.parent_award || {};
@@ -464,7 +480,8 @@ async function openDetail(contract) {
       </table>
     `;
   } catch(e) {
-    body.innerHTML = `<p style="color:var(--color-error)">Failed to load: ${e.message}</p>`;
+    console.error('openDetail failed:', e);
+    body.innerHTML = `<p style="color:#DC2626;font-size:0.875rem;">Failed to load: ${escapeHtml(e.message)}</p>`;
   }
 }
 </script>
