@@ -87,7 +87,7 @@ def fetch_candidates_from_api() -> list[dict]:
                 "award_type_codes": ["A", "B", "C", "D"],
                 "time_period": [{"start_date": "2021-10-01", "end_date": "2026-09-30"}],
             },
-            "fields": FIELDS,
+            "fields": FIELDS + ["generated_internal_id"],
             "limit": 100,
             "page": 1,
             "sort": "Award Amount",
@@ -102,6 +102,7 @@ def fetch_candidates_from_api() -> list[dict]:
                 if aid and aid not in seen:
                     seen.add(aid)
                     row["matched_keyword"] = kw
+                    row["generated_internal_id"] = row.get("generated_internal_id", "")
                     candidates.append(row)
         except Exception as exc:
             print(f"  warning: keyword '{kw}' failed — {exc}")

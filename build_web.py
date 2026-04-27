@@ -62,8 +62,9 @@ def main() -> None:
                 "psc":         r.get("PSC Description", ""),
                 "start_date":  r.get("Start Date", ""),
                 "keyword":     r.get("matched_keyword", ""),
-                "explanation": r.get("explanation", ""),
-                "permalink":   f"https://www.usaspending.gov/award/{r.get('Award ID', '')}",
+                "explanation":           r.get("explanation", ""),
+                "generated_internal_id": r.get("generated_internal_id", ""),
+                "permalink":             f"https://www.usaspending.gov/award/{r.get('generated_internal_id') or r.get('Award ID', '')}",
             }
             for r in ai_rows
         ],

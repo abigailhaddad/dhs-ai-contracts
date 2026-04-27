@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-27T01:42Z",
+  "generated_at": "2026-04-27T02:15Z",
   "summary": {
-    "total_ai_contracts": 114,
-    "total_ai_dollars": 222313584.33,
+    "total_ai_contracts": 113,
+    "total_ai_dollars": 202210251.02,
     "total_candidates": 249,
-    "not_ai_filtered_out": 135,
+    "not_ai_filtered_out": 136,
     "sub_agencies_with_ai": 8
   },
   "by_agency": [
@@ -14,14 +14,14 @@
       "dollars": 94306162.29
     },
     {
-      "agency": "U.S. Citizenship and Immigration Services",
-      "contracts": 9,
-      "dollars": 53083098.36
-    },
-    {
       "agency": "Transportation Security Administration",
       "contracts": 23,
       "dollars": 41897417.53000001
+    },
+    {
+      "agency": "U.S. Citizenship and Immigration Services",
+      "contracts": 8,
+      "dollars": 32979765.05
     },
     {
       "agency": "U.S. Customs and Border Protection",
@@ -60,21 +60,9 @@
       "psc": "",
       "start_date": "2023-08-25",
       "keyword": "biometric",
-      "explanation": "The DEBIASE project for biometric and identity accuracy, scalability, and equitability suggests development of AI/ML methods to improve biometric matching and reduce bias, which is primarily machine learning-related work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23CB0000003"
-    },
-    {
-      "award_id": "70SBUR23F00000138",
-      "vendor": "CAPITAL TECHNOLOGY GROUP LLC",
-      "agency": "U.S. Citizenship and Immigration Services",
-      "amount": 20103333.31,
-      "description": "ACCOUNTS PUBLIC AND IDPROOFING SERVICES (APIS) THE TRANSFORMATION DATA SCIENCE SERVICES (TDSS) IV TEAM WILL BE PART OF A DEVSECOPS ECOSYSTEM WORKING WITH THE TRANSFORMATION DELIVERY DIVISIONS BUSINESS COMPONENTS AND OTHER DEVSECOPS CONTRACTOR TEAMS T",
-      "naics": "",
-      "psc": "",
-      "start_date": "2023-06-16",
-      "keyword": "data science",
-      "explanation": "The contract explicitly includes Transformation Data Science Services within a DevSecOps ecosystem, which indicates work centered on data science and likely predictive/ML-enabled capabilities rather than routine IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70SBUR23F00000138"
+      "explanation": "The project focuses on improving biometric and identity accuracy, scalability, and equitability, which strongly suggests development of AI/ML-enabled biometric matching and related model performance work rather than routine IT operations.",
+      "generated_internal_id": "CONT_AWD_70RSAT23CB0000003_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23CB0000003_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70SBUR23F00000120",
@@ -86,8 +74,9 @@
       "psc": "",
       "start_date": "2023-06-20",
       "keyword": "data science",
-      "explanation": "The contract is for transformation data science and advanced analytics services delivered by IT data scientists, which strongly suggests modeling, predictive analytics, or other AI/ML-adjacent work rather than routine IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70SBUR23F00000120"
+      "explanation": "The contract is for transformation data science and advanced analytics services staffed by data scientists, which strongly suggests modeling/predictive analytics and related AI/ML work rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70SBUR23F00000120_7003_75N98120D00131_7529",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR23F00000120_7003_75N98120D00131_7529"
     },
     {
       "award_id": "70T04020C9NRCA366",
@@ -100,7 +89,8 @@
       "start_date": "2020-09-30",
       "keyword": "algorithm",
       "explanation": "The scope explicitly mentions supporting third-party ATR (automatic target recognition) algorithm integration, which is an AI/computer vision capability, so this is primarily AI/ML-related work.",
-      "permalink": "https://www.usaspending.gov/award/70T04020C9NRCA366"
+      "generated_internal_id": "CONT_AWD_70T04020C9NRCA366_7013_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04020C9NRCA366_7013_-NONE-_-NONE-"
     },
     {
       "award_id": "70SBUR19F00000140",
@@ -112,8 +102,9 @@
       "psc": "",
       "start_date": "2019-08-20",
       "keyword": "data science",
-      "explanation": "The contract is for a Transformation Data Science Service, which strongly suggests data science work involving modeling or predictive analytics rather than routine IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70SBUR19F00000140"
+      "explanation": "The contract is for a Transformation Data Science Service, which strongly suggests modeling, analytics, and potentially AI/ML-enabled data science support rather than routine IT operations.",
+      "generated_internal_id": "CONT_AWD_70SBUR19F00000140_7003_HSHQDC14DE2024_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR19F00000140_7003_HSHQDC14DE2024_7001"
     },
     {
       "award_id": "HSHQDC17CB0022",
@@ -125,8 +116,9 @@
       "psc": "",
       "start_date": "2017-09-28",
       "keyword": "algorithm",
-      "explanation": "The contract is for checkpoint weapons detection algorithm development, which indicates machine learning or AI-based detection model work rather than general IT or rule-based automation.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC17CB0022"
+      "explanation": "The contract is for checkpoint weapons detection algorithm development, which indicates machine learning/computer vision algorithm work rather than general IT or rule-based automation.",
+      "generated_internal_id": "CONT_AWD_HSHQDC17CB0022_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC17CB0022_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "HSHQDC11C00001",
@@ -138,8 +130,9 @@
       "psc": "",
       "start_date": "2010-11-09",
       "keyword": "biometric",
-      "explanation": "This award is for a biometric optical surveillance system, which likely involves computer vision/biometric detection and related AI-enabled sensing rather than general IT or database infrastructure.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC11C00001"
+      "explanation": "This award is for a biometric optical surveillance system, which likely involves computer vision and automated pattern recognition rather than simple IT or database work.",
+      "generated_internal_id": "CONT_AWD_HSHQDC11C00001_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC11C00001_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70SBUR22C00000004",
@@ -151,8 +144,9 @@
       "psc": "",
       "start_date": "2022-03-02",
       "keyword": "data science",
-      "explanation": "The contract is for advanced analytics and data science support, which likely includes predictive modeling or other machine learning methods rather than purely general IT or database work.",
-      "permalink": "https://www.usaspending.gov/award/70SBUR22C00000004"
+      "explanation": "The contract is for advanced analytics and data science support, which likely includes predictive modeling or other machine learning methods rather than routine IT operations.",
+      "generated_internal_id": "CONT_AWD_70SBUR22C00000004_7003_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR22C00000004_7003_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT23FR0000088",
@@ -164,8 +158,9 @@
       "psc": "",
       "start_date": "2023-09-01",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly states it supports \"artificial intelligence/machine learning efforts,\" so it is primarily AI/ML-related.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23FR0000088"
+      "explanation": "The contract explicitly states it supports \"artificial intelligence/machine learning efforts,\" indicating the work is primarily AI/ML-related.",
+      "generated_internal_id": "CONT_AWD_70RSAT23FR0000088_7001_70RSAT19D00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23FR0000088_7001_70RSAT19D00000003_7001"
     },
     {
       "award_id": "HSHQDC17CB0020",
@@ -177,8 +172,9 @@
       "psc": "",
       "start_date": "2017-09-27",
       "keyword": "computer vision",
-      "explanation": "The contract is for applying advanced computer vision techniques to weapons detection in 3D CT imagery, which is a clear AI/machine learning use case.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC17CB0020"
+      "explanation": "This contract is primarily for applying advanced computer vision techniques to weapons detection in 3D CT imagery, which is a clear AI/machine learning use case.",
+      "generated_internal_id": "CONT_AWD_HSHQDC17CB0020_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC17CB0020_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RTAC24FC0000045",
@@ -190,8 +186,9 @@
       "psc": "",
       "start_date": "2024-09-26",
       "keyword": "artificial intelligence",
-      "explanation": "The order explicitly states it is for labor supporting artificial intelligence (AI) and emerging technology for DHS CTOD, which indicates the work is primarily AI/ML-related.",
-      "permalink": "https://www.usaspending.gov/award/70RTAC24FC0000045"
+      "explanation": "The call order explicitly states it is for labor supporting artificial intelligence (AI) and emerging technology for DHS CTOD, which indicates primary AI/ML-related work.",
+      "generated_internal_id": "CONT_AWD_70RTAC24FC0000045_7001_70RTAC20A00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RTAC24FC0000045_7001_70RTAC20A00000003_7001"
     },
     {
       "award_id": "70Z02324FCGRC0001",
@@ -203,8 +200,9 @@
       "psc": "",
       "start_date": "2024-08-01",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly includes artificial intelligence services, which indicates the work is primarily AI/ML-related rather than general IT or marketing alone.",
-      "permalink": "https://www.usaspending.gov/award/70Z02324FCGRC0001"
+      "explanation": "The contract explicitly includes artificial intelligence services, indicating it is primarily for AI/ML-related work rather than general IT or marketing alone.",
+      "generated_internal_id": "CONT_AWD_70Z02324FCGRC0001_7008_70Z02323ACGRC0001_7008",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70Z02324FCGRC0001_7008_70Z02323ACGRC0001_7008"
     },
     {
       "award_id": "HSTS0217COIA217",
@@ -216,8 +214,9 @@
       "psc": "",
       "start_date": "2017-09-07",
       "keyword": "predictive analytics",
-      "explanation": "The contract explicitly includes predictive analytics and data/statistical analysis, which indicates modeling work consistent with AI/ML rather than simple reporting or generic IT.",
-      "permalink": "https://www.usaspending.gov/award/HSTS0217COIA217"
+      "explanation": "The contract explicitly calls for predictive analytics and data/statistical analysis, which indicates modeling work consistent with AI/ML rather than routine IT or simple reporting.",
+      "generated_internal_id": "CONT_AWD_HSTS0217COIA217_7013_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0217COIA217_7013_-NONE-_-NONE-"
     },
     {
       "award_id": "HSTS0315JOGS022",
@@ -229,8 +228,9 @@
       "psc": "",
       "start_date": "2015-10-26",
       "keyword": "decision support",
-      "explanation": "The Global Risk Analysis Decision Support (GRADS) system suggests an AI/ML-enabled decision support and risk analysis platform rather than general IT operations.",
-      "permalink": "https://www.usaspending.gov/award/HSTS0315JOGS022"
+      "explanation": "The Global Risk Analysis Decision Support (GRADS) system suggests an AI/ML-enabled decision support and risk analysis capability rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_HSTS0315JOGS022_7013_HSTS0313ACIO549_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0315JOGS022_7013_HSTS0313ACIO549_7013"
     },
     {
       "award_id": "70T03024F7573N001",
@@ -243,7 +243,8 @@
       "start_date": "2024-09-30",
       "keyword": "AI/ML",
       "explanation": "The contract description explicitly references \"AI ML,\" indicating the work is primarily related to artificial intelligence/machine learning rather than general IT or administrative support.",
-      "permalink": "https://www.usaspending.gov/award/70T03024F7573N001"
+      "generated_internal_id": "CONT_AWD_70T03024F7573N001_7013_70T03024A7667N003_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T03024F7573N001_7013_70T03024A7667N003_7013"
     },
     {
       "award_id": "70CMSD25P00000111",
@@ -256,7 +257,8 @@
       "start_date": "2025-09-05",
       "keyword": "facial recognition",
       "explanation": "This award procures facial recognition software, which is an AI/computer vision capability used to identify individuals from images.",
-      "permalink": "https://www.usaspending.gov/award/70CMSD25P00000111"
+      "generated_internal_id": "CONT_AWD_70CMSD25P00000111_7012_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CMSD25P00000111_7012_-NONE-_-NONE-"
     },
     {
       "award_id": "HSTS0415JCT2018",
@@ -268,8 +270,9 @@
       "psc": "",
       "start_date": "2015-03-27",
       "keyword": "algorithm",
-      "explanation": "The contract explicitly mentions rapid algorithm development and dynamic switching capability, which indicates development of an algorithmic decision system and is closer to AI/ML work than general IT or operations.",
-      "permalink": "https://www.usaspending.gov/award/HSTS0415JCT2018"
+      "explanation": "The contract explicitly mentions rapid algorithm development and a tier IV algorithm with dynamic switching capability, which indicates model/algorithm development rather than general IT or rule-based automation.",
+      "generated_internal_id": "CONT_AWD_HSTS0415JCT2018_7013_HSTS0410DST2003_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0415JCT2018_7013_HSTS0410DST2003_7013"
     },
     {
       "award_id": "70T04022C7573N001",
@@ -281,8 +284,9 @@
       "psc": "",
       "start_date": "2022-06-22",
       "keyword": "algorithm",
-      "explanation": "This contract is for developing a biometric algorithm for the DIRS system, which indicates model-based AI/ML work rather than simple database or IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70T04022C7573N001"
+      "explanation": "This contract is primarily for developing a biometric algorithm for the DIRS system, which indicates machine learning/AI-based model work rather than general IT or database infrastructure.",
+      "generated_internal_id": "CONT_AWD_70T04022C7573N001_7013_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04022C7573N001_7013_-NONE-_-NONE-"
     },
     {
       "award_id": "70B04C19F00001210",
@@ -294,8 +298,9 @@
       "psc": "",
       "start_date": "2019-09-30",
       "keyword": "object detection",
-      "explanation": "The contract explicitly involves surveillance object detection and analytics, which strongly suggests computer vision and AI/ML-based detection capabilities rather than general IT work.",
-      "permalink": "https://www.usaspending.gov/award/70B04C19F00001210"
+      "explanation": "The contract explicitly involves surveillance object detection and analytics, which strongly suggests computer vision and AI/ML model development or deployment rather than general IT work.",
+      "generated_internal_id": "CONT_AWD_70B04C19F00001210_7014_GS07F5525R_4730",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B04C19F00001210_7014_GS07F5525R_4730"
     },
     {
       "award_id": "70RSAT20FR0000147",
@@ -307,8 +312,9 @@
       "psc": "",
       "start_date": "2020-09-25",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly states it is SETA support for Screening at Speed artificial intelligence/machine learning efforts, so it is primarily related to AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT20FR0000147"
+      "explanation": "The contract explicitly states it is for SETA support for Screening at Speed artificial intelligence/machine learning efforts, indicating the primary work is AI/ML-related support.",
+      "generated_internal_id": "CONT_AWD_70RSAT20FR0000147_7001_70RSAT19D00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT20FR0000147_7001_70RSAT19D00000003_7001"
     },
     {
       "award_id": "HSHQDC12C00040",
@@ -320,8 +326,9 @@
       "psc": "",
       "start_date": "2012-07-23",
       "keyword": "anomaly detection",
-      "explanation": "The award is for automated behavior-based screening and anomaly detection technology, which indicates machine learning or AI-based pattern detection rather than general IT work.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC12C00040"
+      "explanation": "The award is for automated behavior-based screening and anomaly detection technology, which indicates machine learning or AI-based pattern detection rather than general IT or rule-based processing.",
+      "generated_internal_id": "CONT_AWD_HSHQDC12C00040_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC12C00040_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70Z02323FCGRC0003",
@@ -333,8 +340,9 @@
       "psc": "",
       "start_date": "2023-09-15",
       "keyword": "artificial intelligence",
-      "explanation": "The contract description explicitly includes artificial intelligence services, which indicates the work is primarily AI/ML-related.",
-      "permalink": "https://www.usaspending.gov/award/70Z02323FCGRC0003"
+      "explanation": "The contract explicitly includes artificial intelligence services, indicating it is primarily for AI/ML-related work rather than general IT or administrative support.",
+      "generated_internal_id": "CONT_AWD_70Z02323FCGRC0003_7008_70Z02323ACGRC0001_7008",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70Z02323FCGRC0003_7008_70Z02323ACGRC0001_7008"
     },
     {
       "award_id": "70T02024F7500N005",
@@ -346,8 +354,9 @@
       "psc": "",
       "start_date": "2024-03-21",
       "keyword": "large language model",
-      "explanation": "The contract explicitly includes investigating and applying AI and large language models for identity matching and resolution improvements, which makes AI/ML a primary component of the work.",
-      "permalink": "https://www.usaspending.gov/award/70T02024F7500N005"
+      "explanation": "The contract explicitly includes investigating and applying AI and large language models to improve identity matching and resolution, which makes AI/ML a primary component.",
+      "generated_internal_id": "CONT_AWD_70T02024F7500N005_7013_70RSAT20D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T02024F7500N005_7013_70RSAT20D00000001_7001"
     },
     {
       "award_id": "HSSCCG16J00127",
@@ -359,8 +368,9 @@
       "psc": "",
       "start_date": "2016-09-27",
       "keyword": "predictive analytics",
-      "explanation": "The contract is for FDNS predictive analytics support, which indicates modeling and predictive analytics work consistent with machine learning or AI-enabled decision support.",
-      "permalink": "https://www.usaspending.gov/award/HSSCCG16J00127"
+      "explanation": "The contract explicitly provides FDNS predictive analytics support, which indicates modeling/predictive analytics work consistent with AI/ML rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001"
     },
     {
       "award_id": "70B06C25F00000538",
@@ -372,8 +382,9 @@
       "psc": "",
       "start_date": "2025-06-25",
       "keyword": "object detection",
-      "explanation": "Object detection software is a computer vision AI capability, and software licenses for that purpose indicate the contract is primarily for AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70B06C25F00000538"
+      "explanation": "Object detection software is a computer vision AI/ML capability, and the contract is for licenses to use that software.",
+      "generated_internal_id": "CONT_AWD_70B06C25F00000538_7014_70B06C21D00000022_7014",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B06C25F00000538_7014_70B06C21D00000022_7014"
     },
     {
       "award_id": "70T04025F7672N017",
@@ -385,8 +396,9 @@
       "psc": "",
       "start_date": "2025-09-30",
       "keyword": "algorithm",
-      "explanation": "This contract is for deploying an approved algorithm to detection systems, which indicates AI/ML model deployment rather than general IT or database work.",
-      "permalink": "https://www.usaspending.gov/award/70T04025F7672N017"
+      "explanation": "This contract is primarily for deploying an approved algorithm to explosive detection systems, which indicates machine learning or AI model deployment rather than general IT work.",
+      "generated_internal_id": "CONT_AWD_70T04025F7672N017_7013_70T04023D7672N002_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04025F7672N017_7013_70T04023D7672N002_7013"
     },
     {
       "award_id": "70CMSD21P00000127",
@@ -399,7 +411,8 @@
       "start_date": "2021-09-03",
       "keyword": "facial recognition",
       "explanation": "This contract is for facial recognition enterprise licenses, which is an AI/computer vision application and therefore primarily AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70CMSD21P00000127"
+      "generated_internal_id": "CONT_AWD_70CMSD21P00000127_7012_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CMSD21P00000127_7012_-NONE-_-NONE-"
     },
     {
       "award_id": "70SBUR25C00000002",
@@ -411,8 +424,9 @@
       "psc": "",
       "start_date": "2024-11-16",
       "keyword": "data science",
-      "explanation": "The contract is for advanced analytics and data science support, which likely involves predictive modeling or other machine learning methods rather than routine IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70SBUR25C00000002"
+      "explanation": "The contract is for advanced analytics and data science support, which likely involves predictive modeling or other machine learning methods rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70SBUR25C00000002_7003_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR25C00000002_7003_-NONE-_-NONE-"
     },
     {
       "award_id": "70Z02325F71100013",
@@ -424,8 +438,9 @@
       "psc": "",
       "start_date": "2025-09-22",
       "keyword": "autonomous systems",
-      "explanation": "The contract is for establishing a robotics and autonomous systems domain for drones and counter-unmanned autonomous systems, which is closely tied to AI/autonomy work rather than general IT or database services.",
-      "permalink": "https://www.usaspending.gov/award/70Z02325F71100013"
+      "explanation": "The contract is for establishing a robotics and autonomous systems domain for drones and counter-unmanned autonomous systems, which is closely tied to AI-enabled autonomy and machine learning applications.",
+      "generated_internal_id": "CONT_AWD_70Z02325F71100013_7008_47QRCA25DA145_4732",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70Z02325F71100013_7008_47QRCA25DA145_4732"
     },
     {
       "award_id": "70RSAT18FR0000141",
@@ -437,8 +452,9 @@
       "psc": "",
       "start_date": "2018-09-27",
       "keyword": "algorithm",
-      "explanation": "The contract is for maturation and deployment of the CLASP algorithm, which indicates development and operational use of an AI/ML-style algorithm rather than general IT work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT18FR0000141"
+      "explanation": "The contract explicitly focuses on algorithm maturation and deployment for correlating luggage with specific passengers, which indicates AI/ML-style predictive or matching model development rather than general IT work.",
+      "generated_internal_id": "CONT_AWD_70RSAT18FR0000141_7001_HSHQDC16AB0008_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT18FR0000141_7001_HSHQDC16AB0008_7001"
     },
     {
       "award_id": "70RSAT20CB0000002",
@@ -450,8 +466,9 @@
       "psc": "",
       "start_date": "2020-07-20",
       "keyword": "decision support",
-      "explanation": "The award description indicates community-oriented decision support for compound flood events, which strongly suggests predictive modeling and AI/ML-enabled decision support rather than routine IT or data management.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT20CB0000002"
+      "explanation": "The award description references community-oriented decision support for compound flood events, which suggests predictive modeling and AI/ML-enabled decision support rather than routine IT or data analytics.",
+      "generated_internal_id": "CONT_AWD_70RSAT20CB0000002_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT20CB0000002_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "HSHQDC11C00122",
@@ -463,8 +480,9 @@
       "psc": "",
       "start_date": "2011-09-19",
       "keyword": "algorithm",
-      "explanation": "The contract explicitly mentions improved algorithms and spiral development for a detection system, which indicates model/algorithm development rather than routine IT or database work.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC11C00122"
+      "explanation": "The contract explicitly calls for improved algorithms and spiral development for a radiation detection system, which indicates model/algorithm development rather than routine IT or database work.",
+      "generated_internal_id": "CONT_AWD_HSHQDC11C00122_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC11C00122_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70FA4024F00000327",
@@ -476,8 +494,9 @@
       "psc": "",
       "start_date": "2024-07-16",
       "keyword": "data science",
-      "explanation": "The contract supports FEMA\u2019s Enterprise Data Analytics and Management Initiative and specifically includes a Data Science branch, which suggests work centered on analytics/modeling rather than general IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70FA4024F00000327"
+      "explanation": "The order explicitly supports FEMA\u2019s Enterprise Data Analytics and Management Initiative and its Data Science branch, which indicates work centered on analytics and likely modeling/data science rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70FA4024F00000327_7022_70RDAD23A00000010_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70FA4024F00000327_7022_70RDAD23A00000010_7001"
     },
     {
       "award_id": "70RSAT18FR0000115",
@@ -489,8 +508,9 @@
       "psc": "",
       "start_date": "2018-09-26",
       "keyword": "algorithm",
-      "explanation": "The contract is for ionization and validation of dielectric characterization algorithms, which indicates development and testing of computational algorithms rather than general IT or database work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT18FR0000115"
+      "explanation": "The contract is for ion and validation of dielectric characterization algorithms, which indicates development/testing of algorithms and is closer to AI/ML or advanced modeling work than general IT.",
+      "generated_internal_id": "CONT_AWD_70RSAT18FR0000115_7001_HSHQDC16AB0008_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT18FR0000115_7001_HSHQDC16AB0008_7001"
     },
     {
       "award_id": "70B06C25F00000621",
@@ -502,8 +522,9 @@
       "psc": "",
       "start_date": "2025-09-15",
       "keyword": "large language model",
-      "explanation": "The contract explicitly supports an Office of Trade Large Language Model (LLM) and Vision AI project, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70B06C25F00000621"
+      "explanation": "The contract explicitly supports a Large Language Model (LLM) Vision AI project, which is directly AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70B06C25F00000621_7014_70B06C20A00000036_7014",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B06C25F00000621_7014_70B06C20A00000036_7014"
     },
     {
       "award_id": "70T04020F5DAP2002",
@@ -515,8 +536,9 @@
       "psc": "",
       "start_date": "2020-09-22",
       "keyword": "algorithm",
-      "explanation": "The delivery order is to install an updated algorithm on TSA screening systems, which indicates deployment of an algorithmic/AI-related capability rather than general IT or database work.",
-      "permalink": "https://www.usaspending.gov/award/70T04020F5DAP2002"
+      "explanation": "The delivery order is for installing an updated algorithm on TSA screening systems, which indicates deployment of algorithmic/AI functionality rather than general IT or infrastructure work.",
+      "generated_internal_id": "CONT_AWD_70T04020F5DAP2002_7013_HSTS0417DCT8512_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04020F5DAP2002_7013_HSTS0417DCT8512_7013"
     },
     {
       "award_id": "70SBUR24F00000223",
@@ -528,8 +550,9 @@
       "psc": "",
       "start_date": "2024-10-18",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly provides cybersecurity artificial intelligence support and AI professional services, indicating primary work in AI/ML rather than general IT.",
-      "permalink": "https://www.usaspending.gov/award/70SBUR24F00000223"
+      "explanation": "The contract explicitly provides cybersecurity artificial intelligence support and AI professional services, indicating primary AI/ML-related work rather than general IT support.",
+      "generated_internal_id": "CONT_AWD_70SBUR24F00000223_7003_47QTCA23D007Z_4732",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR24F00000223_7003_47QTCA23D007Z_4732"
     },
     {
       "award_id": "HSHQDC11C00118",
@@ -541,8 +564,9 @@
       "psc": "",
       "start_date": "2011-09-19",
       "keyword": "algorithm",
-      "explanation": "The contract explicitly includes continued algorithm development, which indicates model/algorithm work rather than routine IT maintenance, so it is primarily AI/ML-related.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC11C00118"
+      "explanation": "The contract explicitly involves continued algorithm development, which indicates model/algorithm work rather than routine IT operations.",
+      "generated_internal_id": "CONT_AWD_HSHQDC11C00118_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC11C00118_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70FA6024F00000042",
@@ -554,8 +578,9 @@
       "psc": "",
       "start_date": "2024-09-09",
       "keyword": "chatbot",
-      "explanation": "The contract description references a chatbot, which is typically an AI/NLP application, so this appears to be primarily AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70FA6024F00000042"
+      "explanation": "The contract description indicates a chatbot, which is typically an AI/NLP application and therefore suggests primarily AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70FA6024F00000042_7022_70FA6022A00000001_7022",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70FA6024F00000042_7022_70FA6022A00000001_7022"
     },
     {
       "award_id": "HSHQDC12J00110",
@@ -567,8 +592,9 @@
       "psc": "",
       "start_date": "2012-05-17",
       "keyword": "decision support",
-      "explanation": "The contract is for R&D support and operational pilot expansion of a decision support system, which suggests AI/ML-related modeling or intelligent decision-support work rather than routine IT operations.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC12J00110"
+      "explanation": "The contract is for R&D support and operational pilot expansion of a decision support system, which suggests AI/ML-enabled decision support rather than routine IT operations.",
+      "generated_internal_id": "CONT_AWD_HSHQDC12J00110_7001_HSHQDC06D00026_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC12J00110_7001_HSHQDC06D00026_7001"
     },
     {
       "award_id": "70SBUR25F00000214",
@@ -580,8 +606,9 @@
       "psc": "",
       "start_date": "2025-09-15",
       "keyword": "artificial intelligence",
-      "explanation": "The contract is for an Artificial Intelligence gateway used to securely and efficiently interact with AI products, which indicates it is primarily supporting AI/ML use rather than general IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70SBUR25F00000214"
+      "explanation": "The contract is for an Artificial Intelligence gateway to securely and efficiently interact with AI products, which indicates it is primarily supporting AI/ML use rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70SBUR25F00000214_7003_NNG15SC91B_8000",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR25F00000214_7003_NNG15SC91B_8000"
     },
     {
       "award_id": "HSTS0216JOIA170",
@@ -593,8 +620,9 @@
       "psc": "",
       "start_date": "2016-08-18",
       "keyword": "algorithm",
-      "explanation": "This contract is for an independent assessment of the Secure Flight vetting algorithm, which is an algorithmic system and falls within AI/ML-adjacent modeling and decision-system work.",
-      "permalink": "https://www.usaspending.gov/award/HSTS0216JOIA170"
+      "explanation": "This contract is for an independent assessment of the Secure Flight vetting algorithm, which is an algorithmic/ML-related system rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_HSTS0216JOIA170_7013_HSHQDC14D00006_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0216JOIA170_7013_HSHQDC14D00006_7001"
     },
     {
       "award_id": "70RSAT19CB0000026",
@@ -606,8 +634,9 @@
       "psc": "",
       "start_date": "2019-09-27",
       "keyword": "predictive analytics",
-      "explanation": "The contract explicitly implements predictive analytics and cyber analytics to build situational awareness, which indicates modeling/AI-style analytical work rather than routine IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT19CB0000026"
+      "explanation": "The contract explicitly implements predictive analytics and gathers cyber analytics to build situational awareness, which indicates modeling/AI-style analytical work rather than routine IT operations.",
+      "generated_internal_id": "CONT_AWD_70RSAT19CB0000026_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT19CB0000026_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70B04C24P00000552",
@@ -619,8 +648,9 @@
       "psc": "",
       "start_date": "2024-09-27",
       "keyword": "large language model",
-      "explanation": "The contract explicitly provides litigation large language model (LLM) support services, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70B04C24P00000552"
+      "explanation": "The contract explicitly provides litigation large language model (LLM) support services, which is directly AI/ML work involving an LLM.",
+      "generated_internal_id": "CONT_AWD_70B04C24P00000552_7014_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B04C24P00000552_7014_-NONE-_-NONE-"
     },
     {
       "award_id": "70RTAC24FC0000013",
@@ -632,8 +662,9 @@
       "psc": "",
       "start_date": "2024-03-28",
       "keyword": "artificial intelligence",
-      "explanation": "The order is explicitly for Artificial Intelligence Safety & Security Executive Steering Committee and Chief Artificial Intelligence Officer support, which is directly tied to AI governance and AI-related work.",
-      "permalink": "https://www.usaspending.gov/award/70RTAC24FC0000013"
+      "explanation": "The call order explicitly supports the Artificial Intelligence Safety & Security Executive Steering Committee and Chief Artificial Intelligence Officer, indicating work centered on AI governance and oversight rather than general IT.",
+      "generated_internal_id": "CONT_AWD_70RTAC24FC0000013_7001_70RTAC20A00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RTAC24FC0000013_7001_70RTAC20A00000003_7001"
     },
     {
       "award_id": "70RSAT22C00000059",
@@ -645,8 +676,9 @@
       "psc": "",
       "start_date": "2022-09-29",
       "keyword": "synthetic data",
-      "explanation": "This is primarily AI/ML work because it involves software for synthetic data generation, which is commonly used in machine learning and AI development, and it is an SBIR Phase III effort.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22C00000059"
+      "explanation": "This is primarily AI/ML work because it involves software for synthetic data generation, which is commonly used to train or support machine learning models, and it is an SBIR Phase III technology effort.",
+      "generated_internal_id": "CONT_AWD_70RSAT22C00000059_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22C00000059_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70T04023F7672N034",
@@ -658,8 +690,9 @@
       "psc": "",
       "start_date": "2023-09-27",
       "keyword": "algorithm",
-      "explanation": "The contract explicitly calls for low probability of false alarm algorithm engineering support services, which indicates development or support of an algorithmic decision system consistent with AI/ML-related work.",
-      "permalink": "https://www.usaspending.gov/award/70T04023F7672N034"
+      "explanation": "The contract is for low probability of false alarm algorithm engineering support, which indicates development or support of an algorithmic model rather than general IT or database work.",
+      "generated_internal_id": "CONT_AWD_70T04023F7672N034_7013_70T04023D7672N003_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04023F7672N034_7013_70T04023D7672N003_7013"
     },
     {
       "award_id": "70T02020F2KCOO166",
@@ -671,8 +704,9 @@
       "psc": "",
       "start_date": "2020-09-15",
       "keyword": "algorithm",
-      "explanation": "The contract is focused on testing the Transportation Vetting System\u2019s matching algorithms using a ground-truth test dataset, which indicates work centered on algorithmic/ML evaluation rather than general IT support.",
-      "permalink": "https://www.usaspending.gov/award/70T02020F2KCOO166"
+      "explanation": "The contract is focused on testing the Transportation Vetting System\u2019s matching algorithms using a ground-truth test dataset, which indicates work centered on algorithmic/ML evaluation rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70T02020F2KCOO166_7013_70RSAT20D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T02020F2KCOO166_7013_70RSAT20D00000001_7001"
     },
     {
       "award_id": "70RSAT23FR0000136",
@@ -684,8 +718,9 @@
       "psc": "",
       "start_date": "2023-09-28",
       "keyword": "large language model",
-      "explanation": "This task order explicitly involves large language model evaluation and demonstration for forced labor analytics, which is AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23FR0000136"
+      "explanation": "This task order explicitly involves evaluation and demonstration of a large language model (LLM) for forced labor analytics, which is AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70RSAT23FR0000136_7001_70RSAT20D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23FR0000136_7001_70RSAT20D00000001_7001"
     },
     {
       "award_id": "70RSAT20C00000014",
@@ -697,8 +732,9 @@
       "psc": "",
       "start_date": "2020-06-17",
       "keyword": "machine learning",
-      "explanation": "This is an SBIR research and development award for synthetic training data to support explosive detection machine learning algorithms, which is directly AI/ML-related work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT20C00000014"
+      "explanation": "This is an SBIR research and development award for synthetic training data to support explosive detection machine learning algorithms, which is directly AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70RSAT20C00000014_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT20C00000014_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT25C00000003",
@@ -710,8 +746,9 @@
       "psc": "",
       "start_date": "2025-03-31",
       "keyword": "machine learning",
-      "explanation": "This is an SBIR Phase II effort explicitly focused on data labeling and curation at scale for machine learning algorithms, which is directly AI/ML-related work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT25C00000003"
+      "explanation": "This is an SBIR Phase II effort explicitly focused on data labeling and curation at scale for machine learning algorithms, which is directly AI/ML-related.",
+      "generated_internal_id": "CONT_AWD_70RSAT25C00000003_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT25C00000003_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "HSHQDC13C00083",
@@ -723,8 +760,9 @@
       "psc": "",
       "start_date": "2013-09-18",
       "keyword": "algorithm",
-      "explanation": "This is an SBIR Phase II effort for embedded search and identification algorithms, which indicates algorithmic/AI-style model development rather than general IT or database work.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC13C00083"
+      "explanation": "This is an SBIR Phase II effort for embedded search and identification algorithms, which indicates development of algorithmic/AI-like model-based detection work rather than general IT or database operations.",
+      "generated_internal_id": "CONT_AWD_HSHQDC13C00083_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC13C00083_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT21C00000021",
@@ -737,7 +775,8 @@
       "start_date": "2021-04-06",
       "keyword": "machine learning",
       "explanation": "The contract explicitly calls for a machine learning module for detection technologies, which indicates primary AI/ML development or deployment work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT21C00000021"
+      "generated_internal_id": "CONT_AWD_70RSAT21C00000021_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT21C00000021_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT19C00000046",
@@ -749,8 +788,9 @@
       "psc": "",
       "start_date": "2019-08-05",
       "keyword": "decision support",
-      "explanation": "The contract is for decision support toolkits for system-of-systems level risk modeling, which indicates predictive/modeling software consistent with AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT19C00000046"
+      "explanation": "The contract is for decision support toolkits for system-of-systems level risk modeling, which indicates predictive/modeling software rather than general IT or database work.",
+      "generated_internal_id": "CONT_AWD_70RSAT19C00000046_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT19C00000046_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT23C00000014",
@@ -762,8 +802,9 @@
       "psc": "",
       "start_date": "2023-04-06",
       "keyword": "machine learning",
-      "explanation": "This is explicitly an SBIR Phase II effort to develop machine learning tools for molecular recognition, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23C00000014"
+      "explanation": "This is an SBIR Phase II effort explicitly to develop machine learning tools for molecular recognition, which is directly AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70RSAT23C00000014_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23C00000014_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT22C00000016",
@@ -776,7 +817,8 @@
       "start_date": "2022-04-25",
       "keyword": "artificial intelligence",
       "explanation": "The description explicitly states the funding is for artificial intelligence to augment the 911 telecommunicator function, which indicates primary AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22C00000016"
+      "generated_internal_id": "CONT_AWD_70RSAT22C00000016_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22C00000016_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT24C00000008",
@@ -788,8 +830,9 @@
       "psc": "",
       "start_date": "2024-05-02",
       "keyword": "machine learning",
-      "explanation": "This is explicitly an SBIR Phase II topic for a machine learning-based system, so it is primarily AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT24C00000008"
+      "explanation": "This is an SBIR Phase II topic explicitly focused on machine learning-based sensor integration, which is primarily AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70RSAT24C00000008_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT24C00000008_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70B06C25P00000274",
@@ -802,7 +845,8 @@
       "start_date": "2025-06-03",
       "keyword": "artificial intelligence",
       "explanation": "The purchase order explicitly states it is for an artificial intelligence license and support for AI tools (VREADS and PRISM), so it is primarily AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70B06C25P00000274"
+      "generated_internal_id": "CONT_AWD_70B06C25P00000274_7014_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B06C25P00000274_7014_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT22CB0000011",
@@ -814,8 +858,9 @@
       "psc": "",
       "start_date": "2022-09-27",
       "keyword": "decision support",
-      "explanation": "This appears to be a research and decision-support award using sensing data and likely modeling/analytics to inform fire science, which fits AI/ML-adjacent predictive decision support work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22CB0000011"
+      "explanation": "This appears to be a research and decision-support award using sensing data and likely predictive/modeling methods to inform fire science, which fits AI/ML-adjacent analytical work.",
+      "generated_internal_id": "CONT_AWD_70RSAT22CB0000011_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22CB0000011_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT20FR0000089",
@@ -827,8 +872,9 @@
       "psc": "",
       "start_date": "2020-07-10",
       "keyword": "artificial intelligence",
-      "explanation": "This award is for research on public perceptions of emerging artificial intelligence, which is directly tied to AI rather than general IT or administrative support.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT20FR0000089"
+      "explanation": "The award is specifically for work on public perceptions of emerging artificial intelligence, which is directly tied to AI rather than general IT or administrative support.",
+      "generated_internal_id": "CONT_AWD_70RSAT20FR0000089_7001_HSHQDC16D00007_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT20FR0000089_7001_HSHQDC16D00007_7001"
     },
     {
       "award_id": "HSTS0416JCT1029",
@@ -840,8 +886,9 @@
       "psc": "",
       "start_date": "2016-08-23",
       "keyword": "algorithm",
-      "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development consistent with AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/HSTS0416JCT1029"
+      "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development rather than general IT work.",
+      "generated_internal_id": "CONT_AWD_HSTS0416JCT1029_7013_HSTS0412DCT1200_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0416JCT1029_7013_HSTS0412DCT1200_7013"
     },
     {
       "award_id": "70RSAT20FR0000016",
@@ -853,8 +900,9 @@
       "psc": "",
       "start_date": "2020-01-15",
       "keyword": "algorithm",
-      "explanation": "This task involves an automated algorithm analyzing X-ray image data in real time, which is consistent with computer vision/AI-based image analysis rather than general IT or rule-based automation.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT20FR0000016"
+      "explanation": "This task involves an automated algorithm that analyzes X-ray image information in real time, which is consistent with computer vision/AI-based image analysis.",
+      "generated_internal_id": "CONT_AWD_70RSAT20FR0000016_7001_70RSAT18D00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT20FR0000016_7001_70RSAT18D00000003_7001"
     },
     {
       "award_id": "70B04C23F00001150",
@@ -866,8 +914,9 @@
       "psc": "",
       "start_date": "2023-09-18",
       "keyword": "optical character recognition",
-      "explanation": "Optical character recognition software is an AI/ML-related capability because it uses machine learning or computer vision techniques to extract text from images or scanned documents.",
-      "permalink": "https://www.usaspending.gov/award/70B04C23F00001150"
+      "explanation": "Optical character recognition is an AI/ML-enabled document understanding capability, so this requirement is primarily for AI-related software work.",
+      "generated_internal_id": "CONT_AWD_70B04C23F00001150_7014_NNG15SD26B_8000",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B04C23F00001150_7014_NNG15SD26B_8000"
     },
     {
       "award_id": "70T02018F2NOIA150",
@@ -879,8 +928,9 @@
       "psc": "",
       "start_date": "2018-08-27",
       "keyword": "algorithm",
-      "explanation": "This task order is for developing an algorithm for TSA\u2019s Enhanced Adjudication System, which indicates predictive/modeling or AI/ML-related work rather than general IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70T02018F2NOIA150"
+      "explanation": "This task order is for developing an algorithm for TSA\u2019s Enhanced Adjudication System, which indicates predictive/modeling or AI-related analytical work rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70T02018F2NOIA150_7013_HSHQDC16AB0005_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T02018F2NOIA150_7013_HSHQDC16AB0005_7001"
     },
     {
       "award_id": "70RDAD21FR0000159",
@@ -893,7 +943,8 @@
       "start_date": "2021-09-27",
       "keyword": "facial recognition",
       "explanation": "This contract is centered on studying facial recognition technology, which is an AI/computer vision application, even though the deliverable is policy and research rather than model development.",
-      "permalink": "https://www.usaspending.gov/award/70RDAD21FR0000159"
+      "generated_internal_id": "CONT_AWD_70RDAD21FR0000159_7001_70RSAT21G00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RDAD21FR0000159_7001_70RSAT21G00000003_7001"
     },
     {
       "award_id": "HSTS0416JCT1188",
@@ -906,7 +957,8 @@
       "start_date": "2016-09-14",
       "keyword": "algorithm",
       "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development consistent with AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/HSTS0416JCT1188"
+      "generated_internal_id": "CONT_AWD_HSTS0416JCT1188_7013_HSTS0412DCT1173_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0416JCT1188_7013_HSTS0412DCT1173_7013"
     },
     {
       "award_id": "HSTS0417JCT2011",
@@ -918,8 +970,9 @@
       "psc": "",
       "start_date": "2017-04-26",
       "keyword": "algorithm",
-      "explanation": "The task order is for development of targeted threat algorithm software, which indicates algorithmic/model-based detection work rather than general IT or database operations.",
-      "permalink": "https://www.usaspending.gov/award/HSTS0417JCT2011"
+      "explanation": "This task order is for developing targeted threat algorithm software for an automated inspection platform, which indicates model/algorithm-based detection work rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_HSTS0417JCT2011_7013_HSTS0412DCT2031_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0417JCT2011_7013_HSTS0412DCT2031_7013"
     },
     {
       "award_id": "70FA4024F00000281",
@@ -931,8 +984,9 @@
       "psc": "",
       "start_date": "2024-06-05",
       "keyword": "artificial intelligence",
-      "explanation": "This call order explicitly supports FEMA\u2019s Planning Assistant for Resilient Communities AI pilot project, indicating primary work on an AI system rather than general IT support.",
-      "permalink": "https://www.usaspending.gov/award/70FA4024F00000281"
+      "explanation": "The order explicitly supports FEMA\u2019s Planning Assistant for Resilient Communities (PARC) artificial intelligence pilot project, indicating the work is primarily AI-related.",
+      "generated_internal_id": "CONT_AWD_70FA4024F00000281_7022_70FA4020A00000001_7022",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70FA4024F00000281_7022_70FA4020A00000001_7022"
     },
     {
       "award_id": "70B05C20F00000034",
@@ -944,8 +998,9 @@
       "psc": "",
       "start_date": "2019-12-11",
       "keyword": "machine learning",
-      "explanation": "The description explicitly includes machine learning and improving detection of items of interest, indicating the contract is primarily for AI/ML-related development work.",
-      "permalink": "https://www.usaspending.gov/award/70B05C20F00000034"
+      "explanation": "The description explicitly includes machine learning and improved detection features, indicating the contract is primarily for AI/ML-related development work.",
+      "generated_internal_id": "CONT_AWD_70B05C20F00000034_7014_70B05C20D00000001_7014",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B05C20F00000034_7014_70B05C20D00000001_7014"
     },
     {
       "award_id": "70CMSD22FR0000068",
@@ -957,8 +1012,9 @@
       "psc": "",
       "start_date": "2022-07-18",
       "keyword": "natural language processing",
-      "explanation": "The contract is for natural language processing support services, which is a core AI/ML area involving NLP models and related machine learning techniques.",
-      "permalink": "https://www.usaspending.gov/award/70CMSD22FR0000068"
+      "explanation": "The contract explicitly calls for natural language processing support services, which is a core AI/ML capability involving NLP models and related machine learning work.",
+      "generated_internal_id": "CONT_AWD_70CMSD22FR0000068_7012_70RSAT20D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CMSD22FR0000068_7012_70RSAT20D00000001_7001"
     },
     {
       "award_id": "70T04024F7672N022",
@@ -970,8 +1026,9 @@
       "psc": "",
       "start_date": "2024-09-11",
       "keyword": "algorithm",
-      "explanation": "The contract is for algorithm deployment for explosive detection systems, which indicates deployment of an AI/ML or advanced algorithmic model rather than general IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70T04024F7672N022"
+      "explanation": "The contract is for algorithm deployment for explosive detection systems, which indicates deploying an AI/ML-based detection model rather than general IT or rule-based automation.",
+      "generated_internal_id": "CONT_AWD_70T04024F7672N022_7013_70T04023D7672N004_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04024F7672N022_7013_70T04023D7672N004_7013"
     },
     {
       "award_id": "70RTAC23FR0000086",
@@ -983,8 +1040,9 @@
       "psc": "",
       "start_date": "2023-08-03",
       "keyword": "artificial intelligence",
-      "explanation": "This task order is explicitly for DHS artificial intelligence policy implication review, which is directly focused on AI rather than general IT or non-ML services.",
-      "permalink": "https://www.usaspending.gov/award/70RTAC23FR0000086"
+      "explanation": "The task order is explicitly for an artificial intelligence policy implications review, which is directly tied to AI work rather than general IT or administrative support.",
+      "generated_internal_id": "CONT_AWD_70RTAC23FR0000086_7001_70RSAT22D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RTAC23FR0000086_7001_70RSAT22D00000001_7001"
     },
     {
       "award_id": "HSHQDC10C00064",
@@ -996,8 +1054,9 @@
       "psc": "",
       "start_date": "2010-04-28",
       "keyword": "algorithm",
-      "explanation": "The contract description explicitly calls for algorithm development and evaluation, which strongly suggests AI/ML model or predictive algorithm work rather than general IT operations.",
-      "permalink": "https://www.usaspending.gov/award/HSHQDC10C00064"
+      "explanation": "The contract description explicitly calls for algorithm development and evaluation, which is consistent with AI/ML model development or testing rather than general IT work.",
+      "generated_internal_id": "CONT_AWD_HSHQDC10C00064_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC10C00064_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70T04024C7573N002",
@@ -1010,7 +1069,8 @@
       "start_date": "2024-09-30",
       "keyword": "algorithm",
       "explanation": "The contract explicitly supports detection algorithms and annotation of screening scan data, which indicates machine learning/computer vision work rather than general IT or database operations.",
-      "permalink": "https://www.usaspending.gov/award/70T04024C7573N002"
+      "generated_internal_id": "CONT_AWD_70T04024C7573N002_7013_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04024C7573N002_7013_-NONE-_-NONE-"
     },
     {
       "award_id": "70T04025F7672N016",
@@ -1022,8 +1082,9 @@
       "psc": "",
       "start_date": "2025-09-24",
       "keyword": "algorithm",
-      "explanation": "The contract is for algorithm deployment on explosive detection system units, which indicates deploying an AI/ML model or algorithm rather than general IT or database work.",
-      "permalink": "https://www.usaspending.gov/award/70T04025F7672N016"
+      "explanation": "The contract is for algorithm deployment on explosive detection system units, which indicates deploying an AI/ML or model-based decision capability rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70T04025F7672N016_7013_70T04023D7672N004_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04025F7672N016_7013_70T04023D7672N004_7013"
     },
     {
       "award_id": "70T04018F5DAP2018",
@@ -1036,7 +1097,8 @@
       "start_date": "2018-09-24",
       "keyword": "algorithm",
       "explanation": "The order is for engineering support to analyze, evaluate, and deliver algorithms for TSA\u2019s investigation of emerging threats, which indicates work centered on algorithm development and deployment rather than general IT support.",
-      "permalink": "https://www.usaspending.gov/award/70T04018F5DAP2018"
+      "generated_internal_id": "CONT_AWD_70T04018F5DAP2018_7013_HSTS0417DCT2032_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04018F5DAP2018_7013_HSTS0417DCT2032_7013"
     },
     {
       "award_id": "70B04C23F00001192",
@@ -1048,8 +1110,9 @@
       "psc": "",
       "start_date": "2023-09-22",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly provides Artificial Intelligence Center of Innovation support services, which indicates the work is primarily focused on AI/ML-related activities.",
-      "permalink": "https://www.usaspending.gov/award/70B04C23F00001192"
+      "explanation": "The contract is explicitly for Artificial Intelligence Center of Innovation support services, which indicates primary work focused on AI rather than general IT or administrative support.",
+      "generated_internal_id": "CONT_AWD_70B04C23F00001192_7014_NNG15SD12B_8000",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B04C23F00001192_7014_NNG15SD12B_8000"
     },
     {
       "award_id": "70T04023C7573N001",
@@ -1061,8 +1124,9 @@
       "psc": "",
       "start_date": "2023-09-28",
       "keyword": "algorithm",
-      "explanation": "The contract is for automatic target recognition algorithm engineering, evaluation, and deployment of HD-AIT algorithms, which is directly AI/ML-related computer vision work.",
-      "permalink": "https://www.usaspending.gov/award/70T04023C7573N001"
+      "explanation": "This contract is for automatic target recognition algorithm engineering, evaluation, and deployment of HD-AIT algorithms, which is clearly machine learning/AI work.",
+      "generated_internal_id": "CONT_AWD_70T04023C7573N001_7013_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04023C7573N001_7013_-NONE-_-NONE-"
     },
     {
       "award_id": "70SBUR19F00000316",
@@ -1074,8 +1138,9 @@
       "psc": "",
       "start_date": "2019-07-10",
       "keyword": "data science",
-      "explanation": "The contract is for transformation data science services, which strongly suggests modeling, analytics, and potentially machine learning support rather than routine IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70SBUR19F00000316"
+      "explanation": "The contract is for transformation data science services, which typically involves predictive modeling, machine learning, or other AI-enabled analytics rather than routine IT operations.",
+      "generated_internal_id": "CONT_AWD_70SBUR19F00000316_7003_HSHQDC14DE2051_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR19F00000316_7003_HSHQDC14DE2051_7001"
     },
     {
       "award_id": "70RSAT22FR0000123",
@@ -1088,7 +1153,8 @@
       "start_date": "2022-09-06",
       "keyword": "machine learning",
       "explanation": "The task order explicitly calls for machine learning algorithm test and evaluation, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22FR0000123"
+      "generated_internal_id": "CONT_AWD_70RSAT22FR0000123_7001_70RSAT18D00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22FR0000123_7001_70RSAT18D00000003_7001"
     },
     {
       "award_id": "70Z02320CACR00900",
@@ -1100,8 +1166,9 @@
       "psc": "",
       "start_date": "2020-09-30",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly states it is for U.S. Coast Guard artificial intelligence support services, which indicates primary AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70Z02320CACR00900"
+      "explanation": "The contract explicitly describes U.S. Coast Guard artificial intelligence support services, which indicates primary AI/ML-related work.",
+      "generated_internal_id": "CONT_AWD_70Z02320CACR00900_7008_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70Z02320CACR00900_7008_-NONE-_-NONE-"
     },
     {
       "award_id": "70Z03925PCGA00049",
@@ -1114,7 +1181,8 @@
       "start_date": "2025-06-05",
       "keyword": "AI/ML",
       "explanation": "The description explicitly states an AI/ML research collaboration project, which indicates the contract is primarily for artificial intelligence/machine learning work.",
-      "permalink": "https://www.usaspending.gov/award/70Z03925PCGA00049"
+      "generated_internal_id": "CONT_AWD_70Z03925PCGA00049_7008_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70Z03925PCGA00049_7008_-NONE-_-NONE-"
     },
     {
       "award_id": "70Z02320FP0403E00",
@@ -1126,8 +1194,9 @@
       "psc": "",
       "start_date": "2020-09-25",
       "keyword": "machine learning",
-      "explanation": "The contract description explicitly references automatic identification system machine learning, which indicates ML model development or deployment rather than general IT work.",
-      "permalink": "https://www.usaspending.gov/award/70Z02320FP0403E00"
+      "explanation": "The contract explicitly references automatic identification system machine learning, indicating it is primarily for developing or applying machine learning capabilities.",
+      "generated_internal_id": "CONT_AWD_70Z02320FP0403E00_7008_70RSAT20D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70Z02320FP0403E00_7008_70RSAT20D00000001_7001"
     },
     {
       "award_id": "70RDA125FR0000005",
@@ -1139,8 +1208,9 @@
       "psc": "",
       "start_date": "2024-12-31",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly describes a due-diligence artificial intelligence web-based analytic tool, which indicates the primary work is AI-enabled analytics rather than general IT or rule-based processing.",
-      "permalink": "https://www.usaspending.gov/award/70RDA125FR0000005"
+      "explanation": "The contract is explicitly for a due-diligence artificial intelligence web-based analytic tool, which indicates AI/ML-based analytics rather than general IT or rule-based processing.",
+      "generated_internal_id": "CONT_AWD_70RDA125FR0000005_7001_NNG15SD02B_8000",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RDA125FR0000005_7001_NNG15SD02B_8000"
     },
     {
       "award_id": "70CMSD19FR0000138",
@@ -1153,7 +1223,8 @@
       "start_date": "2019-09-24",
       "keyword": "machine learning",
       "explanation": "The contract is for a machine learning translation system, which directly involves ML-based language translation and is therefore primarily AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70CMSD19FR0000138"
+      "generated_internal_id": "CONT_AWD_70CMSD19FR0000138_7012_GS35F0364V_4730",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CMSD19FR0000138_7012_GS35F0364V_4730"
     },
     {
       "award_id": "70RDAD23FR0000022",
@@ -1165,8 +1236,9 @@
       "psc": "",
       "start_date": "2023-03-31",
       "keyword": "artificial intelligence",
-      "explanation": "The contract is for an artificial intelligence web-based analytic tool subscription, which indicates use of AI/ML capabilities rather than general IT or non-ML analytics.",
-      "permalink": "https://www.usaspending.gov/award/70RDAD23FR0000022"
+      "explanation": "The contract is for a web-based analytic tool subscription explicitly described as an artificial intelligence due-diligence tool, which indicates AI/ML functionality rather than general IT services.",
+      "generated_internal_id": "CONT_AWD_70RDAD23FR0000022_7001_HSHQDC12D00014_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RDAD23FR0000022_7001_HSHQDC12D00014_7001"
     },
     {
       "award_id": "70RTAC23FC0000055",
@@ -1178,8 +1250,9 @@
       "psc": "",
       "start_date": "2023-09-08",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly calls for Artificial Intelligence subject matter expert support services, which indicates the work is primarily focused on AI rather than general IT or administrative support.",
-      "permalink": "https://www.usaspending.gov/award/70RTAC23FC0000055"
+      "explanation": "The contract explicitly calls for Artificial Intelligence subject matter expert support services, which indicates the work is primarily focused on AI rather than general IT or analytics.",
+      "generated_internal_id": "CONT_AWD_70RTAC23FC0000055_7001_70RTAC20A00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RTAC23FC0000055_7001_70RTAC20A00000003_7001"
     },
     {
       "award_id": "70RSAT24C00000026",
@@ -1192,7 +1265,8 @@
       "start_date": "2024-05-07",
       "keyword": "machine learning",
       "explanation": "This is an SBIR Phase I topic explicitly focused on data labeling and curation at scale for machine learning algorithms, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT24C00000026"
+      "generated_internal_id": "CONT_AWD_70RSAT24C00000026_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT24C00000026_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT24C00000034",
@@ -1205,7 +1279,8 @@
       "start_date": "2024-05-07",
       "keyword": "machine learning",
       "explanation": "This is an SBIR Phase I topic explicitly focused on data labeling and curation at scale for machine learning algorithms, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT24C00000034"
+      "generated_internal_id": "CONT_AWD_70RSAT24C00000034_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT24C00000034_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT24C00000033",
@@ -1217,8 +1292,9 @@
       "psc": "",
       "start_date": "2024-05-07",
       "keyword": "machine learning",
-      "explanation": "This is an SBIR Phase I topic specifically about data labeling and curation at scale for machine learning algorithms, which directly supports AI/ML development.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT24C00000033"
+      "explanation": "This is an SBIR Phase I topic specifically about data labeling and curation at scale for machine learning algorithms, which is directly tied to AI/ML development.",
+      "generated_internal_id": "CONT_AWD_70RSAT24C00000033_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT24C00000033_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT23C00000037",
@@ -1230,8 +1306,9 @@
       "psc": "",
       "start_date": "2023-05-09",
       "keyword": "machine learning",
-      "explanation": "The description explicitly says \"PI MACHINE LEARNING,\" which indicates the contract is primarily for machine learning work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23C00000037"
+      "explanation": "The contract description explicitly says \"PI MACHINE LEARNING,\" which indicates the work is primarily machine learning/AI-related.",
+      "generated_internal_id": "CONT_AWD_70RSAT23C00000037_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23C00000037_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT23C00000022",
@@ -1243,8 +1320,9 @@
       "psc": "",
       "start_date": "2023-05-08",
       "keyword": "AI/ML",
-      "explanation": "This SBIR Phase I contract explicitly funds accurate, real-time cyberattack detection through AI/ML, which is directly machine learning work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23C00000022"
+      "explanation": "This is an SBIR Phase I contract explicitly focused on accurate, real-time cyberattack detection through AI/ML, which is directly machine learning work.",
+      "generated_internal_id": "CONT_AWD_70RSAT23C00000022_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23C00000022_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT22C00000045",
@@ -1257,7 +1335,8 @@
       "start_date": "2022-05-13",
       "keyword": "machine learning",
       "explanation": "This is an SBIR Phase I effort to develop machine learning tools for molecular recognition, which is directly AI/ML research and development.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22C00000045"
+      "generated_internal_id": "CONT_AWD_70RSAT22C00000045_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22C00000045_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT22C00000030",
@@ -1269,8 +1348,9 @@
       "psc": "",
       "start_date": "2022-05-10",
       "keyword": "artificial intelligence",
-      "explanation": "The description explicitly states the requisition is for artificial intelligence distress alerts, which indicates the contract is primarily for AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22C00000030"
+      "explanation": "The description explicitly states the requisition is for artificial intelligence distress alerts, which indicates AI/ML functionality rather than general IT or analytics.",
+      "generated_internal_id": "CONT_AWD_70RSAT22C00000030_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22C00000030_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT20C00000021",
@@ -1283,7 +1363,8 @@
       "start_date": "2020-05-18",
       "keyword": "neural network",
       "explanation": "This is an SBIR Phase I R&D effort explicitly focused on one-dimensional convolutional neural networks for spectral classification, which is clearly machine learning work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT20C00000021"
+      "generated_internal_id": "CONT_AWD_70RSAT20C00000021_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT20C00000021_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT23C00000020",
@@ -1296,7 +1377,8 @@
       "start_date": "2023-05-09",
       "keyword": "machine learning",
       "explanation": "This SBIR Phase I contract is explicitly for runtime lightweight hardware-assisted machine learning-based cyber attack detection, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23C00000020"
+      "generated_internal_id": "CONT_AWD_70RSAT23C00000020_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23C00000020_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT23C00000040",
@@ -1309,7 +1391,8 @@
       "start_date": "2023-05-09",
       "keyword": "machine learning",
       "explanation": "This is an SBIR Phase I topic explicitly focused on machine learning-based integration of alarm resolution sensors, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23C00000040"
+      "generated_internal_id": "CONT_AWD_70RSAT23C00000040_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23C00000040_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT21C00000040",
@@ -1322,7 +1405,8 @@
       "start_date": "2021-05-11",
       "keyword": "artificial intelligence",
       "explanation": "This is an SBIR Phase I award explicitly for artificial intelligence to augment 911 telecommunicator functions, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT21C00000040"
+      "generated_internal_id": "CONT_AWD_70RSAT21C00000040_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT21C00000040_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT20C00000034",
@@ -1334,8 +1418,9 @@
       "psc": "",
       "start_date": "2020-05-18",
       "keyword": "machine learning",
-      "explanation": "This is explicitly an SBIR Phase I topic for a machine learning module for detection technologies, which is directly AI/ML research and development.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT20C00000034"
+      "explanation": "The contract is explicitly for a Phase I R&D topic to develop a machine learning module for detection technologies, which is directly AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70RSAT20C00000034_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT20C00000034_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT22C00000040",
@@ -1348,7 +1433,8 @@
       "start_date": "2022-05-12",
       "keyword": "artificial intelligence",
       "explanation": "The contract explicitly states it is for automated artificial intelligence distress alerts and monitoring, which indicates AI-based detection/alerting functionality.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22C00000040"
+      "generated_internal_id": "CONT_AWD_70RSAT22C00000040_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22C00000040_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT23C00000028",
@@ -1360,8 +1446,9 @@
       "psc": "",
       "start_date": "2023-05-09",
       "keyword": "machine learning",
-      "explanation": "The contract explicitly states it is an SBIR project for a machine learning-based sensor integration solution, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT23C00000028"
+      "explanation": "The contract is for SBIR research and development on a machine learning-based sensor integration project, which is directly AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70RSAT23C00000028_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23C00000028_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70RSAT22C00000043",
@@ -1373,8 +1460,9 @@
       "psc": "",
       "start_date": "2022-05-05",
       "keyword": "artificial intelligence",
-      "explanation": "The contract explicitly states it is for automated artificial intelligence distress alerts and monitoring, which indicates AI-based detection/alerting functionality.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22C00000043"
+      "explanation": "The contract explicitly states it is for automated artificial intelligence distress alerts and monitoring, which indicates AI-based detection/alerting functionality rather than general IT support.",
+      "generated_internal_id": "CONT_AWD_70RSAT22C00000043_7001_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22C00000043_7001_-NONE-_-NONE-"
     },
     {
       "award_id": "70US0922F1DHS2312",
@@ -1387,7 +1475,8 @@
       "start_date": "2022-09-23",
       "keyword": "artificial intelligence",
       "explanation": "The contract is explicitly for an artificial intelligence/machine learning software license pilot, which is directly AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70US0922F1DHS2312"
+      "generated_internal_id": "CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001"
     },
     {
       "award_id": "70FA3125F00000063",
@@ -1400,7 +1489,8 @@
       "start_date": "2025-09-29",
       "keyword": "intelligent automation",
       "explanation": "The contract description explicitly references intelligent automation and cloud solutions, which suggests AI-enabled automation rather than purely rule-based IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70FA3125F00000063"
+      "generated_internal_id": "CONT_AWD_70FA3125F00000063_7022_70FA3122A00000002_7022",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70FA3125F00000063_7022_70FA3122A00000002_7022"
     },
     {
       "award_id": "HSTS0416CCT2523",
@@ -1412,8 +1502,9 @@
       "psc": "",
       "start_date": "2016-09-20",
       "keyword": "machine learning",
-      "explanation": "The contract explicitly supports a proof of concept using advanced machine learning to identify threat objects and assist screening decisions, which is primarily AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/HSTS0416CCT2523"
+      "explanation": "The contract explicitly supports a proof of concept using advanced machine learning techniques to identify threat objects and assist screening decisions, which is primarily AI/ML work.",
+      "generated_internal_id": "CONT_AWD_HSTS0416CCT2523_7013_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0416CCT2523_7013_-NONE-_-NONE-"
     },
     {
       "award_id": "70RDAD22FR0000035",
@@ -1425,8 +1516,9 @@
       "psc": "",
       "start_date": "2022-03-31",
       "keyword": "artificial intelligence",
-      "explanation": "The contract is for Exiger\u2019s DDIQ web-based analytic tool, which is explicitly described as an artificial intelligence due-diligence platform, so it is primarily AI/ML-related.",
-      "permalink": "https://www.usaspending.gov/award/70RDAD22FR0000035"
+      "explanation": "The contract is for Exiger\u2019s due-diligence artificial intelligence web-based analytic tool (DDIQ), which is an AI-powered analytics product rather than general IT or database work.",
+      "generated_internal_id": "CONT_AWD_70RDAD22FR0000035_7001_HSHQDC12D00014_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RDAD22FR0000035_7001_HSHQDC12D00014_7001"
     },
     {
       "award_id": "70RCSA20FR0000067",
@@ -1439,7 +1531,8 @@
       "start_date": "2020-08-03",
       "keyword": "facial recognition",
       "explanation": "The contract supports development of a facial recognition positioning strategy, which is tied to AI/computer vision technology rather than general IT or administrative support.",
-      "permalink": "https://www.usaspending.gov/award/70RCSA20FR0000067"
+      "generated_internal_id": "CONT_AWD_70RCSA20FR0000067_7001_GS10F0095R_4730",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RCSA20FR0000067_7001_GS10F0095R_4730"
     },
     {
       "award_id": "70CTD025FR0000041",
@@ -1451,8 +1544,9 @@
       "psc": "",
       "start_date": "2025-07-18",
       "keyword": "machine learning",
-      "explanation": "The award explicitly includes machine learning and data science tasks on mission-critical data, indicating it is primarily for AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70CTD025FR0000041"
+      "explanation": "The award explicitly includes Databricks licenses for data science, machine learning, and analytical tasks on mission-critical data, indicating primary AI/ML-related work.",
+      "generated_internal_id": "CONT_AWD_70CTD025FR0000041_7012_NNG15SC82B_8000",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CTD025FR0000041_7012_NNG15SC82B_8000"
     },
     {
       "award_id": "70RTAC25FR0000066",
@@ -1464,8 +1558,9 @@
       "psc": "",
       "start_date": "2025-09-18",
       "keyword": "chatbot",
-      "explanation": "The contract is for vulnerability assessment services for a CBP chatbot, which indicates work centered on an AI-enabled chatbot system rather than general IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70RTAC25FR0000066"
+      "explanation": "The contract is for vulnerability assessment services specifically for a CBP chatbot, which indicates work centered on an AI/ML-enabled conversational system rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70RTAC25FR0000066_7001_70RTAC22D00000002_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RTAC25FR0000066_7001_70RTAC22D00000002_7001"
     },
     {
       "award_id": "70RSAT22FR0000103",
@@ -1477,8 +1572,9 @@
       "psc": "",
       "start_date": "2022-09-12",
       "keyword": "algorithm",
-      "explanation": "The description explicitly mentions analyzing data, developing algorithms, and creating models and applications, which indicates AI/ML-related model development rather than general IT operations.",
-      "permalink": "https://www.usaspending.gov/award/70RSAT22FR0000103"
+      "explanation": "The description explicitly says the software is used to analyze data, develop algorithms, and create models and applications, which indicates AI/ML-related modeling work rather than general IT operations.",
+      "generated_internal_id": "CONT_AWD_70RSAT22FR0000103_7001_NNG15SC73B_8000",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT22FR0000103_7001_NNG15SC73B_8000"
     },
     {
       "award_id": "70RDAD21FR0000042",
@@ -1490,8 +1586,9 @@
       "psc": "",
       "start_date": "2021-03-31",
       "keyword": "artificial intelligence",
-      "explanation": "The contract is for an Exiger due-diligence artificial intelligence web-based analytic tool and proof of concept, which indicates deployment/evaluation of an AI-powered analytics system.",
-      "permalink": "https://www.usaspending.gov/award/70RDAD21FR0000042"
+      "explanation": "This contract is for an artificial intelligence web-based analytic tool and proof of concept, which indicates primary AI/ML functionality rather than general IT services.",
+      "generated_internal_id": "CONT_AWD_70RDAD21FR0000042_7001_HSHQDC12D00014_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RDAD21FR0000042_7001_HSHQDC12D00014_7001"
     },
     {
       "award_id": "70T04019F5CAP1154",
@@ -1503,8 +1600,9 @@
       "psc": "",
       "start_date": "2019-09-30",
       "keyword": "algorithm",
-      "explanation": "This task order is explicitly to test a threat detection algorithm in a live environment, which indicates AI/ML model evaluation and deployment support rather than general IT work.",
-      "permalink": "https://www.usaspending.gov/award/70T04019F5CAP1154"
+      "explanation": "This contract is primarily for testing a threat detection algorithm in a live environment, which is AI/ML-related work.",
+      "generated_internal_id": "CONT_AWD_70T04019F5CAP1154_7013_HSTS0417DCT1153_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04019F5CAP1154_7013_HSTS0417DCT1153_7013"
     },
     {
       "award_id": "70CTD025FR0000037",
@@ -1516,8 +1614,9 @@
       "psc": "",
       "start_date": "2025-06-18",
       "keyword": "machine learning",
-      "explanation": "The award explicitly purchases Databricks licenses for data science, machine learning, and analytical tasks on mission-critical data, which indicates primary AI/ML-related work.",
-      "permalink": "https://www.usaspending.gov/award/70CTD025FR0000037"
+      "explanation": "The award explicitly purchases Databricks licenses for data science, machine learning, and analytical tasks on mission-critical data, which indicates primary AI/ML use.",
+      "generated_internal_id": "CONT_AWD_70CTD025FR0000037_7012_NNG15SC74B_8000",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CTD025FR0000037_7012_NNG15SC74B_8000"
     },
     {
       "award_id": "70B04C23P00000458",
@@ -1529,8 +1628,9 @@
       "psc": "",
       "start_date": "2023-08-29",
       "keyword": "optical character recognition",
-      "explanation": "Optical character recognition is a machine learning/computer vision application, so this requirement is primarily AI/ML work.",
-      "permalink": "https://www.usaspending.gov/award/70B04C23P00000458"
+      "explanation": "Optical character recognition software is an AI/ML-related capability because it uses machine learning or computer vision techniques to extract text from images, so this appears to be primarily AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70B04C23P00000458_7014_-NONE-_-NONE-",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B04C23P00000458_7014_-NONE-_-NONE-"
     }
   ],
   "keywords_searched": [
