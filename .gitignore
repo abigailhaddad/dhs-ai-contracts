@@ -4,3 +4,6 @@ data/
 .env
 __pycache__/
 *.pyc
+.venv/
+!web/data/
+!web/data/*.json
