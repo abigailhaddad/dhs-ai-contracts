@@ -103,6 +103,19 @@
 
     footer { border-top: 1px solid var(--color-border); padding: 1.5rem 0; margin-top: 2rem; font-size: 0.8125rem; color: var(--color-text-muted); }
     footer a { color: var(--color-accent); }
+
+    /* Detail modal */
+    #detailModal { align-items: center; justify-content: center; }
+    #detailModal:not(.hidden) { display: flex !important; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1.5rem; margin-bottom: 1rem; }
+    .detail-grid dt { font-size: 0.75rem; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .detail-grid dd { font-size: 0.875rem; margin: 0 0 0.25rem; font-family: var(--font-mono); color: var(--color-text); }
+    .tx-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 0.5rem; }
+    .tx-table th { text-align: left; font-weight: 600; font-size: 0.75rem; padding: 0.3rem 0.5rem; border-bottom: 2px solid var(--color-border); color: var(--color-text-muted); }
+    .tx-table td { padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+    .tx-table tr:last-child td { border-bottom: none; }
+    .tx-table .num { text-align: right; font-family: var(--font-mono); }
+    .modal-section { font-size: 0.8125rem; font-weight: 700; color: var(--color-text); margin: 1.25rem 0 0.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.25rem; }
   </style>
 </head>
 <body>
@@ -149,6 +162,7 @@
   </div>
   <div id="filterToolbar" style="margin-bottom:1rem;"></div>
 
+  <p class="narrative" style="font-size:0.875rem;color:var(--color-text-muted);">Click any row for full contract details from USASpending.</p>
   <div style="overflow-x:auto;">
     <table id="contractTable" class="display" style="width:100%">
       <thead>
@@ -164,6 +178,17 @@
       </thead>
       <tbody id="contractBody"></tbody>
     </table>
+  </div>
+
+  <!-- Detail modal -->
+  <div id="detailModal" class="filter-modal hidden" onclick="if(event.target===this)closeDetail()">
+    <div class="filter-popover" style="max-width:680px;width:95%;max-height:85vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;">
+        <div class="filter-title" id="modalTitle">Contract Detail</div>
+        <button onclick="closeDetail()" style="background:none;border:none;font-size:1.25rem;cursor:pointer;color:var(--color-text-muted);line-height:1;">×</button>
+      </div>
+      <div id="modalBody">Loading…</div>
+    </div>
   </div>
 
   <div class="section-header">Methodology</div>
@@ -293,8 +318,10 @@ async function load() {
       tr.dataset.keyword = c.keyword;
       tr.dataset.amount  = c.amount;
       tr.dataset.vendor  = c.vendor.toLowerCase();
+      tr.style.cursor = 'pointer';
+      tr.addEventListener('click', () => openDetail(c));
       tr.innerHTML = `
-        <td><a class="award-link" href="${c.permalink}" target="_blank">${escapeHtml(c.award_id)}</a></td>
+        <td><a class="award-link" href="${c.permalink}" target="_blank" onclick="event.stopPropagation()">${escapeHtml(c.award_id)}</a></td>
         <td>${escapeHtml(c.agency)}</td>
         <td>${escapeHtml(c.vendor)}</td>
         <td class="num">${(c.amount/1e6).toFixed(2)}</td>
@@ -352,6 +379,94 @@ async function load() {
 }
 
 load().catch(console.error);
+
+// ── Contract detail modal ─────────────────────────────────────────────────
+
+function closeDetail() {
+  document.getElementById('detailModal').classList.add('hidden');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+async function openDetail(contract) {
+  const modal = document.getElementById('detailModal');
+  const body  = document.getElementById('modalBody');
+  document.getElementById('modalTitle').textContent = contract.vendor;
+  body.innerHTML = '<p style="color:var(--color-text-muted);font-size:0.875rem;">Loading from USASpending…</p>';
+  modal.classList.remove('hidden');
+
+  try {
+    const gid = contract.generated_internal_id;
+    const [awardRes, txRes] = await Promise.all([
+      fetch(`https://api.usaspending.gov/api/v2/awards/${gid}/`),
+      fetch('https://api.usaspending.gov/api/v2/transactions/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          award_id: gid,
+          fields: ['action_date', 'modification_number', 'action_type_description', 'description', 'federal_action_obligation'],
+          sort: 'action_date', order: 'asc', page: 1, limit: 50,
+        }),
+      }),
+    ]);
+
+    const award = await awardRes.json();
+    const txData = await txRes.json();
+    const tx = txData.results || [];
+    const ltcd = award.latest_transaction_contract_data || {};
+    const pop  = award.period_of_performance || {};
+    const parent = award.parent_award || {};
+
+    const fmt$ = v => v != null ? '$' + (+v).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0}) : '—';
+    const fmtD = v => v ? v.slice(0,10) : '—';
+
+    body.innerHTML = `
+      <p style="font-size:0.8125rem;color:var(--color-text-muted);margin:0 0 1rem;">
+        ${escapeHtml(contract.description)}
+      </p>
+      <p style="font-size:0.8rem;font-style:italic;color:var(--color-text-muted);margin:0 0 1rem;">
+        <strong>Why AI:</strong> ${escapeHtml(contract.explanation)}
+      </p>
+
+      <div class="modal-section">Dollars</div>
+      <dl class="detail-grid">
+        <dt>Total obligated</dt>   <dd>${fmt$(award.total_obligation)}</dd>
+        <dt>Ceiling (all options)</dt> <dd>${fmt$(award.base_and_all_options)}</dd>
+        <dt>Exercised options</dt> <dd>${fmt$(award.base_exercised_options)}</dd>
+      </dl>
+
+      <div class="modal-section">Contract details</div>
+      <dl class="detail-grid">
+        <dt>Award ID</dt>          <dd><a href="${contract.permalink}" target="_blank" style="color:var(--color-accent)">${escapeHtml(contract.award_id)}</a></dd>
+        <dt>Date signed</dt>       <dd>${fmtD(award.date_signed)}</dd>
+        <dt>Pricing type</dt>      <dd>${escapeHtml(ltcd.type_of_contract_pricing_description || '—')}</dd>
+        <dt>Competition</dt>       <dd>${escapeHtml(ltcd.extent_competed_description || '—')}</dd>
+        <dt>Offers received</dt>   <dd>${ltcd.number_of_offers_received ?? '—'}</dd>
+        <dt>Perf. start</dt>       <dd>${fmtD(pop.start_date)}</dd>
+        <dt>Perf. end</dt>         <dd>${fmtD(pop.end_date)}</dd>
+        <dt>Potential end</dt>     <dd>${fmtD(pop.potential_end_date)}</dd>
+        ${parent.piid ? `<dt>Parent IDV</dt><dd><a href="https://www.usaspending.gov/award/${escapeHtml(parent.generated_unique_award_id)}" target="_blank" style="color:var(--color-accent)">${escapeHtml(parent.piid)}</a> (${escapeHtml(parent.type_of_idc_description||'')})</dd>` : ''}
+        <dt>NAICS</dt>             <dd>${escapeHtml(contract.naics||'—')}</dd>
+        <dt>PSC</dt>               <dd>${escapeHtml(contract.psc||'—')}</dd>
+      </dl>
+
+      <div class="modal-section">Obligation history (${tx.length} actions)</div>
+      <table class="tx-table">
+        <thead><tr><th>Date</th><th>Mod</th><th>Type</th><th>Description</th><th class="num">Obligation</th></tr></thead>
+        <tbody>
+          ${tx.map(t => `<tr>
+            <td style="white-space:nowrap">${fmtD(t.action_date)}</td>
+            <td style="white-space:nowrap">${escapeHtml(t.modification_number||'')}</td>
+            <td style="white-space:nowrap">${escapeHtml(t.action_type_description||'Base award')}</td>
+            <td>${escapeHtml((t.description||'').slice(0,120))}</td>
+            <td class="num" style="white-space:nowrap">${fmt$(t.federal_action_obligation)}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    `;
+  } catch(e) {
+    body.innerHTML = `<p style="color:var(--color-error)">Failed to load: ${e.message}</p>`;
+  }
+}
 </script>
 </body>
 </html>
