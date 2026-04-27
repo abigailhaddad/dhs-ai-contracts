@@ -7,26 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared/shared.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+  <script src="shared/filters.js"></script>
   <style>
-    :root {
-      --color-bg:           #F8FAFA;
-      --color-surface:      #FFFFFF;
-      --color-header:       #1B4332;
-      --color-text:         #111827;
-      --color-text-muted:   #6B7280;
-      --color-accent:       #1B4332;
-      --color-border:       #D1E4D1;
-      --font-heading:       'Inter', -apple-system, sans-serif;
-      --font-body:          'Inter', -apple-system, sans-serif;
-      --font-mono:          'JetBrains Mono', monospace;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    body { font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); line-height: 1.7; font-size: 1rem; margin: 0; }
+    .site-container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 4rem; }
 
     header {
       background: var(--color-header);
@@ -35,8 +23,6 @@
     }
     header h1 { font-size: 1.75rem; font-weight: 700; margin: 0 0 0.5rem; color: #fff; }
     header p  { margin: 0; opacity: 0.85; font-size: 0.9375rem; max-width: 680px; }
-
-    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 4rem; }
 
     .section-header {
       font-family: var(--font-heading);
@@ -54,26 +40,19 @@
       border: 1px solid var(--color-border);
       border-radius: 0.5rem;
       padding: 1.25rem 1.5rem;
-      box-shadow: 0 1px 3px rgba(27,67,50,0.06);
+      box-shadow: var(--shadow-sm);
     }
     .stat-card .value { font-size: 1.75rem; font-weight: 700; color: var(--color-header); font-family: var(--font-mono); }
     .stat-card .label { font-size: 0.8125rem; color: var(--color-text-muted); margin-top: 0.2rem; }
 
     .chart-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
-    .chart-card h3 { font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; }
     .chart-card canvas { max-height: 320px; }
 
     .narrative { font-size: 0.9375rem; color: var(--color-text); line-height: 1.7; margin: 0 0 1.25rem; max-width: 720px; }
     .narrative a { color: var(--color-accent); }
+    .chart-note { font-size: 0.78rem; color: var(--color-text-muted); margin: 0.5rem 0 0; line-height: 1.4; }
 
-    .note { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.5rem; line-height: 1.5; }
-
-    /* DataTable overrides */
-    table.dataTable thead th { background: var(--color-surface); font-weight: 600; font-size: 0.8125rem; }
-    table.dataTable tbody td { font-size: 0.8125rem; vertical-align: top; padding: 0.5rem 0.75rem; }
-    table.dataTable tbody tr:nth-child(odd)  { background: var(--color-bg); }
-    table.dataTable tbody tr:nth-child(even) { background: var(--color-surface); }
-    .num { text-align: right; font-family: var(--font-mono); }
+    .num { text-align: right; font-family: var(--font-mono); font-size: 0.8125rem; }
     .desc { max-width: 340px; }
     .expl { max-width: 260px; color: var(--color-text-muted); font-style: italic; }
     a.award-link { color: var(--color-accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; }
@@ -83,15 +62,44 @@
     .method-box h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.75rem; }
     .method-box p, .method-box li { font-size: 0.9rem; color: var(--color-text); line-height: 1.65; }
     .kw-grid { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
-    .kw-pill {
-      background: #E8F4ED;
-      color: var(--color-header);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 1rem;
-    }
+    .kw-pill { background: #E8F4ED; color: var(--color-header); font-family: var(--font-mono); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 1rem; }
     .kw-pill.zero { background: #F3F4F6; color: var(--color-text-muted); }
+
+    .tab-nav {
+      display: flex;
+      gap: 0.25rem;
+      margin: 0 0 1rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .tab-nav button {
+      background: none;
+      border: none;
+      font-family: var(--font-heading);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      padding: 0.625rem 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab-nav button:hover { color: var(--color-text); }
+    .tab-nav button[aria-selected="true"] {
+      color: var(--color-accent);
+      border-bottom-color: var(--color-accent);
+    }
+
+    /* DataTable theme */
+    .dataTables_wrapper { font-family: var(--font-body); font-size: 0.875rem; color: var(--color-text); }
+    .dataTables_filter { margin-bottom: 0.5rem; }
+    .dataTables_filter label { font-weight: 600; font-family: var(--font-heading); font-size: 0.875rem; }
+    .dataTables_filter input { border: 1px solid var(--color-border); border-radius: 3px; padding: 0.375rem 0.625rem; font-family: var(--font-body); font-size: 0.875rem; outline: none; }
+    .dataTables_filter input:focus { border-color: var(--color-accent); }
+    table.dataTable thead th { background: var(--color-surface); font-weight: 600; font-size: 0.8125rem; border-bottom: 2px solid var(--color-border); }
+    table.dataTable tbody td { font-size: 0.8125rem; vertical-align: top; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--color-border); }
+    table.dataTable tbody tr.odd  td { background: var(--color-bg); }
+    table.dataTable tbody tr.even td { background: var(--color-surface); }
+    table.dataTable tbody tr:hover td { background: var(--color-border); }
 
     footer { border-top: 1px solid var(--color-border); padding: 1.5rem 0; margin-top: 2rem; font-size: 0.8125rem; color: var(--color-text-muted); }
     footer a { color: var(--color-accent); }
@@ -106,7 +114,7 @@
   </div>
 </header>
 
-<div class="container">
+<div class="site-container">
 
   <div class="section-header">Overview</div>
   <p class="narrative">
@@ -116,36 +124,40 @@
     (e.g., fingerprint scanners labeled "biometric," or generic "algorithm" references in non-AI work).
   </p>
 
-  <div class="stat-grid" id="stat-grid">
+  <div class="stat-grid">
     <div class="stat-card"><div class="value" id="stat-contracts">—</div><div class="label">AI contracts identified</div></div>
     <div class="stat-card"><div class="value" id="stat-dollars">—</div><div class="label">Total dollars obligated</div></div>
     <div class="stat-card"><div class="value" id="stat-agencies">—</div><div class="label">DHS sub-agencies with AI contracts</div></div>
-    <div class="stat-card"><div class="value" id="stat-filtered">—</div><div class="label">Keyword matches filtered out as non-AI</div></div>
   </div>
 
-  <div class="section-header">AI Spending by Sub-Agency</div>
+  <div class="section-header">AI Contracts by Sub-Agency</div>
   <div class="chart-card">
-    <h3>Total dollars obligated on AI contracts</h3>
+    <nav class="tab-nav">
+      <button aria-selected="true"  id="btnDollars" onclick="switchView('dollars')">By dollars</button>
+      <button aria-selected="false" id="btnCount"   onclick="switchView('count')">By count</button>
+    </nav>
     <canvas id="agencyChart"></canvas>
-    <p class="note">Amounts reflect total obligated value reported in USASpending. Contracts may span multiple fiscal years.</p>
-  </div>
-
-  <div class="section-header">Contract Count by Sub-Agency</div>
-  <div class="chart-card">
-    <h3>Number of AI contracts awarded</h3>
-    <canvas id="agencyCountChart"></canvas>
+    <p class="chart-note">Amounts reflect total obligated value reported in USASpending. Contracts may span multiple fiscal years.</p>
   </div>
 
   <div class="section-header">All AI Contracts</div>
-  <p class="narrative">Every contract classified as AI/ML work, sorted by dollar value. Click an Award ID to view on USASpending.gov.</p>
+  <p class="narrative">Every contract classified as AI/ML work. Click an Award ID to view on USASpending.gov.</p>
+
+  <!-- Filter bar -->
+  <div class="filter-bar" id="filterBar">
+    <span class="filters-bar-empty">No filters applied</span>
+  </div>
+  <div id="filterToolbar" style="margin-bottom:1rem;"></div>
+
   <div style="overflow-x:auto;">
-    <table id="contractTable" class="dataTable display" style="width:100%">
+    <table id="contractTable" class="display" style="width:100%">
       <thead>
         <tr>
           <th>Award ID</th>
           <th>Sub-Agency</th>
           <th>Vendor</th>
-          <th>Amount</th>
+          <th>Amount ($M)</th>
+          <th>Keyword</th>
           <th>Description</th>
           <th>Why AI?</th>
         </tr>
@@ -158,38 +170,28 @@
 
   <div class="method-box">
     <h3>Data source</h3>
-    <p>
-      Contract data comes from the <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov</a> API,
-      which publishes all federal contract awards. This analysis covers DHS contracts awarded between
-      FY2022 (October 1, 2021) and FY2026 (September 30, 2026).
-      Only prime contract awards are included — not grants, IDV vehicles, or subawards.
-    </p>
+    <p>Contract data comes from the <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov</a> API,
+    which publishes all federal contract awards. This analysis covers DHS contracts awarded between
+    FY2022 (October 1, 2021) and FY2026 (September 30, 2026).
+    Only prime contract awards are included — not grants, IDV vehicles, or subawards.</p>
   </div>
 
   <div class="method-box">
     <h3>Keyword search</h3>
-    <p>
-      Contract descriptions were searched for the following terms. All terms were included regardless
-      of whether they returned results — zero-hit terms are shown to demonstrate search coverage.
-    </p>
+    <p>Contract descriptions were searched for the following terms. All terms were included regardless
+    of whether they returned results — zero-hit terms are shown to demonstrate search coverage.</p>
     <div class="kw-grid" id="kw-grid"></div>
-    <p style="margin-top:0.75rem;">
-      Broad terms like <code>algorithm</code>, <code>biometric</code>, and <code>decision support</code>
-      were kept intentionally — the LLM pass handles false positives.
-    </p>
+    <p style="margin-top:0.75rem;">Broad terms like <code>algorithm</code>, <code>biometric</code>, and <code>decision support</code>
+    were kept intentionally — the LLM pass handles false positives.</p>
   </div>
 
   <div class="method-box">
     <h3>LLM classification</h3>
-    <p>
-      Each keyword-matched contract was passed to <strong>GPT-5.4-mini</strong> with the contract description,
-      vendor, sub-agency, NAICS code, and PSC code. The model was asked whether the contract is primarily
-      for AI or machine learning work, and to provide a one-sentence explanation.
-    </p>
-    <p>
-      The classifier was instructed to lean toward <em>true</em> for borderline cases — this analysis
-      aims to be comprehensive rather than conservative. Contracts where classification failed are excluded.
-    </p>
+    <p>Each keyword-matched contract was passed to <strong>GPT-5.4-mini</strong> with the contract description,
+    vendor, sub-agency, NAICS code, and PSC code. The model was asked whether the contract is primarily
+    for AI or machine learning work, and to provide a one-sentence explanation.</p>
+    <p>The classifier was instructed to lean toward <em>true</em> for borderline cases — this analysis
+    aims to be comprehensive rather than conservative.</p>
   </div>
 
   <div class="method-box">
@@ -218,29 +220,25 @@
 <script>
 async function load() {
   const res = await fetch('data/results.json');
-  const d = await res.json();
+  const d   = await res.json();
 
   // Stats
   const s = d.summary;
   document.getElementById('stat-contracts').textContent = s.total_ai_contracts.toLocaleString();
   document.getElementById('stat-dollars').textContent   = '$' + (s.total_ai_dollars / 1e6).toFixed(1) + 'M';
   document.getElementById('stat-agencies').textContent  = s.sub_agencies_with_ai.toLocaleString();
-  document.getElementById('stat-filtered').textContent  = s.not_ai_filtered_out.toLocaleString();
   document.getElementById('kw-count').textContent       = d.keywords_searched.length;
   document.getElementById('generated-at').textContent   = d.generated_at;
 
-  // Agency dollars chart
-  const topAgencies = d.by_agency.slice(0, 12);
-  new Chart(document.getElementById('agencyChart'), {
+  // Agency chart with toggle
+  const byDollars = d.by_agency.slice(0, 12);
+  const byCount   = [...d.by_agency].sort((a,b) => b.contracts - a.contracts).slice(0, 12);
+
+  const agencyChart = new Chart(document.getElementById('agencyChart'), {
     type: 'bar',
     data: {
-      labels: topAgencies.map(a => a.agency),
-      datasets: [{
-        label: 'Dollars obligated',
-        data: topAgencies.map(a => a.dollars),
-        backgroundColor: '#2D6A4F',
-        borderRadius: 3,
-      }]
+      labels: byDollars.map(a => a.agency),
+      datasets: [{ data: byDollars.map(a => a.dollars), backgroundColor: '#2D6A4F', borderRadius: 3 }]
     },
     options: {
       indexAxis: 'y',
@@ -252,25 +250,22 @@ async function load() {
     }
   });
 
-  // Agency count chart
-  const topCount = [...d.by_agency].sort((a,b) => b.contracts - a.contracts).slice(0, 12);
-  new Chart(document.getElementById('agencyCountChart'), {
-    type: 'bar',
-    data: {
-      labels: topCount.map(a => a.agency),
-      datasets: [{
-        label: 'Contracts',
-        data: topCount.map(a => a.contracts),
-        backgroundColor: '#52B788',
-        borderRadius: 3,
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      plugins: { legend: { display: false } },
-      scales: { y: { ticks: { font: { size: 11 } } } }
+  window.switchView = function(mode) {
+    document.getElementById('btnDollars').setAttribute('aria-selected', mode === 'dollars');
+    document.getElementById('btnCount').setAttribute('aria-selected', mode === 'count');
+    if (mode === 'dollars') {
+      agencyChart.data.labels = byDollars.map(a => a.agency);
+      agencyChart.data.datasets[0].data = byDollars.map(a => a.dollars);
+      agencyChart.data.datasets[0].backgroundColor = '#2D6A4F';
+      agencyChart.options.scales.x.ticks.callback = v => '$' + (v/1e6).toFixed(0) + 'M';
+    } else {
+      agencyChart.data.labels = byCount.map(a => a.agency);
+      agencyChart.data.datasets[0].data = byCount.map(a => a.contracts);
+      agencyChart.data.datasets[0].backgroundColor = '#52B788';
+      agencyChart.options.scales.x.ticks.callback = v => v;
     }
-  });
+    agencyChart.update();
+  };
 
   // Keywords
   const kgrid = document.getElementById('kw-grid');
@@ -282,25 +277,77 @@ async function load() {
     kgrid.appendChild(pill);
   });
 
-  // Contract table
-  const tbody = document.getElementById('contractBody');
-  d.contracts.forEach(c => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><a class="award-link" href="${c.permalink}" target="_blank">${c.award_id}</a></td>
-      <td>${c.agency}</td>
-      <td>${c.vendor}</td>
-      <td class="num">$${(c.amount/1e6).toFixed(2)}M</td>
-      <td class="desc">${c.description}</td>
-      <td class="expl">${c.explanation}</td>
-    `;
-    tbody.appendChild(tr);
-  });
+  // Build filter options from data
+  const agencies  = [...new Set(d.contracts.map(c => c.agency))].sort();
+  const keywords  = [...new Set(d.contracts.map(c => c.keyword))].sort();
 
-  $('#contractTable').DataTable({
-    pageLength: 25,
-    order: [[3, 'desc']],
-    columnDefs: [{ targets: 3, type: 'num' }],
+  // Populate table rows (all contracts, FilterManager drives visibility)
+  let allRows = d.contracts;
+  const tbody = document.getElementById('contractBody');
+
+  function renderTable(contracts) {
+    tbody.innerHTML = '';
+    contracts.forEach(c => {
+      const tr = document.createElement('tr');
+      tr.dataset.agency  = c.agency;
+      tr.dataset.keyword = c.keyword;
+      tr.dataset.amount  = c.amount;
+      tr.dataset.vendor  = c.vendor.toLowerCase();
+      tr.innerHTML = `
+        <td><a class="award-link" href="${c.permalink}" target="_blank">${escapeHtml(c.award_id)}</a></td>
+        <td>${escapeHtml(c.agency)}</td>
+        <td>${escapeHtml(c.vendor)}</td>
+        <td class="num">${(c.amount/1e6).toFixed(2)}</td>
+        <td><code style="font-size:0.75rem;color:var(--color-header)">${escapeHtml(c.keyword)}</code></td>
+        <td class="desc">${escapeHtml(c.description)}</td>
+        <td class="expl">${escapeHtml(c.explanation)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    if ($.fn.DataTable.isDataTable('#contractTable')) {
+      $('#contractTable').DataTable().destroy();
+    }
+    $('#contractTable').DataTable({
+      pageLength: 25,
+      order: [[3, 'desc']],
+      columnDefs: [{ targets: 3, type: 'num' }],
+    });
+  }
+
+  renderTable(allRows);
+
+  // FilterManager
+  new FilterManager({
+    filterBarId: 'filterBar',
+    toolbarId:   'filterToolbar',
+    columns: [
+      { name: 'Sub-Agency', field: 'agency',  filterType: 'multiselect' },
+      { name: 'Keyword',    field: 'keyword', filterType: 'multiselect' },
+      { name: 'Vendor',     field: 'vendor',  filterType: 'text' },
+      { name: 'Amount ($M)', field: 'amount', filterType: 'range' },
+    ],
+    filterOptions: {
+      agency:  agencies.map(a => ({ value: a, label: a })),
+      keyword: keywords.map(k => ({ value: k, label: k })),
+    },
+    onFilterChange(filters) {
+      let rows = allRows;
+      if (filters.agency?.values?.length)
+        rows = rows.filter(r => filters.agency.values.includes(r.agency));
+      if (filters.keyword?.values?.length)
+        rows = rows.filter(r => filters.keyword.values.includes(r.keyword));
+      if (filters.vendor?.value)
+        rows = rows.filter(r => filters.vendor.value.split(',').some(t => r.vendor.toLowerCase().includes(t.trim().toLowerCase())));
+      if (filters.amount) {
+        const { min, max } = filters.amount;
+        rows = rows.filter(r => {
+          const m = r.amount / 1e6;
+          return (min == null || m >= min) && (max == null || m <= max);
+        });
+      }
+      renderTable(rows);
+    },
   });
 }
 
