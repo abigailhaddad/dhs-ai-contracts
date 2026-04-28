@@ -135,18 +135,19 @@ def fetch_candidates_from_csv(csv_path: Path) -> list[dict]:
                 continue
             seen.add(aid)
             candidates.append({
-                "Award ID":           aid,
-                "Recipient Name":     row.get("recipient_name", ""),
-                "Awarding Sub Agency": row.get("awarding_sub_agency_name", ""),
-                "Award Amount":       row.get("total_dollars_obligated", ""),
-                "Description":        (row.get("transaction_description") or
-                                       row.get("prime_award_base_transaction_description", "")),
-                "Start Date":         row.get("period_of_performance_start_date", ""),
-                "NAICS Code":         row.get("naics_code", ""),
-                "NAICS Description":  row.get("naics_description", ""),
-                "PSC Code":           row.get("product_or_service_code", ""),
-                "PSC Description":    row.get("product_or_service_code_description", ""),
-                "matched_keyword":    "bulk_keyword_scan",
+                "Award ID":              aid,
+                "generated_internal_id": row.get("contract_award_unique_key", ""),
+                "Recipient Name":        row.get("recipient_name", ""),
+                "Awarding Sub Agency":   row.get("awarding_sub_agency_name", ""),
+                "Award Amount":          row.get("total_dollars_obligated", ""),
+                "Description":           (row.get("transaction_description") or
+                                          row.get("prime_award_base_transaction_description", "")),
+                "Start Date":            row.get("period_of_performance_start_date", ""),
+                "NAICS Code":            row.get("naics_code", ""),
+                "NAICS Description":     row.get("naics_description", ""),
+                "PSC Code":              row.get("product_or_service_code", ""),
+                "PSC Description":       row.get("product_or_service_code_description", ""),
+                "matched_keyword":       "bulk_keyword_scan",
             })
 
     return candidates
