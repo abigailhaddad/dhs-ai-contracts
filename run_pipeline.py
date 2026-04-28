@@ -19,10 +19,65 @@ Run:
 """
 
 import argparse
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+from dotenv import load_dotenv
+load_dotenv()
+
+R2_PREFIX       = "dhs_contracts/pipeline_state/"
+STATE_FILES     = [
+    "data/classify_checkpoint.json",
+    "data/mod_processed.json",
+    "data/idv_processed.json",
+    "data/enriched.json",
+    "data/solicitation_ids.json",
+]
+
+
+def _r2_client():
+    import boto3
+    from botocore.config import Config
+    return boto3.client(
+        "s3",
+        endpoint_url=f"https://{os.environ['CF_R2_ACCOUNT_ID']}.r2.cloudflarestorage.com",
+        aws_access_key_id=os.environ["CF_R2_ACCESS_KEY_ID"],
+        aws_secret_access_key=os.environ["CF_R2_SECRET_ACCESS_KEY"],
+        config=Config(signature_version="s3v4"),
+        region_name="auto",
+    )
+
+
+def download_state() -> None:
+    if not os.environ.get("CF_R2_ACCOUNT_ID"):
+        return
+    print("  Downloading pipeline state from R2...")
+    s3 = _r2_client()
+    bucket = os.environ["CF_R2_BUCKET"]
+    for local in STATE_FILES:
+        key = R2_PREFIX + Path(local).name
+        try:
+            Path(local).parent.mkdir(parents=True, exist_ok=True)
+            s3.download_file(bucket, key, local)
+            print(f"    R2 → {local}")
+        except Exception:
+            pass  # file doesn't exist in R2 yet, that's fine
+
+
+def upload_state() -> None:
+    if not os.environ.get("CF_R2_ACCOUNT_ID"):
+        return
+    print("  Uploading pipeline state to R2...")
+    s3 = _r2_client()
+    bucket = os.environ["CF_R2_BUCKET"]
+    for local in STATE_FILES:
+        if Path(local).exists():
+            key = R2_PREFIX + Path(local).name
+            s3.upload_file(local, bucket, key)
+            print(f"    {local} → R2")
 
 
 def step(label: str, cmd: str, allow_fail: bool = False) -> bool:
@@ -48,6 +103,8 @@ def main() -> None:
 
     start = datetime.now(timezone.utc)
     print(f"\nDHS AI Contract Pipeline — {start.strftime('%Y-%m-%d %H:%M UTC')}")
+
+    download_state()
 
     # Step 1: Update bulk DHS contracts
     if not args.skip_fetch:
@@ -76,6 +133,8 @@ def main() -> None:
 
     # Step 6: Build web data
     step("6/6  Build web/data/results.json", "python3 build_web.py")
+
+    upload_state()
 
     elapsed = (datetime.now(timezone.utc) - start).seconds
     print(f"\n{'═' * 60}")
