@@ -154,6 +154,10 @@ def get_transactions(session: requests.Session, gid: str) -> list[dict]:
 # Phase 2: Parent IDV expansion
 # ---------------------------------------------------------------------------
 
+IDV_PROCESSED_JSON = Path("data/idv_processed.json")  # {idv_gid: last_scanned_iso}
+IDV_RESCAN_DAYS    = 7  # re-scan IDIQs at most weekly
+
+
 def run_idv(session: requests.Session) -> None:
     print("\n=== IDV expansion ===")
     d = load_results()
@@ -179,8 +183,18 @@ def run_idv(session: requests.Session) -> None:
 
     print(f"Found {len(parent_idvs)} unique parent IDIQs from {len(d['contracts'])} AI contracts")
 
+    # Load IDV scan checkpoint — skip IDIQs scanned within IDV_RESCAN_DAYS
+    from datetime import datetime, timezone, timedelta
+    idv_processed: dict = json.loads(IDV_PROCESSED_JSON.read_text()) if IDV_PROCESSED_JSON.exists() else {}
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=IDV_RESCAN_DAYS)).isoformat()
+
     new_candidates = []
     for idv_gid, idv_piid in parent_idvs.items():
+        last_scanned = idv_processed.get(idv_gid, "")
+        if last_scanned > cutoff:
+            print(f"  {idv_piid}: scanned {last_scanned[:10]}, skipping")
+            continue
+
         page = 1
         while True:
             r = session.post(IDV_AWARDS, json={
@@ -198,8 +212,8 @@ def run_idv(session: requests.Session) -> None:
                 if "homeland security" not in awarding and "homeland security" not in funding:
                     continue
                 child_gid = child.get("generated_unique_award_id", "")
-                child_aid = child_gid.split("_")[3] if child_gid else ""
-                if child_aid in known_award_ids or child_gid in already_found:
+                child_aid = child.get("piid", "") or (child_gid.split("_")[3] if child_gid else "")
+                if child_aid in known_award_ids or child_aid in already_found:
                     continue
                 new_candidates.append({
                     "award_id":              child_aid,
@@ -213,6 +227,10 @@ def run_idv(session: requests.Session) -> None:
                 break
             page += 1
             time.sleep(0.3)
+
+        idv_processed[idv_gid] = datetime.now(timezone.utc).isoformat()
+        IDV_PROCESSED_JSON.parent.mkdir(parents=True, exist_ok=True)
+        IDV_PROCESSED_JSON.write_text(json.dumps(idv_processed, indent=2))
 
     print(f"{len(new_candidates)} unseen sibling task orders to classify")
 

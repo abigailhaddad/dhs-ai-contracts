@@ -1,0 +1,69 @@
+name: Weekly Pipeline
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"  # Monday 8am UTC
+  workflow_dispatch:
+    inputs:
+      skip_fetch:
+        description: "Skip bulk data download (data already fresh)"
+        type: boolean
+        default: false
+      skip_enrich:
+        description: "Skip enrichment passes (modifications + IDV)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-pipeline
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+
+    env:
+      CF_R2_ACCOUNT_ID:       ${{ secrets.CF_R2_ACCOUNT_ID }}
+      CF_R2_BUCKET:           ${{ secrets.CF_R2_BUCKET }}
+      CF_R2_ACCESS_KEY_ID:    ${{ secrets.CF_R2_ACCESS_KEY_ID }}
+      CF_R2_SECRET_ACCESS_KEY: ${{ secrets.CF_R2_SECRET_ACCESS_KEY }}
+      OPENAI_API_KEY:         ${{ secrets.OPENAI_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        run: |
+          ARGS=""
+          if [ "${{ inputs.skip_fetch }}" = "true" ]; then
+            ARGS="$ARGS --skip-fetch"
+          fi
+          if [ "${{ inputs.skip_enrich }}" = "true" ]; then
+            ARGS="$ARGS --skip-enrich"
+          fi
+          python run_pipeline.py $ARGS
+
+      - name: Commit updated results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/data/results.json
+          if git diff --cached --quiet; then
+            echo "No changes to results.json"
+          else
+            CONTRACTS=$(python -c "import json; d=json.load(open('web/data/results.json')); print(d['summary']['total_ai_contracts'])")
+            DOLLARS=$(python -c "import json; d=json.load(open('web/data/results.json')); print(f\"\${d['summary']['total_ai_dollars']/1e6:.0f}M\")")
+            git commit -m "Weekly pipeline: ${CONTRACTS} AI contracts, ${DOLLARS} [skip ci]"
+            git push
+          fi
