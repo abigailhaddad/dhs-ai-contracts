@@ -129,7 +129,8 @@ def fetch_candidates_from_csv(csv_path: Path) -> list[dict]:
             ])
             if not pattern.search(desc):
                 continue
-            aid = row.get("contract_award_unique_key", "") or row.get("award_id_piid", "")
+            # Use PIID as key to match API-search checkpoint format
+            aid = row.get("award_id_piid", "") or row.get("contract_award_unique_key", "")
             if aid in seen:
                 continue
             seen.add(aid)
@@ -179,12 +180,17 @@ def classify_contract(contract: dict) -> Optional[AIClassification]:
             explanation="No description available to classify."
         )
 
+    try:
+        amt = float(contract.get("Award Amount") or contract.get("amount") or 0)
+    except (TypeError, ValueError):
+        amt = 0
+
     prompt = f"""\
 Classify this DHS contract:
 
 Vendor: {contract.get("Recipient Name", "unknown")}
 Sub-agency: {contract.get("Awarding Sub Agency", "unknown")}
-Amount: ${contract.get("Award Amount", 0):,}
+Amount: ${amt:,.0f}
 NAICS: {contract.get("NAICS Code", "")} — {contract.get("NAICS Description", "")}
 PSC: {contract.get("PSC Code", "")} — {contract.get("PSC Description", "")}
 Description: {desc[:800]}
