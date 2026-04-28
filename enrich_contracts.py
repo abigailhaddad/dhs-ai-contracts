@@ -276,12 +276,13 @@ def run_modifications(session: requests.Session) -> None:
         if result["is_ai"]:
             print(f"  [FLIP] {aid}: {result['explanation'][:80]}")
             enriched["mod_reclassified"].append({
-                "award_id":    aid,
-                "vendor":      row.get("Recipient Name", ""),
-                "agency":      row.get("Awarding Sub Agency", ""),
-                "amount":      float(row.get("Award Amount") or 0),
-                "description": base_desc,
-                "mod_text":    combined_mod_text[:500],
+                "award_id":              aid,
+                "generated_internal_id": row.get("generated_internal_id", ""),
+                "vendor":                row.get("Recipient Name", ""),
+                "agency":                row.get("Awarding Sub Agency", ""),
+                "amount":                float(row.get("Award Amount") or 0),
+                "description":           base_desc,
+                "mod_text":              combined_mod_text[:500],
                 **result,
             })
             save_enriched(enriched)
