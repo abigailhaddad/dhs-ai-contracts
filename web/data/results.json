@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-04-27T12:51Z",
+  "generated_at": "2026-04-28T01:43Z",
   "summary": {
-    "total_ai_contracts": 143,
-    "total_ai_dollars": 702294953.24,
+    "total_ai_contracts": 151,
+    "total_ai_dollars": 729301280.19,
     "total_candidates": 249,
     "not_ai_filtered_out": 136,
-    "sub_agencies_with_ai": 8,
+    "sub_agencies_with_ai": 9,
     "from_keyword_search": 113,
     "from_modification_text": 30,
-    "from_idv_expansion": 0
+    "from_idv_expansion": 8
   },
   "by_agency": [
     {
@@ -25,6 +25,11 @@
       "agency": "Transportation Security Administration",
       "contracts": 30,
       "dollars": 98121462.18999997
+    },
+    {
+      "agency": "Department of Homeland Security",
+      "contracts": 8,
+      "dollars": 27006326.95
     },
     {
       "agency": "U.S. Customs and Border Protection",
@@ -189,6 +194,21 @@
       "source": "modification_text"
     },
     {
+      "award_id": "7013",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 12246379.69,
+      "description": "THIS EFFORT INVOLVES THE DESIGN AND DEPLOYMENT OF BACK-END AND FRONT-END INFRASTRUCTURE TO SUPPORT A SECURE TSA-OWNED MOBILE APPLICATION, ENABLING BIOMETRIC AND BIOGRAPHIC MATCHING, CREDENTIAL MANAGEMENT, AND REAL-TIME BENEFIT STATUS UPDATES.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70T03024A7667N003",
+      "explanation": "The effort explicitly includes biometric matching and automated credential/benefit status verification, which are AI/ML-adjacent identity matching functions rather than simple IT infrastructure.",
+      "generated_internal_id": "CONT_AWD_70T04026F7503N001_7013_70T03024A7667N003_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04026F7503N001_7013_70T03024A7667N003_7013",
+      "source": "idv_expansion"
+    },
+    {
       "award_id": "70T04020C9NRCA366",
       "vendor": "STRATOVAN CORPORATION",
       "agency": "Transportation Security Administration",
@@ -339,6 +359,21 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "7001",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 4254716.94,
+      "description": "SETA SUPPORT FOR SCREENING AT SPEED ARTIFICIAL INTELLIGENCE/MACHINE LEARNING EFFORTS",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT19D00000003",
+      "explanation": "The contract explicitly references artificial intelligence/machine learning efforts, indicating confirmed AI/ML work rather than general IT or RPA.",
+      "generated_internal_id": "CONT_AWD_70RSAT23FR0000088_7001_70RSAT19D00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23FR0000088_7001_70RSAT19D00000003_7001",
+      "source": "idv_expansion"
+    },
+    {
       "award_id": "HSHQDC17CB0020",
       "vendor": "SURESCAN CORPORATION",
       "agency": "Office of Procurement Operations",
@@ -382,6 +417,21 @@
       "generated_internal_id": "CONT_AWD_70Z02324FCGRC0001_7008_70Z02323ACGRC0001_7008",
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70Z02324FCGRC0001_7008_70Z02323ACGRC0001_7008",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "7008",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 4060486.32,
+      "description": "MARKETING AND ARTIFICIAL INTELLIGENCE SERVICES FOR CGRC",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70Z02323ACGRC0001",
+      "explanation": "The description explicitly mentions artificial intelligence services, which indicates AI/ML-related work rather than general IT or administrative support.",
+      "generated_internal_id": "CONT_AWD_70Z02324FCGRC0001_7008_70Z02323ACGRC0001_7008",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70Z02324FCGRC0001_7008_70Z02323ACGRC0001_7008",
+      "source": "idv_expansion"
     },
     {
       "award_id": "HSTS0217COIA217",
@@ -579,6 +629,21 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "7003",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 2978104.0,
+      "description": "IGF::OT::IGF FDNS PREDICTIVE ANALYTICS SUPPORT- PHASE 5",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC14D00006",
+      "explanation": "The contract explicitly references predictive analytics support, which indicates AI/ML-style predictive modeling rather than general IT or RPA.",
+      "generated_internal_id": "CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001",
+      "source": "idv_expansion"
+    },
+    {
       "award_id": "70B06C25F00000538",
       "vendor": "MATROID, INC.",
       "agency": "U.S. Customs and Border Protection",
@@ -592,6 +657,21 @@
       "generated_internal_id": "CONT_AWD_70B06C25F00000538_7014_70B06C21D00000022_7014",
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B06C25F00000538_7014_70B06C21D00000022_7014",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "7014",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 2613620.0,
+      "description": "OBJECT DETECTION SOFTWARE LICENSES.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70B06C21D00000022",
+      "explanation": "Object detection software typically uses computer vision and machine learning models to identify objects in images or video, which falls within AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70B06C25F00000538_7014_70B06C21D00000022_7014",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B06C25F00000538_7014_70B06C21D00000022_7014",
+      "source": "idv_expansion"
     },
     {
       "award_id": "70T04025F7672N017",
@@ -1374,6 +1454,21 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "7012",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 551000.0,
+      "description": "NATURAL LANGUAGE PROCESSING SUPPORT SERVICES",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT20D00000001",
+      "explanation": "Natural language processing is an AI/ML area, so support services for NLP indicate AI-related work.",
+      "generated_internal_id": "CONT_AWD_70CMSD22FR0000068_7012_70RSAT20D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CMSD22FR0000068_7012_70RSAT20D00000001_7001",
+      "source": "idv_expansion"
+    },
+    {
       "award_id": "HSHQDC08C00032",
       "vendor": "AUTHENTI CORPORATION",
       "agency": "Office of Procurement Operations",
@@ -1719,6 +1814,21 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "7022",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 157500.0,
+      "description": "WILDFIRE RISK MODELING AND AI RESEARCH PER THE ATTACHED STATEMENT OF WORK DATED JULY 17, 2024.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT21G00000003",
+      "explanation": "The contract explicitly calls for wildfire risk modeling and AI research, which indicates AI/ML work such as predictive modeling and AI development.",
+      "generated_internal_id": "CONT_AWD_70FA2024F00000077_7022_70RSAT21G00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70FA2024F00000077_7022_70RSAT21G00000003_7001",
+      "source": "idv_expansion"
+    },
+    {
       "award_id": "70CMSD23P00000055",
       "vendor": "INCADENCE STRATEGIC SOLUTIONS LLC",
       "agency": "U.S. Immigration and Customs Enforcement",
@@ -1927,6 +2037,21 @@
       "generated_internal_id": "CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001",
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "7009",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 144520.0,
+      "description": "ARTIFICIAL INTELLIGENCE/MACHINE LEARNING (AI/ML) SOFTWARE LICENSE PILOT",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC13D00019",
+      "explanation": "The contract explicitly describes an Artificial Intelligence/Machine Learning software license pilot, which indicates AI/ML software use rather than general IT or RPA.",
+      "generated_internal_id": "CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001",
+      "source": "idv_expansion"
     },
     {
       "award_id": "70RSAT18P00000016",
