@@ -226,9 +226,9 @@
     <div class="stat-card clickable" onclick="openListModal('agency')" title="See the list of sub-agencies"><div class="value" id="stat-agencies">—</div><div class="label">DHS sub-agencies with AI contracts</div><div class="hint">click to see the list</div></div>
     <div class="stat-card clickable" onclick="openListModal('vendor')" title="See the list of vendors"><div class="value" id="stat-vendors">—</div><div class="label">Distinct vendors</div><div class="hint">click to see the list</div></div>
     <div class="stat-card clickable" onclick="openListModal('keyword')" title="See keyword hits"><div class="value" id="stat-keywords">—</div><div class="label">AI keywords searched</div><div class="hint">click to see the list</div></div>
-    <div class="stat-card clickable" onclick="filterTableBySource('keyword_search')"    title="Filter the contracts table to keyword-search hits"><div class="value" id="stat-keyword">—</div><div class="label">Via keyword search</div><div class="hint">click to filter the table</div></div>
-    <div class="stat-card clickable" onclick="filterTableBySource('modification_text')" title="Filter the contracts table to modification-text reclassifications"><div class="value" id="stat-mod">—</div><div class="label">Via modification text</div><div class="hint">click to filter the table</div></div>
-    <div class="stat-card clickable" onclick="filterTableBySource('idv_expansion')"     title="Filter the contracts table to IDV-sibling expansions"><div class="value" id="stat-idv">—</div><div class="label">Via IDV expansion</div><div class="hint">click to filter the table</div></div>
+    <div class="stat-card clickable" onclick="openListModal('source','keyword_search')"    title="See the contracts found via keyword search"><div class="value" id="stat-keyword">—</div><div class="label">Via keyword search</div><div class="hint">click to see the list</div></div>
+    <div class="stat-card clickable" onclick="openListModal('source','modification_text')" title="See the contracts re-classified via modification text"><div class="value" id="stat-mod">—</div><div class="label">Via modification text</div><div class="hint">click to see the list</div></div>
+    <div class="stat-card clickable" onclick="openListModal('source','idv_expansion')"     title="See the contracts pulled in via IDV sibling expansion"><div class="value" id="stat-idv">—</div><div class="label">Via IDV expansion</div><div class="hint">click to see the list</div></div>
   </div>
 
   <div class="section-header">AI Contracts by Sub-Agency</div>
@@ -434,14 +434,27 @@ function switchPaneTab(name) {
 // {name, count, total} entries sorted by count desc.
 let _DATA = null; // cached results.json for modal builders
 
-function openListModal(kind) {
+function openListModal(kind, arg) {
   if (!_DATA) return;
   const titleEl = document.getElementById('listModalTitle');
   const subEl   = document.getElementById('listModalSub');
   const body    = document.getElementById('listModalBody');
   let entries, title, sub;
 
-  if (kind === 'agency') {
+  if (kind === 'source') {
+    const sourceLabel = (arg || '').replace(/_/g, ' ');
+    title = `Contracts via ${sourceLabel}`;
+    sub   = `${_DATA.contracts.filter(c => c.source === arg).length} contracts. Click 'raw' on any row to see why this contract was flagged AI/ML and the upstream USASpending columns.`;
+    entries = _DATA.contracts
+      .filter(c => c.source === arg)
+      .sort((a, b) => (b.amount || 0) - (a.amount || 0))
+      .map(c => ({
+        name:   `${c.vendor || '(no vendor)'} · ${c.agency || ''}`,
+        count:  c.award_id,
+        amount: c.amount || 0,
+        link:   c.raw_url || ('raw.html?piid=' + encodeURIComponent(c.award_id)),
+      }));
+  } else if (kind === 'agency') {
     title = 'DHS sub-agencies with AI contracts';
     sub   = 'Click a bar in the Dashboard chart to view that sub-agency\'s contracts.';
     entries = _DATA.by_agency.map(a => ({
@@ -483,10 +496,19 @@ function openListModal(kind) {
   subEl.textContent   = sub;
   const fmt$ = v => v ? '$' + (v / 1e6).toFixed(1) + 'M' : '';
   body.innerHTML = entries.map(e => {
-    const cls = (e.count === 0) ? 'list-modal-row zero' : 'list-modal-row';
+    // For source-list rows e.count is an award_id (string) and e.link
+    // points at the per-contract raw.html. For aggregate rows
+    // (agency/vendor/keyword) e.count is a contract count (number) and
+    // there's no link. The renderer handles both — count is just a label
+    // either way.
+    const isContractRow = !!e.link;
+    const countText = isContractRow
+      ? `<a href="${escapeHtml(e.link)}" target="_blank" rel="noopener" style="color:var(--color-accent);text-decoration:none">${escapeHtml(e.count)} <span style="opacity:0.6">raw →</span></a>`
+      : `${e.count} contract${e.count === 1 ? '' : 's'}`;
+    const cls = (!isContractRow && e.count === 0) ? 'list-modal-row zero' : 'list-modal-row';
     return `<div class="${cls}">
       <span class="lm-name">${escapeHtml(e.name)}</span>
-      <span class="lm-count">${e.count} contract${e.count === 1 ? '' : 's'}</span>
+      <span class="lm-count">${countText}</span>
       <span class="lm-amount">${fmt$(e.amount)}</span>
     </div>`;
   }).join('') || '<p style="font-style:italic;color:var(--color-text-muted)">(none)</p>';
@@ -498,20 +520,6 @@ function closeListModal() {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeListModal();
 });
-
-// Click handler for the 3 "Via X" source cards. Applies an in-page
-// filter on the contracts table — same code path as picking 'Source'
-// from the FilterManager's '+ Add Filter' dialog. Scrolls the table
-// into view so the user can see the filtered list immediately.
-function filterTableBySource(source) {
-  if (!window._filterManager) return;
-  const fm = window._filterManager;
-  fm.activeFilters['source'] = { type: 'multiselect', values: [source], name: 'Source' };
-  fm._applyAndNotify();
-  // Scroll the table into view so the effect is visible without manual scroll.
-  const tbl = document.getElementById('contractTable');
-  if (tbl) tbl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
 
 async function load() {
   const res = await fetch('data/results.json');
