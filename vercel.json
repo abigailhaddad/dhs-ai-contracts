@@ -2,5 +2,6 @@
   "buildCommand": null,
   "installCommand": null,
   "framework": null,
-  "outputDirectory": "web"
+  "outputDirectory": "web",
+  "alias": ["dhs-ai-contracts.vercel.app"]
 }
