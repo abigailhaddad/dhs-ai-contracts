@@ -2,6 +2,5 @@
   "buildCommand": null,
   "installCommand": null,
   "framework": null,
-  "outputDirectory": "web",
-  "ignoreCommand": "exit 0"
+  "outputDirectory": "web"
 }
