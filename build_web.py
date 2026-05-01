@@ -133,34 +133,52 @@ def derive_matched_keywords(description: str) -> str:
     return "|".join(matched)
 
 
-def load_bulk_keyword_index() -> dict[str, tuple[str, str]]:
+def load_bulk_index() -> dict[str, dict]:
     """One-time pass over the bulk USASpending CSV to build a per-PIID
-    lookup of (matched_keywords, full_description) for legacy checkpoint
-    rows that stored only the truncated `transaction_description`. Some
-    bulk-scan hits matched against `award_description` (which wasn't
-    stored), so the truncated description we kept doesn't contain the
-    keyword and the simple derive_matched_keywords() returns nothing.
+    lookup used for two backfills at build time:
 
-    Returns {} when the bulk CSV isn't present (e.g. weekly CI run with
-    --skip-fetch). In that case keyword highlighting falls back to the
-    placeholder for affected rows — not pretty, but harmless."""
+    1. **Matched keyword + full description** — old checkpoint rows
+       stored only the truncated `transaction_description`, but some
+       bulk-scan hits matched against `award_description` (which wasn't
+       stored), so derive_matched_keywords() returns nothing on the
+       short version. We re-derive against the wider concat here.
+
+    2. **Vendor name** — `enriched.idv_siblings` doesn't carry the
+       recipient_name, so IDV-expansion contracts ship with empty
+       vendor unless we look it up here.
+
+    Returns {aid: {keywords, full_desc, vendor}}. Empty dict when the
+    bulk CSV isn't present (e.g. fresh checkout) — affected rows just
+    keep their original sparse values."""
     if not BULK_CSV.exists():
         return {}
-    out: dict[str, tuple[str, str]] = {}
+    out: dict[str, dict] = {}
     with open(BULK_CSV, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            aid = (row.get("award_id_piid") or
-                   row.get("contract_award_unique_key") or "")
-            if not aid or aid in out:
+            piid = row.get("award_id_piid") or ""
+            gid  = row.get("contract_award_unique_key") or ""
+            if not piid and not gid:
                 continue
             full_desc = " ".join([
                 row.get("transaction_description") or "",
                 row.get("prime_award_base_transaction_description") or "",
                 row.get("award_description") or "",
             ]).strip()
-            kws = derive_matched_keywords(full_desc)
-            if kws:
-                out[aid] = (kws, full_desc)
+            entry = {
+                "keywords":  derive_matched_keywords(full_desc),
+                "full_desc": full_desc,
+                "vendor":    row.get("recipient_name") or "",
+            }
+            # Index under BOTH the PIID (for keyword_search rows whose
+            # award_id is the PIID) and the gid (for idv_expansion rows
+            # whose award_id is just the modnum stub like "7013" — the
+            # only way to map them back to the bulk CSV is via the
+            # contract_award_unique_key the pipeline propagated).
+            # Keep first-seen for each key; vendor name is stable across
+            # the lifetime of an award.
+            for k in (piid, gid):
+                if k and k not in out:
+                    out[k] = entry
     return out
 
 
@@ -181,7 +199,7 @@ def main() -> None:
 
     ai_rows = [r for r in rows if str(r.get("is_ai", "")).lower() == "true"]
 
-    bulk_index = load_bulk_keyword_index()
+    bulk_index = load_bulk_index()
 
     contracts: dict[str, dict] = {}
     for r in ai_rows:
@@ -198,13 +216,13 @@ def main() -> None:
         if not stored_kw or stored_kw == "bulk_keyword_scan":
             keyword = derive_matched_keywords(description)
             if not keyword and aid in bulk_index:
-                kws, full_desc = bulk_index[aid]
-                keyword = kws
+                bk = bulk_index[aid]
+                keyword = bk["keywords"]
                 # Prefer the wider description so the highlight has the
                 # keyword to anchor on. Cap at the same length the rest
                 # of the dataset uses for consistency.
                 if not description or not derive_matched_keywords(description):
-                    description = full_desc[:300]
+                    description = bk["full_desc"][:300]
             if not keyword:
                 keyword = stored_kw  # last-ditch: keep the placeholder
         else:
@@ -263,9 +281,16 @@ def main() -> None:
                 continue
             gid = r.get("generated_internal_id", "")
             parent = r.get("parent_idv", "")
+            # enriched.idv_siblings doesn't carry recipient_name; look it
+            # up from the bulk CSV index so the dashboard isn't littered
+            # with "(no vendor)" rows. award_id is the modnum stub for
+            # IDV expansions; the gid (contract_award_unique_key) is
+            # what indexes back into the bulk CSV reliably.
+            vendor = ((bulk_index.get(gid) or bulk_index.get(aid))
+                      or {}).get("vendor", "")
             contracts[aid] = {
                 "award_id":              aid,
-                "vendor":                "",
+                "vendor":                vendor,
                 "agency":                r.get("agency", ""),
                 "amount":                fmt_dollars(r.get("amount")),
                 "description":           (r.get("description") or "")[:300],
