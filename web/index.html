@@ -226,9 +226,9 @@
     <div class="stat-card clickable" onclick="openListModal('agency')" title="See the list of sub-agencies"><div class="value" id="stat-agencies">—</div><div class="label">DHS sub-agencies with AI contracts</div><div class="hint">click to see the list</div></div>
     <div class="stat-card clickable" onclick="openListModal('vendor')" title="See the list of vendors"><div class="value" id="stat-vendors">—</div><div class="label">Distinct vendors</div><div class="hint">click to see the list</div></div>
     <div class="stat-card clickable" onclick="openListModal('keyword')" title="See keyword hits"><div class="value" id="stat-keywords">—</div><div class="label">AI keywords searched</div><div class="hint">click to see the list</div></div>
-    <div class="stat-card"><div class="value" id="stat-keyword">—</div><div class="label">Via keyword search</div></div>
-    <div class="stat-card"><div class="value" id="stat-mod">—</div><div class="label">Via modification text</div></div>
-    <div class="stat-card"><div class="value" id="stat-idv">—</div><div class="label">Via IDV expansion</div></div>
+    <div class="stat-card clickable" onclick="filterTableBySource('keyword_search')"    title="Filter the contracts table to keyword-search hits"><div class="value" id="stat-keyword">—</div><div class="label">Via keyword search</div><div class="hint">click to filter the table</div></div>
+    <div class="stat-card clickable" onclick="filterTableBySource('modification_text')" title="Filter the contracts table to modification-text reclassifications"><div class="value" id="stat-mod">—</div><div class="label">Via modification text</div><div class="hint">click to filter the table</div></div>
+    <div class="stat-card clickable" onclick="filterTableBySource('idv_expansion')"     title="Filter the contracts table to IDV-sibling expansions"><div class="value" id="stat-idv">—</div><div class="label">Via IDV expansion</div><div class="hint">click to filter the table</div></div>
   </div>
 
   <div class="section-header">AI Contracts by Sub-Agency</div>
@@ -499,6 +499,20 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeListModal();
 });
 
+// Click handler for the 3 "Via X" source cards. Applies an in-page
+// filter on the contracts table — same code path as picking 'Source'
+// from the FilterManager's '+ Add Filter' dialog. Scrolls the table
+// into view so the user can see the filtered list immediately.
+function filterTableBySource(source) {
+  if (!window._filterManager) return;
+  const fm = window._filterManager;
+  fm.activeFilters['source'] = { type: 'multiselect', values: [source], name: 'Source' };
+  fm._applyAndNotify();
+  // Scroll the table into view so the effect is visible without manual scroll.
+  const tbl = document.getElementById('contractTable');
+  if (tbl) tbl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 async function load() {
   const res = await fetch('data/results.json');
   const d   = await res.json();
@@ -665,7 +679,7 @@ async function load() {
   renderTable(allRows);
 
   // FilterManager
-  new FilterManager({
+  window._filterManager = new FilterManager({
     filterBarId: 'filterBar',
     toolbarId:   'filterToolbar',
     columns: [
