@@ -97,6 +97,55 @@
       border-bottom-color: var(--color-accent);
     }
 
+    /* Page-level tab nav (Dashboard / Methodology). Larger than the
+       chart's by-dollars/by-count toggle. */
+    .page-tabs {
+      max-width: 960px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; gap: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .page-tabs button {
+      background: none; border: none;
+      font-family: var(--font-heading);
+      font-size: 1rem; font-weight: 600;
+      color: var(--color-text-muted);
+      padding: 0.875rem 1.25rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1px;
+    }
+    .page-tabs button:hover { color: var(--color-text); }
+    .page-tabs button[aria-selected="true"] {
+      color: var(--color-accent);
+      border-bottom-color: var(--color-accent);
+    }
+    .page-pane[hidden] { display: none; }
+
+    /* Clickable stat cards open a list modal showing the items behind
+       the count (sub-agencies, keywords, …) — NOT a contract drill. */
+    .stat-card.clickable { cursor: pointer; transition: background 0.15s; }
+    .stat-card.clickable:hover { background: var(--color-bg); }
+    .stat-card .hint {
+      font-size: 0.7rem; color: var(--color-text-muted);
+      margin-top: 0.2rem; opacity: 0.8;
+    }
+
+    /* List modal — reuses .filter-modal/.filter-popover from shared.css
+       so the close behavior matches the filter dialogs. */
+    #listModal { display: none; }
+    #listModal.show { display: flex; }
+    .list-modal-row {
+      display: grid; grid-template-columns: 1fr max-content max-content;
+      gap: 0.75rem; padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.875rem;
+    }
+    .list-modal-row:last-child { border-bottom: none; }
+    .list-modal-row .lm-name { color: var(--color-text); }
+    .list-modal-row .lm-count { font-family: var(--font-mono); color: var(--color-text-muted); font-size: 0.78rem; }
+    .list-modal-row .lm-amount { font-family: var(--font-mono); color: var(--color-header); font-size: 0.78rem; }
+    .list-modal-row.zero .lm-name { color: var(--color-text-muted); }
+
     /* DataTable theme */
     .dataTables_wrapper { font-family: var(--font-body); font-size: 0.875rem; color: var(--color-text); }
     .dataTables_filter { margin-bottom: 0.5rem; }
@@ -154,7 +203,14 @@
   </div>
 </header>
 
+<nav class="page-tabs" role="tablist">
+  <button role="tab" aria-selected="true"  aria-controls="paneDashboard"   id="tabDashboard"   onclick="switchPaneTab('Dashboard')">Dashboard</button>
+  <button role="tab" aria-selected="false" aria-controls="paneMethodology" id="tabMethodology" onclick="switchPaneTab('Methodology')">Methodology</button>
+</nav>
+
 <div class="site-container">
+
+<section id="paneDashboard" class="page-pane" role="tabpanel" aria-labelledby="tabDashboard">
 
   <div class="section-header">Overview</div>
   <p class="narrative">
@@ -165,12 +221,14 @@
   </p>
 
   <div class="stat-grid">
-    <a class="stat-card" href="raw.html?flag=summary" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View every contract in this dataset"><div class="value" id="stat-contracts">—</div><div class="label">AI contracts identified <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
-    <a class="stat-card" href="raw.html?flag=summary" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View every contract this dollar figure sums"><div class="value" id="stat-dollars">—</div><div class="label">Total dollars obligated <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
-    <div class="stat-card"><div class="value" id="stat-agencies">—</div><div class="label">DHS sub-agencies with AI contracts</div></div>
-    <a class="stat-card" href="raw.html?flag=source&source=keyword_search" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View contracts classified via keyword search"><div class="value" id="stat-keyword">—</div><div class="label">Keyword search <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
-    <a class="stat-card" href="raw.html?flag=source&source=modification_text" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View contracts classified via modification text"><div class="value" id="stat-mod">—</div><div class="label">Modification text <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
-    <a class="stat-card" href="raw.html?flag=source&source=idv_expansion" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View contracts classified via IDV sibling expansion"><div class="value" id="stat-idv">—</div><div class="label">IDV expansion <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
+    <div class="stat-card"><div class="value" id="stat-contracts">—</div><div class="label">AI contracts identified</div></div>
+    <div class="stat-card"><div class="value" id="stat-dollars">—</div><div class="label">Total dollars obligated</div></div>
+    <div class="stat-card clickable" onclick="openListModal('agency')" title="See the list of sub-agencies"><div class="value" id="stat-agencies">—</div><div class="label">DHS sub-agencies with AI contracts</div><div class="hint">click to see the list</div></div>
+    <div class="stat-card clickable" onclick="openListModal('vendor')" title="See the list of vendors"><div class="value" id="stat-vendors">—</div><div class="label">Distinct vendors</div><div class="hint">click to see the list</div></div>
+    <div class="stat-card clickable" onclick="openListModal('keyword')" title="See keyword hits"><div class="value" id="stat-keywords">—</div><div class="label">AI keywords searched</div><div class="hint">click to see the list</div></div>
+    <div class="stat-card"><div class="value" id="stat-keyword">—</div><div class="label">Via keyword search</div></div>
+    <div class="stat-card"><div class="value" id="stat-mod">—</div><div class="label">Via modification text</div></div>
+    <div class="stat-card"><div class="value" id="stat-idv">—</div><div class="label">Via IDV expansion</div></div>
   </div>
 
   <div class="section-header">AI Contracts by Sub-Agency</div>
@@ -225,6 +283,23 @@
       <div id="modalBody">Loading…</div>
     </div>
   </div>
+
+  <!-- List modal: opened from clickable stat cards. Lists the items
+       being counted (sub-agencies, keywords, vendors), NOT a contract drill. -->
+  <div id="listModal" class="filter-modal" onclick="if(event.target===this)closeListModal()">
+    <div class="filter-popover" style="max-width:560px;width:95%;max-height:80vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;">
+        <div class="filter-title" id="listModalTitle">—</div>
+        <button onclick="closeListModal()" style="background:none;border:none;font-size:1.25rem;cursor:pointer;color:var(--color-text-muted);line-height:1;">×</button>
+      </div>
+      <div style="font-size:0.78rem;color:var(--color-text-muted);margin-bottom:0.5rem;" id="listModalSub"></div>
+      <div id="listModalBody">—</div>
+    </div>
+  </div>
+
+</section><!-- /paneDashboard -->
+
+<section id="paneMethodology" class="page-pane" role="tabpanel" aria-labelledby="tabMethodology" hidden>
 
   <div class="section-header">Methodology</div>
 
@@ -282,7 +357,7 @@
             <td style="padding:6px 8px"><strong>Computed dashboard fields</strong><br><span style="font-size:0.78rem;color:var(--color-text-muted)">total_ai_dollars, total_ai_contracts, by_agency, source path counts</span></td>
             <td style="padding:6px 8px">Computed in our build from the rows above</td>
             <td style="padding:6px 8px;font-family:var(--font-mono);font-size:0.78rem">—</td>
-            <td style="padding:6px 8px">Each clickable stat card and chart bar links to the underlying contract list (<code>raw.html?flag=summary</code> / <code>?flag=source&amp;source=...</code> / <code>?flag=agency&amp;agency=...</code>) so you can sum the rows yourself and verify the headline figure.</td>
+            <td style="padding:6px 8px">Stat cards on the Dashboard expand into list modals showing the items behind each count (sub-agencies, vendors, keywords). The agency bar chart drills into the per-agency contract list at <code>raw.html?flag=agency</code>; per-row provenance lives at <code>raw.html?piid=…</code>.</td>
           </tr>
         </tbody>
       </table>
@@ -314,30 +389,129 @@
       <tbody></tbody>
     </table>
 
-    <h3>Spot-check the LLM verdicts</h3>
-    <p>Open the <a href="review.html">classification review tool</a> to walk every contract, mark the LLM's AI verdict as agree / disagree / skip, and export your review as a CSV. Reviews are stored locally in your browser only.</p>
-
     <h3>Source code</h3>
     <p>All ingestion, keyword search, classification, and dashboard build code: <a href="https://github.com/abigailhaddad/dhs-ai-contracts" target="_blank" rel="noopener">github.com/abigailhaddad/dhs-ai-contracts</a> &mdash; the README has the technical setup.</p>
   </div>
 
-  <footer>
-    Data from <a href="https://www.usaspending.gov/">USASpending.gov</a> (public domain) ·
-    Last updated <span id="generated-at">—</span>
-  </footer>
+</section><!-- /paneMethodology -->
+
+<footer>
+  Data from <a href="https://www.usaspending.gov/">USASpending.gov</a> (public domain) ·
+  Last updated <span id="generated-at">—</span>
+</footer>
 
 </div>
 
 <script>
+// ── Page-level tab nav ────────────────────────────────────────────────────
+// Only two tabs (Dashboard / Methodology). Hidden attribute toggles the
+// pane; aria-selected drives the underline styling.
+function switchPaneTab(name) {
+  ['Dashboard', 'Methodology'].forEach(n => {
+    const btn  = document.getElementById('tab' + n);
+    const pane = document.getElementById('pane' + n);
+    if (!btn || !pane) return;
+    const active = (n === name);
+    btn.setAttribute('aria-selected', active ? 'true' : 'false');
+    pane.hidden = !active;
+  });
+  // Keep deep-links honest: ?tab=methodology stays on URL refresh.
+  const u = new URL(window.location);
+  if (name === 'Methodology') u.searchParams.set('tab', 'methodology');
+  else u.searchParams.delete('tab');
+  window.history.replaceState({}, '', u);
+}
+// Restore tab from URL on first load.
+(function restoreTabFromURL() {
+  const t = new URLSearchParams(window.location.search).get('tab');
+  if (t === 'methodology') switchPaneTab('Methodology');
+})();
+
+// ── List-modal pattern ────────────────────────────────────────────────────
+// Clickable stat cards open this modal showing the LIST of things being
+// counted (sub-agencies, vendors, keywords) — NOT a contract drill-down.
+// Pattern adapted from pull_usaspending: count card → click → modal with
+// {name, count, total} entries sorted by count desc.
+let _DATA = null; // cached results.json for modal builders
+
+function openListModal(kind) {
+  if (!_DATA) return;
+  const titleEl = document.getElementById('listModalTitle');
+  const subEl   = document.getElementById('listModalSub');
+  const body    = document.getElementById('listModalBody');
+  let entries, title, sub;
+
+  if (kind === 'agency') {
+    title = 'DHS sub-agencies with AI contracts';
+    sub   = 'Click a bar in the Dashboard chart to view that sub-agency\'s contracts.';
+    entries = _DATA.by_agency.map(a => ({
+      name:   a.agency,
+      count:  a.contracts,
+      amount: a.dollars,
+    }));
+  } else if (kind === 'vendor') {
+    title = 'Distinct vendors';
+    sub   = 'Vendors with at least one AI contract in the dataset, by total obligated.';
+    const map = {};
+    _DATA.contracts.forEach(c => {
+      const v = c.vendor || '(no vendor)';
+      if (!map[v]) map[v] = { name: v, count: 0, amount: 0 };
+      map[v].count  += 1;
+      map[v].amount += c.amount || 0;
+    });
+    entries = Object.values(map).sort((a, b) => b.amount - a.amount);
+  } else if (kind === 'keyword') {
+    title = 'AI keywords searched';
+    sub   = `${_DATA.keywords_searched.length} terms total. Each row shows how many AI contracts contained that exact keyword in their description (modification-text and IDV-expansion paths don't anchor on a keyword and aren't counted here).`;
+    const map = {};
+    _DATA.keywords_searched.forEach(kw => { map[kw] = { name: kw, count: 0, amount: 0 }; });
+    _DATA.contracts.forEach(c => {
+      (c.keyword || '').split('|').forEach(kw => {
+        const k = kw.trim();
+        if (map[k]) {
+          map[k].count  += 1;
+          map[k].amount += c.amount || 0;
+        }
+      });
+    });
+    entries = Object.values(map).sort((a, b) => b.count - a.count);
+  } else {
+    return;
+  }
+
+  titleEl.textContent = title;
+  subEl.textContent   = sub;
+  const fmt$ = v => v ? '$' + (v / 1e6).toFixed(1) + 'M' : '';
+  body.innerHTML = entries.map(e => {
+    const cls = (e.count === 0) ? 'list-modal-row zero' : 'list-modal-row';
+    return `<div class="${cls}">
+      <span class="lm-name">${escapeHtml(e.name)}</span>
+      <span class="lm-count">${e.count} contract${e.count === 1 ? '' : 's'}</span>
+      <span class="lm-amount">${fmt$(e.amount)}</span>
+    </div>`;
+  }).join('') || '<p style="font-style:italic;color:var(--color-text-muted)">(none)</p>';
+  document.getElementById('listModal').classList.add('show');
+}
+function closeListModal() {
+  document.getElementById('listModal').classList.remove('show');
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeListModal();
+});
+
 async function load() {
   const res = await fetch('data/results.json');
   const d   = await res.json();
+  _DATA = d;
 
   // Stats
   const s = d.summary;
+  const distinctVendors = new Set(d.contracts.map(c => c.vendor || '').filter(Boolean)).size;
   document.getElementById('stat-contracts').textContent = s.total_ai_contracts.toLocaleString();
   document.getElementById('stat-dollars').textContent   = '$' + (s.total_ai_dollars / 1e6).toFixed(1) + 'M';
   document.getElementById('stat-agencies').textContent  = s.sub_agencies_with_ai.toLocaleString();
+  document.getElementById('stat-vendors').textContent   = distinctVendors.toLocaleString();
+  document.getElementById('stat-keywords').textContent  = d.keywords_searched.length.toLocaleString();
   document.getElementById('stat-keyword').textContent   = (s.from_keyword_search   || 0).toLocaleString();
   document.getElementById('stat-mod').textContent       = (s.from_modification_text || 0).toLocaleString();
   document.getElementById('stat-idv').textContent       = (s.from_idv_expansion    || 0).toLocaleString();

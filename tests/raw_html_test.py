@@ -131,22 +131,45 @@ def test_raw_html_handles_aggregate_flags():
         )
 
 
-def test_index_html_stat_cards_link_to_raw_aggregate():
-    """Every clickable stat card on the homepage must point at a real
-    raw.html?flag=... URL. If the link disappears or is malformed, users
-    can't drill from the headline number to the underlying contracts."""
+def test_stat_cards_open_list_modals_not_contract_drilldowns():
+    """Stat cards must NOT link to raw.html?flag=... — the homepage
+    cards are explicitly informational, not contract-drill entry points
+    (a deliberate scope decision). The clickable cards open in-page
+    list modals showing the items being counted (sub-agencies,
+    keywords, vendors)."""
     src = (WEB_HTML / "index.html").read_text()
-    expected = [
+    forbidden = [
         "raw.html?flag=summary",
         "raw.html?flag=source&source=keyword_search",
         "raw.html?flag=source&source=modification_text",
         "raw.html?flag=source&source=idv_expansion",
     ]
-    for url in expected:
-        assert url in src, (
-            f"index.html no longer links to {url!r} — homepage stat card "
-            f"loses its drill-down. Restore the link."
+    bad = [u for u in forbidden if u in src]
+    assert not bad, (
+        f"Stat cards still link to {bad} — these were removed deliberately. "
+        f"Use openListModal('agency'|'keyword'|'vendor') instead."
+    )
+    # And the openListModal calls must be wired to the count cards.
+    for kind in ("agency", "keyword", "vendor"):
+        assert f"openListModal('{kind}')" in src, (
+            f"Stat card for {kind!r} no longer wires onclick to "
+            f"openListModal({kind!r}); users lose the list view."
         )
+
+
+def test_dashboard_has_methodology_tab():
+    """Methodology lives in its own tab, not appended to single-scroll
+    page. Switching tabs must hide the other pane."""
+    src = (WEB_HTML / "index.html").read_text()
+    assert 'id="paneDashboard"' in src and 'id="paneMethodology"' in src, (
+        "index.html no longer has Dashboard / Methodology pane sections. "
+        "The methodology section must live in its own tab."
+    )
+    assert 'switchPaneTab(' in src, "switchPaneTab() handler missing"
+    # Methodology pane starts hidden (Dashboard is the default tab).
+    assert re.search(
+        r'id="paneMethodology"[^>]*hidden', src
+    ), "paneMethodology should start hidden so Dashboard is the default view"
 
 
 def test_index_html_agency_chart_has_bar_click_handler():
@@ -160,22 +183,18 @@ def test_index_html_agency_chart_has_bar_click_handler():
     )
 
 
-def test_review_html_exists_and_reads_results_json():
-    """The classification review tool reads the same results.json the
-    dashboard does. If it stops loading or links somewhere else, the
-    spot-check workflow breaks silently."""
-    review = WEB_HTML / "review.html"
-    assert review.exists(), f"{review} not present"
-    src = review.read_text()
-    assert "fetch('data/results.json')" in src or 'fetch("data/results.json")' in src, (
-        "review.html no longer fetches data/results.json — review tool "
-        "won't render any contracts."
+def test_no_classification_review_tool():
+    """The dashboard explicitly does not ship a human-review surface for
+    LLM AI/ML verdicts. If review.html or a link to it gets reintroduced,
+    fail loudly so we can scrub it before merge."""
+    assert not (WEB_HTML / "review.html").exists(), (
+        "web/review.html exists — the dashboard explicitly does not include "
+        "a classification-review tool. Delete the file."
     )
-    # Methodology section must link to it.
     idx = (WEB_HTML / "index.html").read_text()
-    assert "review.html" in idx, (
-        "index.html no longer links to review.html — users have no "
-        "discoverable path to the spot-check tool."
+    assert "review.html" not in idx, (
+        "index.html links to review.html — the review tool is intentionally "
+        "not part of this dashboard. Remove the link."
     )
 
 

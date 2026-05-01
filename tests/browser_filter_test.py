@@ -89,13 +89,15 @@ def _visible_rows(page: Page) -> int:
     }""")
 
 
-# index.html ships a static .filter-popover inside #detailModal (the
-# contract-detail modal). That static element is always in the DOM, so a
-# plain `.filter-popover` selector matches it AND any dynamic modal the
-# FilterManager spins up. We scope to `.filter-modal:not(#detailModal)`
-# to avoid grabbing the static one. createModal() appends a fresh
-# .filter-modal directly under <body> for each filter dialog.
-DYN_MODAL    = ".filter-modal:not(#detailModal)"
+# index.html ships TWO static .filter-modal elements (#detailModal for
+# the contract detail modal, #listModal for the stat-card list views).
+# Both are always in the DOM, so a plain `.filter-modal` selector matches
+# them AND any dynamic modal the FilterManager spins up. We scope to
+# `.filter-modal:not(#detailModal):not(#listModal)` so only the dynamic
+# filter dialogs match — createModal() appends a fresh .filter-modal
+# directly under <body> for each filter dialog with no id, so the
+# negation works.
+DYN_MODAL    = ".filter-modal:not(#detailModal):not(#listModal)"
 DYN_POPOVER  = f"{DYN_MODAL} .filter-popover"
 
 
