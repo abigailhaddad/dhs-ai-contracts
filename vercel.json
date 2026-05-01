@@ -1,5 +1,7 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/web/$1" }
-  ]
+  "buildCommand": null,
+  "installCommand": null,
+  "framework": null,
+  "outputDirectory": "web",
+  "ignoreCommand": "exit 0"
 }
