@@ -15,12 +15,13 @@ Run:
 import argparse
 import csv
 import io
+import json
 import os
 import re
 import tempfile
 import time
 import zipfile
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import requests
@@ -32,9 +33,13 @@ import requests
 ARCHIVE_BASE   = "https://files.usaspending.gov/award_data_archive/"
 CHECKPOINT_DIR = Path("data/dhs_checkpoints")
 OUTPUT_CSV     = Path("data/dhs_contracts.csv")
+# Records the literal archive ZIPs we ingested (datestamp + URL list) so
+# the dashboard's "Download bulk CSV" provenance link points at the real
+# upstream files, not just the archive root index page.
+FETCH_METADATA = Path("data/fetch_metadata.json")
 AGENCY_CODE    = "070"  # DHS
 
-def _get_latest_datestamp(fallback: str = "20260306") -> str:
+def _get_latest_datestamp(fallback: str = "20260406") -> str:
     try:
         r = requests.get(ARCHIVE_BASE, timeout=15)
         r.raise_for_status()
@@ -403,6 +408,27 @@ def main() -> None:
 
     status = "blocked" if ip_blocked else "done"
     Path("data/scan_status.txt").write_text(status)
+
+    # Record fetch metadata so build_web.py can show the actual archive
+    # URLs in the dashboard provenance block. Only includes FYs whose
+    # checkpoints exist (i.e. ones that actually downloaded — not 404s).
+    fy_urls = []
+    for fy in sorted(set(args.fy)):
+        cp = checkpoint_path(fy)
+        if cp.exists() and cp.stat().st_size > 0:
+            fy_urls.append({
+                "fy": fy,
+                "url": f"{ARCHIVE_BASE}FY{fy}_{AGENCY_CODE}_Contracts_Full_{DATESTAMP}.zip",
+                "filename": f"FY{fy}_{AGENCY_CODE}_Contracts_Full_{DATESTAMP}.zip",
+            })
+    FETCH_METADATA.write_text(json.dumps({
+        "fetched_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
+        "datestamp":  DATESTAMP,
+        "agency_code": AGENCY_CODE,
+        "archive_base": ARCHIVE_BASE,
+        "fy_archives": fy_urls,
+    }, indent=2))
+    print(f"Wrote {FETCH_METADATA} ({len(fy_urls)} FY archives)")
 
     if ip_blocked:
         print("IP blocked — re-run to continue. Progress saved.")

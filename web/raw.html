@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raw data — DHS AI Contracts</title>
+<link rel="stylesheet" href="shared/shared.css">
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; color: #222; background: #fbf6ed; margin: 2rem; line-height: 1.5; max-width: 1100px; }
+  h1 { font-size: 1.25rem; margin: 0 0 0.25rem; color: #000C48; }
+  .subtitle { font-size: 0.85rem; color: #666; margin-bottom: 1rem; }
+  .breadcrumb { font-size: 0.78rem; color: #6b7280; margin-bottom: 1rem; }
+  .breadcrumb a { color: #324DB6; text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .provenance { background: #fff; border: 1px solid #ece0d0; border-left: 3px solid #324DB6; border-radius: 4px; padding: 0.75rem 1rem; margin: 0 0 1.25rem 0; font-size: 0.85rem; }
+  .provenance strong { color: #000C48; }
+  .provenance dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 0.75rem; margin: 0.5rem 0 0 0; }
+  .provenance dt { color: #666; font-size: 0.78rem; font-weight: 500; text-align: right; }
+  .provenance dd { margin: 0; font-size: 0.85rem; line-height: 1.45; }
+  .provenance dd a { color: #324DB6; }
+  table { border-collapse: collapse; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 0.85rem; width: 100%; }
+  th { text-align: left; padding: 6px 12px; background: #000C48; color: #fff; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+  td { padding: 6px 12px; border-bottom: 1px solid #ece0d0; vertical-align: top; }
+  .kv { border-collapse: collapse; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 0.9rem; }
+  .kv th { text-align: right; padding: 6px 12px; background: #fbf6ed; color: #000C48; font-weight: 600; font-size: 0.78rem; text-transform: none; letter-spacing: 0; border-bottom: 1px solid #ece0d0; white-space: nowrap; vertical-align: top; }
+  .kv td { padding: 6px 12px; border-bottom: 1px solid #ece0d0; vertical-align: top; }
+  .src-tag { display: inline-block; font-family: ui-monospace, Menlo, monospace; font-size: 0.7rem; color: #6b7280; margin-top: 2px; }
+  .src-tag .src-kind { display: inline-block; background: #e5e7eb; color: #374151; padding: 0 4px; border-radius: 2px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.04em; margin-right: 4px; }
+  .src-tag.usaspending_csv .src-kind { background: #dbeafe; color: #1e40af; }
+  .src-tag.llm            .src-kind { background: #ede9fe; color: #5b21b6; }
+  .src-tag.derived        .src-kind { background: #fef3c7; color: #92400e; }
+  .src-tag.internal       .src-kind { background: #f3f4f6; color: #4b5563; }
+  .empty { color: #666; font-style: italic; }
+  .highlight { background: #fef3c7; }
+  .footer { margin-top: 1.5rem; font-size: 0.78rem; color: #666; }
+  .footer a { color: #324DB6; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 0.85rem; background: #fbf6ed; padding: 1px 4px; border-radius: 3px; white-space: pre-wrap; }
+  .err { background: #fee2e2; border-left: 3px solid #b91c1c; padding: 0.75rem 1rem; border-radius: 4px; color: #842029; }
+  .section { margin: 1.5rem 0 0.5rem; font-size: 0.95rem; font-weight: 700; color: #000C48; }
+</style>
+</head>
+<body>
+<div class="breadcrumb"><a href="index.html">← Back to the dashboard</a></div>
+<div id="root">Loading…</div>
+
+<script>
+// Provenance viewer for one DHS-AI contract record.
+//
+// URL form:
+//   raw.html?piid=<award_id>
+//
+// Reads web/data/results.json (the same file the dashboard reads), looks
+// up the contract by award_id, then renders:
+//   1. A provenance block (where the data came from, how this row was
+//      classified as AI, what model + keyword list, retrieval date).
+//   2. The raw fields we shipped for this contract (the same JSON the
+//      dashboard sees — no munging).
+//   3. The classification trail: the keyword that matched / mod text that
+//      flipped it / IDV siblings that pulled it in. The trigger column is
+//      highlighted yellow.
+//   4. A "see this on USASpending.gov" link (already known to render).
+//   5. JSON download for power users.
+//
+// Mirrors the pattern in pull_usaspending/web/raw.html (vendor-flag-keyed
+// there; piid-keyed here because every fact in this dataset is per-contract).
+
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function fmtUsd(n) {
+  var num = parseFloat(n);
+  if (isNaN(num)) return String(n);
+  return '$' + Math.round(num).toLocaleString();
+}
+function highlightKeyword(text, kwField) {
+  // Case-insensitive highlight of every matched keyword inside the
+  // description. kwField is `|`-joined — e.g. "machine learning|GPT" —
+  // so we split, find each match, and wrap with <mark>. Keep it simple:
+  // sequential substring-find on the original text, escape segments
+  // individually so we don't double-escape the <mark> tags.
+  if (!text) return '';
+  if (!kwField) return esc(text);
+  var keywords = String(kwField).split('|').map(function(s) { return s.trim(); }).filter(Boolean);
+  if (!keywords.length) return esc(text);
+  // Walk the string left-to-right, finding the earliest match of any
+  // keyword at each step. This handles overlap deterministically.
+  var lower = text.toLowerCase();
+  var out = '';
+  var i = 0;
+  while (i < text.length) {
+    var bestIdx = -1, bestKw = null;
+    for (var k = 0; k < keywords.length; k++) {
+      var kw = keywords[k].toLowerCase();
+      if (!kw) continue;
+      var idx = lower.indexOf(kw, i);
+      if (idx >= 0 && (bestIdx < 0 || idx < bestIdx)) {
+        bestIdx = idx;
+        bestKw = keywords[k];
+      }
+    }
+    if (bestIdx < 0) {
+      out += esc(text.slice(i));
+      break;
+    }
+    out += esc(text.slice(i, bestIdx));
+    out += '<mark style="background:#fef3c7;padding:0 2px;">' +
+           esc(text.slice(bestIdx, bestIdx + bestKw.length)) + '</mark>';
+    i = bestIdx + bestKw.length;
+  }
+  return out;
+}
+
+function showError(msg) {
+  document.getElementById('root').innerHTML =
+    '<h1>Raw data</h1><div class="err">' + esc(msg) + '</div>';
+}
+
+// Per-source provenance copy. The dashboard advertises three pathways
+// (keyword_search / modification_text / idv_expansion); each gets its own
+// "where this row came from" block so a researcher can trace the fact
+// back to the upstream USASpending file.
+function provenanceFor(contract, methodology) {
+  var src = contract.source || 'keyword_search';
+  var m = methodology || {};
+  // If fetch_dhs.py wrote per-FY archive URLs, list them as direct
+  // download links (the literal ZIPs the pipeline last ingested).
+  // Otherwise fall back to the archive index page.
+  var fm = m.fetch_metadata || null;
+  var bulkHtml;
+  if (fm && fm.fy_archives && fm.fy_archives.length) {
+    var links = fm.fy_archives.map(function(a) {
+      return '<a href="' + esc(a.url) + '" target="_blank" rel="noopener">' + esc(a.filename) + '</a>';
+    }).join(', ');
+    bulkHtml = 'Literal archive ZIPs ingested ' + (fm.fetched_at ? '(' + esc(fm.fetched_at) + ')' : '') + ': ' + links;
+  } else {
+    bulkHtml = '<a href="' + esc(m.bulk_archive_url || 'https://files.usaspending.gov/award_data_archive/') +
+               '" target="_blank" rel="noopener">USASpending Award Data Archive</a> &mdash; the literal monthly per-agency CSVs the pipeline ingests';
+  }
+  var common = {
+    source: '<a href="' + esc(m.data_source_url || 'https://www.usaspending.gov/') +
+            '" target="_blank" rel="noopener">' + esc(m.data_source || 'USASpending.gov') +
+            '</a> (' + esc(m.agency_filter || 'DHS') + ', ' + esc(m.fy_range || '') + ')',
+    bulk: bulkHtml,
+    model: esc(m.llm_model || 'gpt-5.4-mini'),
+  };
+
+  if (src === 'keyword_search') {
+    return {
+      title: 'Keyword search → LLM classification',
+      filter: 'Description matched keyword <code>' + esc(contract.keyword || '') +
+              '</code>; ' + common.model + ' then confirmed AI/ML work',
+      trigger: 'Keyword <code>' + esc(contract.keyword || '') + '</code> in <code>award_description</code>',
+      common: common,
+    };
+  }
+  if (src === 'modification_text') {
+    return {
+      title: 'Modification text re-classification',
+      filter: 'Original award description did <em>not</em> match keywords, but a later modification\'s description did. ' +
+              common.model + ' was re-run on the modification text and flipped the verdict.',
+      trigger: 'Modification text (highlighted below) describing AI/ML scope',
+      common: common,
+    };
+  }
+  if (src === 'idv_expansion') {
+    return {
+      title: 'IDV sibling expansion',
+      filter: 'Parent IDV <code>' + esc(contract.idv_parent || '') +
+              '</code> already has confirmed AI/ML contracts under it. ' +
+              'This child task order was pulled in and ' + common.model +
+              ' confirmed AI/ML work in its description.',
+      trigger: 'Parent IDV <code>' + esc(contract.idv_parent || '') + '</code> + sibling AI awards (table below)',
+      common: common,
+    };
+  }
+  return {
+    title: src,
+    filter: '(unknown source — see methodology)',
+    trigger: '',
+    common: common,
+  };
+}
+
+function renderProvenance(prov, contract) {
+  var c = contract;
+  return '<div class="provenance"><strong>Where this row came from</strong>' +
+    '<dl>' +
+    '<dt>Source dataset</dt><dd>' + prov.common.source + '</dd>' +
+    '<dt>Classification path</dt><dd>' + esc(prov.title) + '</dd>' +
+    '<dt>Filter we applied</dt><dd>' + prov.filter + '</dd>' +
+    '<dt>What triggered the flag</dt><dd>' + prov.trigger + '</dd>' +
+    '<dt>LLM</dt><dd>' + prov.common.model + ' &mdash; one-sentence verdict shown below</dd>' +
+    '<dt>Each row is</dt><dd>one USASpending contract action (PIID), the same record the live USASpending site shows under <code>' + esc(c.permalink || '') + '</code></dd>' +
+    '<dt>Live page</dt><dd><a href="' + esc(c.permalink || '') + '" target="_blank" rel="noopener">' + esc(c.permalink || '') + '</a></dd>' +
+    '<dt>Bulk download</dt><dd>' + prov.common.bulk + '</dd>' +
+    '</dl></div>';
+}
+
+// The "raw fields" table for a single contract — straight off our shipped
+// JSON, no derived/aggregated fields. The trigger column is highlighted.
+function rawContractFields(c) {
+  return {
+    award_id:              c.award_id,
+    vendor:                c.vendor,
+    agency:                c.agency,
+    amount:                c.amount,
+    description:           c.description,
+    naics:                 c.naics,
+    psc:                   c.psc,
+    start_date:            c.start_date,
+    keyword:               c.keyword,
+    source:                c.source,
+    generated_internal_id: c.generated_internal_id,
+    permalink:             c.permalink,
+    llm_explanation:       c.explanation,
+  };
+}
+
+function renderSrcTag(prov) {
+  // Compact "← derived from X" footer beneath each value, color-coded by
+  // source kind (usaspending_csv / llm / derived / internal). Surfaces
+  // the upstream column name and a short note.
+  if (!prov) return '';
+  var kind = String(prov.source || 'internal');
+  return '<div class="src-tag ' + esc(kind) + '">' +
+    '<span class="src-kind">' + esc(kind.replace('_', ' ')) + '</span>' +
+    (prov.column ? '<code>' + esc(prov.column) + '</code>' : '') +
+    (prov.note ? ' &middot; ' + esc(prov.note) : '') +
+    '</div>';
+}
+
+function renderKv(obj, highlightKey, fieldProv) {
+  fieldProv = fieldProv || {};
+  var html = '<table class="kv"><tbody>';
+  Object.keys(obj).forEach(function(k) {
+    var v = obj[k];
+    var disp;
+    if (v == null || v === '') disp = '<span class="empty">(empty)</span>';
+    else if (k === 'amount') disp = esc(fmtUsd(v));
+    else if (k === 'permalink') disp = '<a href="' + esc(v) + '" target="_blank" rel="noopener">' + esc(v) + '</a>';
+    else if (k === 'description' && obj.keyword) disp = highlightKeyword(String(v), obj.keyword);
+    else disp = esc(v);
+    var cls = (k === highlightKey) ? ' class="highlight"' : '';
+    html += '<tr><th>' + esc(k) + '</th><td' + cls + '>' + disp +
+            renderSrcTag(fieldProv[k]) + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+function renderModText(modText) {
+  if (!modText) return '<p class="empty">(no modification text captured)</p>';
+  return '<table class="kv"><tbody><tr><th>mod_text</th>' +
+    '<td class="highlight" style="white-space:pre-wrap">' + esc(modText) + '</td></tr></tbody></table>';
+}
+
+function renderSiblings(siblings) {
+  if (!siblings || !siblings.length) return '<p class="empty">(no other AI awards found under this parent IDV)</p>';
+  var html = '<table><thead><tr>' +
+    '<th>Award ID</th><th>Source</th><th>Amount</th><th>Description</th><th>Live page</th>' +
+    '</tr></thead><tbody>';
+  siblings.forEach(function(s) {
+    var perma = 'https://www.usaspending.gov/award/' + (s.generated_internal_id || s.award_id || '');
+    html += '<tr>' +
+      '<td><code>' + esc(s.award_id || '') + '</code></td>' +
+      '<td>' + esc((s.source || '').replace(/_/g, ' ')) + '</td>' +
+      '<td style="white-space:nowrap">' + esc(fmtUsd(s.amount)) + '</td>' +
+      '<td>' + esc((s.description || '').slice(0, 160)) + '</td>' +
+      '<td><a href="' + esc(perma) + '" target="_blank" rel="noopener">USASpending →</a></td>' +
+      '</tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+function getQuery() {
+  var p = new URLSearchParams(window.location.search);
+  return {
+    piid:   p.get('piid') || '',
+    flag:   p.get('flag') || '',
+    agency: p.get('agency') || '',
+    source: p.get('source') || '',
+  };
+}
+
+// ── Aggregate-fact views ──────────────────────────────────────────────────
+// raw.html?flag=summary           → all contracts, every dollar/count
+// raw.html?flag=agency&agency=X   → contracts under sub-agency X
+// raw.html?flag=source&source=X   → contracts classified via path X
+//
+// Each renders the same provenance block (USASpending source, methodology)
+// plus a contracts table that lists every row contributing to the aggregate
+// claim — so a researcher can sum the dollars themselves and verify the
+// homepage stat card.
+
+function renderContractsTable(rows) {
+  if (!rows || !rows.length) return '<p class="empty">(no contracts)</p>';
+  var total = rows.reduce(function(s, r) { return s + (r.amount || 0); }, 0);
+  var html = '<p style="font-size:0.85rem;color:#666;margin:0 0 0.5rem">' +
+    rows.length.toLocaleString() + ' contract' + (rows.length === 1 ? '' : 's') +
+    ' &middot; ' + esc(fmtUsd(total)) + ' total</p>';
+  html += '<table><thead><tr>' +
+    '<th>Award ID</th><th>Vendor</th><th>Sub-agency</th><th>Source</th>' +
+    '<th style="text-align:right">Amount</th><th>Provenance</th>' +
+    '</tr></thead><tbody>';
+  rows.forEach(function(r) {
+    html += '<tr>' +
+      '<td><a href="' + esc(r.permalink || '') + '" target="_blank" rel="noopener"><code>' + esc(r.award_id || '') + '</code></a></td>' +
+      '<td>' + esc(r.vendor || '') + '</td>' +
+      '<td>' + esc(r.agency || '') + '</td>' +
+      '<td>' + esc((r.source || '').replace(/_/g, ' ')) + '</td>' +
+      '<td style="text-align:right;white-space:nowrap">' + esc(fmtUsd(r.amount)) + '</td>' +
+      '<td><a href="' + esc(r.raw_url || ('raw.html?piid=' + encodeURIComponent(r.award_id))) + '">raw →</a></td>' +
+      '</tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+function renderAggregatePage(d, q) {
+  var m = d.methodology || {};
+  var contracts = d.contracts || [];
+  var title, subtitle, rows, filterCopy;
+
+  if (q.flag === 'summary') {
+    title = 'All AI contracts (full dataset)';
+    subtitle = 'The dollar/count claims on the homepage stat cards reduce to this list.';
+    rows = contracts;
+    filterCopy = 'No filter — every contract classified as AI/ML work, regardless of source.';
+  } else if (q.flag === 'agency') {
+    title = 'AI contracts — ' + (q.agency || '(no agency)');
+    subtitle = 'The bar for ' + (q.agency || '') + ' on the homepage agency chart sums these rows.';
+    rows = contracts.filter(function(c) { return c.agency === q.agency; });
+    filterCopy = 'Filter applied: <code>agency === ' + esc(q.agency || '') + '</code>';
+  } else if (q.flag === 'source') {
+    title = 'AI contracts — classification path: ' + (q.source || '');
+    subtitle = 'The "' + (q.source || '').replace(/_/g, ' ') + '" stat card on the homepage sums these rows.';
+    rows = contracts.filter(function(c) { return c.source === q.source; });
+    filterCopy = 'Filter applied: <code>source === ' + esc(q.source || '') + '</code>';
+  } else {
+    return showError('Unknown ?flag= value: ' + q.flag);
+  }
+
+  // Provenance block: same shape as per-contract, but talking about the
+  // aggregate. Bulk-download list comes through identically.
+  var fm = m.fetch_metadata || null;
+  var bulkHtml;
+  if (fm && fm.fy_archives && fm.fy_archives.length) {
+    var links = fm.fy_archives.map(function(a) {
+      return '<a href="' + esc(a.url) + '" target="_blank" rel="noopener">' + esc(a.filename) + '</a>';
+    }).join(', ');
+    bulkHtml = 'Literal archive ZIPs ingested ' + (fm.fetched_at ? '(' + esc(fm.fetched_at) + ')' : '') + ': ' + links;
+  } else {
+    bulkHtml = '<a href="' + esc(m.bulk_archive_url || 'https://files.usaspending.gov/award_data_archive/') + '" target="_blank" rel="noopener">USASpending Award Data Archive</a>';
+  }
+
+  var html = '<h1>' + esc(title) + '</h1>';
+  html += '<div class="subtitle">' + esc(subtitle) + '</div>';
+  html += '<div class="provenance"><strong>Where this aggregate came from</strong>' +
+    '<dl>' +
+    '<dt>Source dataset</dt><dd><a href="' + esc(m.data_source_url || '') + '" target="_blank" rel="noopener">' +
+    esc(m.data_source || '') + '</a> (' + esc(m.agency_filter || '') + ', ' + esc(m.fy_range || '') + ')</dd>' +
+    '<dt>Filter we applied</dt><dd>' + filterCopy + '</dd>' +
+    '<dt>Each row is</dt><dd>one contract action shipped in this dashboard. Click "raw →" for full per-contract provenance.</dd>' +
+    '<dt>LLM</dt><dd>' + esc(m.llm_model || '') + '</dd>' +
+    '<dt>Bulk download</dt><dd>' + bulkHtml + '</dd>' +
+    '</dl></div>';
+
+  html += '<div class="section">Contracts in this aggregate</div>';
+  html += renderContractsTable(rows);
+
+  // JSON download for the aggregate slice
+  try {
+    var payload = { flag: q.flag, query: q, contracts: rows };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+    var url = URL.createObjectURL(blob);
+    html += '<p class="footer">Download this slice as <a href="' + url + '" download="' + esc(q.flag) + '-' + esc(q.agency || q.source || 'all') + '.json">JSON</a>.</p>';
+  } catch (e) {}
+
+  document.getElementById('root').innerHTML = html;
+  document.title = title + ' — DHS AI Contracts';
+}
+
+(function init() {
+  var q = getQuery();
+  // Aggregate views (?flag=summary, ?flag=agency, ?flag=source) — these
+  // back the homepage stat cards and chart bars. Per-contract view
+  // (?piid=...) is the original mode.
+  if (q.flag) {
+    fetch('data/results.json')
+      .then(function(r) { return r.json(); })
+      .then(function(d) { renderAggregatePage(d, q); })
+      .catch(function(err) { showError('Failed to load results.json: ' + err.message); });
+    return;
+  }
+  if (!q.piid) return showError('Missing required ?piid= or ?flag= parameter.');
+
+  fetch('data/results.json')
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var match = (d.contracts || []).find(function(c) { return c.award_id === q.piid; });
+      if (!match) return showError('No contract found with award_id ' + q.piid + '.');
+
+      var prov = provenanceFor(match, d.methodology);
+      var fields = rawContractFields(match);
+      // Pick which row in the kv table to highlight based on what
+      // triggered the classification.
+      var highlightKey = (match.source === 'modification_text') ? 'description'
+                       : (match.source === 'idv_expansion')    ? 'keyword'
+                       : 'description';
+
+      var titleLeft = match.vendor || ('Contract ' + match.award_id);
+      var html = '<h1>' + esc(titleLeft) + (match.vendor ? ' &mdash; ' + esc(match.award_id) : '') + '</h1>';
+      html += '<div class="subtitle">' + esc(match.agency) + ' &middot; ' + esc(prov.title) + '</div>';
+      html += renderProvenance(prov, match);
+
+      html += '<div class="section">Raw contract row (as shipped in <code>web/data/results.json</code>)</div>';
+      html += '<p style="font-size:0.78rem;color:#666;margin:0 0 0.5rem">Each value shows the upstream USASpending column it came from (or <code>llm</code> / <code>derived</code> / <code>internal</code> for fields we compute).</p>';
+      html += renderKv(fields, highlightKey, d.field_provenance);
+
+      if (match.source === 'modification_text') {
+        html += '<div class="section">Modification text that flipped the verdict</div>';
+        html += renderModText(match.mod_text);
+      }
+
+      if (match.source === 'idv_expansion') {
+        html += '<div class="section">Confirmed-AI siblings under parent IDV <code>' + esc(match.idv_parent || '') + '</code></div>';
+        html += renderSiblings(match.idv_siblings);
+      }
+
+      // JSON download
+      try {
+        var blob = new Blob([JSON.stringify(match, null, 2)], {type: 'application/json'});
+        var url = URL.createObjectURL(blob);
+        html += '<p class="footer">Download this row as <a href="' + url + '" download="' + esc(match.award_id) + '.json">JSON</a>.</p>';
+      } catch (e) {}
+
+      document.getElementById('root').innerHTML = html;
+      document.title = match.award_id + ' — Raw data — DHS AI Contracts';
+    })
+    .catch(function(err) { showError('Failed to load results.json: ' + err.message); });
+})();
+</script>
+</body>
+</html>

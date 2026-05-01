@@ -114,9 +114,14 @@ def fetch_candidates_from_api() -> list[dict]:
 def fetch_candidates_from_csv(csv_path: Path) -> list[dict]:
     import re
 
-    pattern = re.compile(
-        "|".join(re.escape(kw) for kw in KEYWORDS), re.IGNORECASE
-    )
+    # Per-keyword compiled patterns so we can record WHICH keyword(s) hit
+    # each row — the bulk scan used to write the literal string
+    # "bulk_keyword_scan" for every match, which broke raw.html's keyword
+    # highlight (no actual word to highlight) and made it impossible to
+    # audit which keyword pulled in which contract. Now we keep the
+    # actual list of matched keywords joined by `|`.
+    keyword_patterns = [(kw, re.compile(re.escape(kw), re.IGNORECASE))
+                        for kw in KEYWORDS]
     seen: set[str] = set()
     candidates: list[dict] = []
 
@@ -127,7 +132,8 @@ def fetch_candidates_from_csv(csv_path: Path) -> list[dict]:
                 row.get("prime_award_base_transaction_description", ""),
                 row.get("award_description", ""),
             ])
-            if not pattern.search(desc):
+            matched = [kw for kw, pat in keyword_patterns if pat.search(desc)]
+            if not matched:
                 continue
             # Use PIID as key to match API-search checkpoint format
             aid = row.get("award_id_piid", "") or row.get("contract_award_unique_key", "")
@@ -147,7 +153,7 @@ def fetch_candidates_from_csv(csv_path: Path) -> list[dict]:
                 "NAICS Description":     row.get("naics_description", ""),
                 "PSC Code":              row.get("product_or_service_code", ""),
                 "PSC Description":       row.get("product_or_service_code_description", ""),
-                "matched_keyword":       "bulk_keyword_scan",
+                "matched_keyword":       "|".join(matched),
             })
 
     return candidates

@@ -68,6 +68,10 @@
     .source-keyword-search    { background: #E8F4ED; color: var(--color-header); }
     .source-modification-text { background: #FEF3C7; color: #92400E; }
     .source-idv-expansion     { background: #EDE9FE; color: #5B21B6; }
+    .source-usaspending-csv   { background: #DBEAFE; color: #1E40AF; }
+    .source-llm               { background: #EDE9FE; color: #5B21B6; }
+    .source-derived           { background: #FEF3C7; color: #92400E; }
+    .source-internal          { background: #F3F4F6; color: #4B5563; }
 
     .tab-nav {
       display: flex;
@@ -99,7 +103,7 @@
     .dataTables_filter label { font-weight: 600; font-family: var(--font-heading); font-size: 0.875rem; }
     .dataTables_filter input { border: 1px solid var(--color-border); border-radius: 3px; padding: 0.375rem 0.625rem; font-family: var(--font-body); font-size: 0.875rem; outline: none; }
     .dataTables_filter input:focus { border-color: var(--color-accent); }
-    table.dataTable thead th { background: var(--color-surface); font-weight: 600; font-size: 0.8125rem; border-bottom: 2px solid var(--color-border); }
+    table.dataTable thead th { background: var(--color-surface); font-weight: 600; font-size: 0.8125rem; border-bottom: 2px solid var(--color-border); position: sticky; top: 0; z-index: 5; }
     table.dataTable tbody td { font-size: 0.8125rem; vertical-align: top; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--color-border); }
     table.dataTable tbody tr.odd  td { background: var(--color-bg); }
     table.dataTable tbody tr.even td { background: var(--color-surface); }
@@ -107,6 +111,24 @@
 
     footer { border-top: 1px solid var(--color-border); padding: 1.5rem 0; margin-top: 2rem; font-size: 0.8125rem; color: var(--color-text-muted); }
     footer a { color: var(--color-accent); }
+
+    /* Loading overlay — covers the page until results.json arrives and
+       the table is built. Without it, viewers see "—" placeholders flash
+       and a half-rendered table for ~100ms on first paint. */
+    #loadingOverlay {
+      position: fixed; inset: 0; background: rgba(251, 246, 237, 0.96);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9000; font-family: var(--font-heading);
+      color: var(--color-text-muted); font-size: 0.9rem;
+      transition: opacity 0.2s ease;
+    }
+    #loadingOverlay.hidden { opacity: 0; pointer-events: none; }
+    #loadingOverlay .spinner {
+      width: 14px; height: 14px; border: 2px solid var(--color-border);
+      border-top-color: var(--color-accent); border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin-right: 0.6rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     /* Detail modal */
     #detailModal { display: none; }
@@ -122,6 +144,8 @@
   </style>
 </head>
 <body>
+
+<div id="loadingOverlay"><span class="spinner"></span>Loading dashboard data…</div>
 
 <header>
   <div style="max-width:960px;margin:0 auto;padding:0 1.5rem;">
@@ -141,12 +165,12 @@
   </p>
 
   <div class="stat-grid">
-    <div class="stat-card"><div class="value" id="stat-contracts">—</div><div class="label">AI contracts identified</div></div>
-    <div class="stat-card"><div class="value" id="stat-dollars">—</div><div class="label">Total dollars obligated</div></div>
+    <a class="stat-card" href="raw.html?flag=summary" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View every contract in this dataset"><div class="value" id="stat-contracts">—</div><div class="label">AI contracts identified <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
+    <a class="stat-card" href="raw.html?flag=summary" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View every contract this dollar figure sums"><div class="value" id="stat-dollars">—</div><div class="label">Total dollars obligated <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
     <div class="stat-card"><div class="value" id="stat-agencies">—</div><div class="label">DHS sub-agencies with AI contracts</div></div>
-    <div class="stat-card"><div class="value" id="stat-keyword">—</div><div class="label">Keyword search</div></div>
-    <div class="stat-card"><div class="value" id="stat-mod">—</div><div class="label">Modification text</div></div>
-    <div class="stat-card"><div class="value" id="stat-idv">—</div><div class="label">IDV expansion</div></div>
+    <a class="stat-card" href="raw.html?flag=source&source=keyword_search" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View contracts classified via keyword search"><div class="value" id="stat-keyword">—</div><div class="label">Keyword search <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
+    <a class="stat-card" href="raw.html?flag=source&source=modification_text" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View contracts classified via modification text"><div class="value" id="stat-mod">—</div><div class="label">Modification text <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
+    <a class="stat-card" href="raw.html?flag=source&source=idv_expansion" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;" title="View contracts classified via IDV sibling expansion"><div class="value" id="stat-idv">—</div><div class="label">IDV expansion <span style="opacity:0.5;font-size:0.7em;">→</span></div></a>
   </div>
 
   <div class="section-header">AI Contracts by Sub-Agency</div>
@@ -169,7 +193,11 @@
   <div id="filterToolbar" style="margin-bottom:1rem;"></div>
 
   <p class="narrative" style="font-size:0.875rem;color:var(--color-text-muted);">Click any row for full contract details from USASpending.</p>
-  <div style="overflow-x:auto;">
+  <div id="emptyState" style="display:none;padding:2rem 1.5rem;background:var(--color-surface);border:1px dashed var(--color-border);border-radius:0.5rem;text-align:center;color:var(--color-text-muted);font-size:0.95rem;margin-bottom:1rem;">
+    <strong style="color:var(--color-text);">No contracts match these filters.</strong>
+    <p style="margin:0.5rem 0 0;font-size:0.85rem;">Try removing a chip from the bar above, or <a href="#" onclick="document.querySelector('.clear-filters-btn')?.click();return false;">clear all filters</a>.</p>
+  </div>
+  <div id="tableWrap" style="overflow-x:auto;">
     <table id="contractTable" class="display" style="width:100%">
       <thead>
         <tr>
@@ -201,45 +229,96 @@
   <div class="section-header">Methodology</div>
 
   <div class="method-box">
-    <h3>Data source</h3>
-    <p>Contract data comes from the <a href="https://www.usaspending.gov/" target="_blank">USASpending.gov</a> API,
-    which publishes all federal contract awards. This analysis covers DHS contracts awarded between
-    FY2022 (October 1, 2021) and FY2026 (September 30, 2026).
-    Only prime contract awards are included — not grants, IDV vehicles, or subawards.</p>
-  </div>
+    <h3>What this is</h3>
+    <p>An open analysis of <strong>DHS contract spending on AI and machine learning work</strong> between FY2022 and FY2026, built by joining the USASpending bulk contract archive against an LLM classifier. Every fact on this dashboard reduces to a row in <a href="https://www.usaspending.gov/" target="_blank" rel="noopener">USASpending.gov</a> &mdash; click any contract's <em>"View raw data + classification provenance →"</em> link to see the upstream column for each value, the trigger that flagged it as AI, and a direct link to its USASpending page.</p>
 
-  <div class="method-box">
-    <h3>Keyword search</h3>
-    <p>Contract descriptions were searched for the following terms. All terms were included regardless
-    of whether they returned results — zero-hit terms are shown to demonstrate search coverage.</p>
-    <div class="kw-grid" id="kw-grid"></div>
-    <p style="margin-top:0.75rem;">Broad terms like <code>algorithm</code>, <code>biometric</code>, and <code>decision support</code>
-    were kept intentionally — the LLM pass handles false positives.</p>
-  </div>
+    <h3>Scope</h3>
+    <p>FY2022–FY2026 prime contract awards at the <strong>Department of Homeland Security</strong> (agency code 070), pulled from the <a href="https://files.usaspending.gov/award_data_archive/" target="_blank" rel="noopener">USASpending Award Data Archive</a>. Sub-agencies include CBP, ICE, TSA, USCIS, FEMA, Coast Guard, Secret Service, and others. Grants, IDV vehicle parents, and subawards are excluded; child task orders under IDV vehicles <em>are</em> included.</p>
 
-  <div class="method-box">
-    <h3>LLM classification</h3>
-    <p>Each keyword-matched contract was passed to <strong>GPT-5.4-mini</strong> with the contract description,
-    vendor, sub-agency, NAICS code, and PSC code. The model was asked whether the contract is primarily
-    for AI or machine learning work, and to provide a one-sentence explanation.</p>
-    <p>The classifier was instructed to lean toward <em>true</em> for borderline cases — this analysis
-    aims to be comprehensive rather than conservative.</p>
-  </div>
+    <h3>Where each variable comes from</h3>
+    <p>The table below is the single source of truth: every dashboard variable, the upstream dataset and column it lives in, and what it populates on the site. Per-row provenance (with the USASpending column name beside each value) is rendered on raw.html — click any contract.</p>
+    <div style="overflow-x:auto;margin-bottom:1rem">
+      <table style="border-collapse:collapse;width:100%;font-size:0.85rem">
+        <thead>
+          <tr style="border-bottom:2px solid var(--color-border);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-muted)">
+            <th style="text-align:left;padding:6px 8px;width:200px">Variable group</th>
+            <th style="text-align:left;padding:6px 8px;width:240px">Source dataset</th>
+            <th style="text-align:left;padding:6px 8px;width:140px">Join key</th>
+            <th style="text-align:left;padding:6px 8px">What it populates / what to know</th>
+          </tr>
+        </thead>
+        <tbody style="vertical-align:top">
+          <tr style="border-top:1px solid var(--color-border)">
+            <td style="padding:6px 8px"><strong>Award identity</strong><br><span style="font-size:0.78rem;color:var(--color-text-muted)">award_id (PIID), vendor, sub-agency, amount obligated, NAICS, PSC, period of performance, description, USASpending permalink</span></td>
+            <td style="padding:6px 8px"><a href="https://files.usaspending.gov/award_data_archive/" target="_blank" rel="noopener">USASpending Award Data Archive</a> (FY22–FY26 bulk, DHS)</td>
+            <td style="padding:6px 8px;font-family:var(--font-mono);font-size:0.78rem">PIID</td>
+            <td style="padding:6px 8px">All contract-table columns and the per-contract modal. Self-reported by agencies. The literal monthly per-FY ZIP files we ingest are linked from each contract's raw-data page.</td>
+          </tr>
+          <tr style="border-top:1px solid var(--color-border)">
+            <td style="padding:6px 8px"><strong>Keyword match</strong><br><span style="font-size:0.78rem;color:var(--color-text-muted)">matched_keyword(s)</span></td>
+            <td style="padding:6px 8px">Derived: case-insensitive substring match of <span id="kw-count2">—</span> AI-related terms (listed below) against <code>award_description</code> / <code>transaction_description</code> / <code>prime_award_base_transaction_description</code></td>
+            <td style="padding:6px 8px;font-family:var(--font-mono);font-size:0.78rem">description text</td>
+            <td style="padding:6px 8px">Drives the <span class="source-badge source-keyword-search">keyword search</span> classification path. Broad terms like <code>algorithm</code>, <code>biometric</code>, and <code>decision support</code> are kept intentionally — the LLM pass handles false positives. The actual matched keyword is preserved per row and highlighted on raw.html.</td>
+          </tr>
+          <tr style="border-top:1px solid var(--color-border)">
+            <td style="padding:6px 8px"><strong>LLM AI verdict</strong><br><span style="font-size:0.78rem;color:var(--color-text-muted)">is_ai, explanation</span></td>
+            <td style="padding:6px 8px"><span id="llm-model2">gpt-5.4-mini</span> (structured output) — given description + vendor + sub-agency + NAICS + PSC; prompt instructs lean-toward-true on borderline cases</td>
+            <td style="padding:6px 8px;font-family:var(--font-mono);font-size:0.78rem">—</td>
+            <td style="padding:6px 8px">Primary filter — every keyword hit is reviewed by the LLM and only <code>is_ai = true</code> rows survive. The one-sentence explanation appears in the contract modal, on raw.html, and in the obligation-history view. LLM mistakes happen — every claim is rooted in the contract's description, which is also shown.</td>
+          </tr>
+          <tr style="border-top:1px solid var(--color-border)">
+            <td style="padding:6px 8px"><strong>Modification re-classification</strong><br><span style="font-size:0.78rem;color:var(--color-text-muted)">mod_text</span></td>
+            <td style="padding:6px 8px">USASpending modification descriptions joined across all modifications on a contract; LLM re-run on combined text</td>
+            <td style="padding:6px 8px;font-family:var(--font-mono);font-size:0.78rem">PIID</td>
+            <td style="padding:6px 8px">Drives the <span class="source-badge source-modification-text">modification text</span> classification path. Catches contracts whose <em>original</em> award description didn't mention AI but whose later modifications did (e.g., "added AI/ML support team"). The combined modification text is shown verbatim on raw.html.</td>
+          </tr>
+          <tr style="border-top:1px solid var(--color-border)">
+            <td style="padding:6px 8px"><strong>IDV sibling expansion</strong><br><span style="font-size:0.78rem;color:var(--color-text-muted)">idv_parent, idv_siblings</span></td>
+            <td style="padding:6px 8px">Derived: every other AI-confirmed task order under the same parent IDV vehicle</td>
+            <td style="padding:6px 8px;font-family:var(--font-mono);font-size:0.78rem">parent_award_id_piid</td>
+            <td style="padding:6px 8px">Drives the <span class="source-badge source-idv-expansion">idv expansion</span> classification path. Once a parent IDV has a confirmed AI sibling, every other task order under it is pulled and LLM-classified. The sibling list is shown on raw.html so the audit trail is visible.</td>
+          </tr>
+          <tr style="border-top:1px solid var(--color-border)">
+            <td style="padding:6px 8px"><strong>Computed dashboard fields</strong><br><span style="font-size:0.78rem;color:var(--color-text-muted)">total_ai_dollars, total_ai_contracts, by_agency, source path counts</span></td>
+            <td style="padding:6px 8px">Computed in our build from the rows above</td>
+            <td style="padding:6px 8px;font-family:var(--font-mono);font-size:0.78rem">—</td>
+            <td style="padding:6px 8px">Each clickable stat card and chart bar links to the underlying contract list (<code>raw.html?flag=summary</code> / <code>?flag=source&amp;source=...</code> / <code>?flag=agency&amp;agency=...</code>) so you can sum the rows yourself and verify the headline figure.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <div class="method-box">
-    <h3>Caveats</h3>
+    <h3>Caveats that don't fit the table</h3>
     <ul>
-      <li>This captures only contracts whose <em>descriptions</em> mention AI-related terms. AI work embedded in larger IT contracts without explicit AI language will be missed.</li>
-      <li>Dollar amounts are total obligated value and may include option years not yet exercised.</li>
-      <li>The same work may appear as multiple contract actions; deduplication is by USASpending Award ID.</li>
-      <li>DHS sub-agencies include CBP, ICE, TSA, USCIS, FEMA, Coast Guard, Secret Service, and others.</li>
+      <li><strong>Self-reported descriptions.</strong> AI work embedded in larger IT contracts without explicit AI language will be missed. Agencies vary in how clearly they describe scope; predictive analytics in one CBP contract may be described in plain language while equivalent work at FEMA appears as "decision support."</li>
+      <li><strong>Dollar amounts are total obligated value</strong> across all transactions on the award, including option years that may not yet be exercised.</li>
+      <li><strong>Deduplication is by USASpending Award ID (PIID).</strong> The same work appearing under different PIIDs (e.g., recompete, separately awarded options) is counted separately.</li>
+      <li><strong>LLM classifications are approximate.</strong> The model was instructed to lean toward true for borderline cases. The intent is comprehensive coverage, not conservative claims — every "yes" comes with a one-sentence explanation rooted in the contract description, which you can read on the contract row and on raw.html.</li>
     </ul>
-  </div>
 
-  <div class="method-box">
+    <h3>Keywords searched</h3>
+    <p style="font-size:0.875rem;">Pills shaded in green hit at least one contract; gray pills returned zero matches and are shown to demonstrate search coverage.</p>
+    <div class="kw-grid" id="kw-grid"></div>
+
+    <h3>Field-level provenance map</h3>
+    <p style="font-size:0.875rem;">Every value shown on a contract row, mapped to its upstream USASpending column. The full <a href="https://www.usaspending.gov/data-dictionary" target="_blank" rel="noopener">USASpending data dictionary</a> defines every column referenced.</p>
+    <table id="fields-glossary" style="width:100%;border-collapse:collapse;font-size:0.8125rem;margin-top:0.5rem;">
+      <thead>
+        <tr style="background:#fbf6ed;border-bottom:1px solid var(--color-border);">
+          <th style="text-align:left;padding:0.4rem 0.6rem;">Dashboard field</th>
+          <th style="text-align:left;padding:0.4rem 0.6rem;">Source</th>
+          <th style="text-align:left;padding:0.4rem 0.6rem;">USASpending column</th>
+          <th style="text-align:left;padding:0.4rem 0.6rem;">Meaning</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3>Spot-check the LLM verdicts</h3>
+    <p>Open the <a href="review.html">classification review tool</a> to walk every contract, mark the LLM's AI verdict as agree / disagree / skip, and export your review as a CSV. Reviews are stored locally in your browser only.</p>
+
     <h3>Source code</h3>
-    <p>All data collection, keyword search, and classification code is available at
-    <a href="https://github.com/abigailhaddad/dhs-ai-contracts" target="_blank">github.com/abigailhaddad/dhs-ai-contracts</a>.</p>
+    <p>All ingestion, keyword search, classification, and dashboard build code: <a href="https://github.com/abigailhaddad/dhs-ai-contracts" target="_blank" rel="noopener">github.com/abigailhaddad/dhs-ai-contracts</a> &mdash; the README has the technical setup.</p>
   </div>
 
   <footer>
@@ -263,6 +342,10 @@ async function load() {
   document.getElementById('stat-mod').textContent       = (s.from_modification_text || 0).toLocaleString();
   document.getElementById('stat-idv').textContent       = (s.from_idv_expansion    || 0).toLocaleString();
   document.getElementById('kw-count').textContent       = d.keywords_searched.length;
+  const kwCount2 = document.getElementById('kw-count2');
+  if (kwCount2) kwCount2.textContent = d.keywords_searched.length;
+  const llmModel2 = document.getElementById('llm-model2');
+  if (llmModel2 && d.methodology?.llm_model) llmModel2.textContent = d.methodology.llm_model;
   document.getElementById('generated-at').textContent   = d.generated_at;
 
   // Agency chart with toggle
@@ -278,6 +361,17 @@ async function load() {
     options: {
       indexAxis: 'y',
       plugins: { legend: { display: false } },
+      // Click a bar → open the per-agency raw view in a new tab. The label
+      // at index `idx` is the canonical agency name we filter on.
+      onClick: (evt, els) => {
+        if (!els || !els.length) return;
+        const label = agencyChart.data.labels[els[0].index];
+        if (!label) return;
+        window.open('raw.html?flag=agency&agency=' + encodeURIComponent(label), '_blank');
+      },
+      onHover: (evt, els) => {
+        evt.native.target.style.cursor = els.length ? 'pointer' : 'default';
+      },
       scales: {
         x: { ticks: { callback: v => '$' + (v/1e6).toFixed(0) + 'M' } },
         y: { ticks: { font: { size: 11 } } }
@@ -312,6 +406,23 @@ async function load() {
     kgrid.appendChild(pill);
   });
 
+  // Fields glossary table — populated from results.json.field_provenance
+  // so the page always reflects what build_web actually shipped.
+  const glossaryBody = document.querySelector('#fields-glossary tbody');
+  const fp = d.field_provenance || {};
+  Object.keys(fp).forEach(field => {
+    const row  = fp[field] || {};
+    const tr   = document.createElement('tr');
+    tr.style.borderBottom = '1px solid var(--color-border)';
+    tr.innerHTML = `
+      <td style="padding:0.4rem 0.6rem;font-family:var(--font-mono);font-weight:600;">${escapeHtml(field)}</td>
+      <td style="padding:0.4rem 0.6rem;"><span class="source-badge source-${escapeHtml((row.source||'').replace(/_/g,'-'))}">${escapeHtml((row.source||'').replace(/_/g,' '))}</span></td>
+      <td style="padding:0.4rem 0.6rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-text-muted);">${escapeHtml(row.column||'')}</td>
+      <td style="padding:0.4rem 0.6rem;">${escapeHtml(row.note||'')}</td>
+    `;
+    glossaryBody.appendChild(tr);
+  });
+
   // Build filter options from data
   const agencies  = [...new Set(d.contracts.map(c => c.agency))].sort();
   const keywords  = [...new Set(d.contracts.map(c => c.keyword))].sort();
@@ -333,6 +444,26 @@ async function load() {
   });
 
   function renderTable(contracts) {
+    // Empty-state: when filters reduce to 0 contracts, swap the table
+    // for an explanatory block so the user knows the filters didn't
+    // silently break — they just over-constrain.
+    const empty = document.getElementById('emptyState');
+    const wrap  = document.getElementById('tableWrap');
+    if (empty && wrap) {
+      const isEmpty = contracts.length === 0;
+      empty.style.display = isEmpty ? 'block' : 'none';
+      wrap.style.display  = isEmpty ? 'none'  : '';
+    }
+    // Order matters: DataTable.destroy() restores tbody to its
+    // pre-init state (i.e. the rows DataTables saw the FIRST time it
+    // was instantiated). If we clear tbody before destroying, the
+    // restore puts the original 166 rows back and our filtered set is
+    // lost — the filter UI looks like it works (chip appears) but the
+    // table re-renders the full dataset. Destroy first, THEN clear and
+    // rebuild from the filtered list.
+    if ($.fn.DataTable.isDataTable('#contractTable')) {
+      $('#contractTable').DataTable().destroy();
+    }
     tbody.innerHTML = '';
     contracts.forEach(c => {
       const tr = document.createElement('tr');
@@ -342,7 +473,7 @@ async function load() {
         <td>${escapeHtml(c.agency)}</td>
         <td>${escapeHtml(c.vendor)}</td>
         <td class="num">${(c.amount/1e6).toFixed(2)}</td>
-        <td><span class="source-badge source-${(c.source||'').replace(/_/g,'-')}">${escapeHtml((c.source||'').replace(/_/g,' '))}</span></td>
+        <td><a href="${escapeHtml(c.raw_url || ('raw.html?piid=' + encodeURIComponent(c.award_id)))}" target="_blank" rel="noopener" title="View raw data + provenance" style="text-decoration:none"><span class="source-badge source-${(c.source||'').replace(/_/g,'-')}">${escapeHtml((c.source||'').replace(/_/g,' '))}</span></a></td>
         <td><code style="font-size:0.75rem;color:var(--color-header)">${escapeHtml(c.keyword)}</code></td>
         <td class="desc">${escapeHtml(c.description)}</td>
         <td class="expl">${escapeHtml(c.explanation)}</td>
@@ -350,9 +481,6 @@ async function load() {
       tbody.appendChild(tr);
     });
 
-    if ($.fn.DataTable.isDataTable('#contractTable')) {
-      $('#contractTable').DataTable().destroy();
-    }
     $('#contractTable').DataTable({
       pageLength: 25,
       order: [[3, 'desc']],
@@ -400,7 +528,22 @@ async function load() {
   });
 }
 
-load().catch(console.error);
+load()
+  .then(() => {
+    // Hide the overlay only after the table is in the DOM. The .hidden
+    // class fades out via CSS transition; remove the node afterwards so
+    // it doesn't block clicks on top-of-page elements.
+    const ov = document.getElementById('loadingOverlay');
+    if (ov) {
+      ov.classList.add('hidden');
+      setTimeout(() => ov.remove(), 250);
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    const ov = document.getElementById('loadingOverlay');
+    if (ov) ov.innerHTML = '<span style="color:#b91c1c">Failed to load dashboard data: ' + escapeHtml(err.message) + '</span>';
+  });
 
 // ── Contract detail modal ─────────────────────────────────────────────────
 
@@ -455,8 +598,11 @@ async function openDetail(contract) {
       <p style="font-size:0.8125rem;color:var(--color-text-muted);margin:0 0 1rem;">
         ${escapeHtml(contract.description)}
       </p>
-      <p style="font-size:0.8rem;font-style:italic;color:var(--color-text-muted);margin:0 0 1rem;">
+      <p style="font-size:0.8rem;font-style:italic;color:var(--color-text-muted);margin:0 0 0.5rem;">
         <strong>Why AI:</strong> ${escapeHtml(contract.explanation)}
+      </p>
+      <p style="font-size:0.8rem;margin:0 0 1rem;">
+        <a href="${escapeHtml(contract.raw_url || ('raw.html?piid=' + encodeURIComponent(contract.award_id)))}" target="_blank" rel="noopener" style="color:var(--color-accent);font-weight:600;">View raw data + classification provenance →</a>
       </p>
 
       <div class="modal-section">Dollars</div>

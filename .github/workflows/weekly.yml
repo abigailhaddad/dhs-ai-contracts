@@ -41,7 +41,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt pytest
 
       - name: Run pipeline
         run: |
@@ -53,6 +53,12 @@ jobs:
             ARGS="$ARGS --skip-enrich"
           fi
           python run_pipeline.py $ARGS
+
+      - name: Run tests against generated results.json
+        run: pytest tests/ -v
+
+      - name: Live-check sample of emitted URLs
+        run: python scripts/check_links.py --sample 20 --strict
 
       - name: Commit updated results
         run: |

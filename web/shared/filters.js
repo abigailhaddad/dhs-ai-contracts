@@ -404,7 +404,17 @@ class FilterManager {
                 if (value) this.activeFilters[key] = { type: 'text', value, name: col.name };
             }
         });
-        // Render chips after constructor finishes (DOM may not be ready yet)
-        requestAnimationFrame(() => this._updateFilterBar());
+        // Render chips AND fire onChange after the host page's initial
+        // render. Without the onChange fire, the URL would set chips but
+        // never actually filter the table — the user lands on a shared
+        // link, sees "Filtered by: …" chips, but every row is shown.
+        // requestAnimationFrame so this runs after the host's initial
+        // renderTable(allRows) call (caller pattern: renderTable(); new FilterManager()).
+        if (Object.keys(this.activeFilters).length > 0) {
+            requestAnimationFrame(() => {
+                this._updateFilterBar();
+                this.onChange(this.activeFilters);
+            });
+        }
     }
 }
