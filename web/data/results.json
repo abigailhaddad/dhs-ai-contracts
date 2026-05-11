@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-05-04T08:55Z",
+  "generated_at": "2026-05-11T13:20Z",
   "summary": {
-    "total_ai_contracts": 168,
-    "total_ai_dollars": 779597691.87,
+    "total_ai_contracts": 199,
+    "total_ai_dollars": 952799598.8,
     "total_candidates": 268,
     "not_ai_filtered_out": 140,
     "sub_agencies_with_ai": 9,
     "from_keyword_search": 128,
     "from_modification_text": 32,
-    "from_idv_expansion": 8
+    "from_idv_expansion": 39
   },
   "methodology": {
     "llm_model": "gpt-5.4-mini",
@@ -20,35 +20,35 @@
     "fy_range": "FY2022\u2013FY2026",
     "keyword_count": 40,
     "fetch_metadata": {
-      "fetched_at": "2026-05-04T08:50Z",
-      "datestamp": "20260406",
+      "fetched_at": "2026-05-11T09:07Z",
+      "datestamp": "20260506",
       "agency_code": "070",
       "archive_base": "https://files.usaspending.gov/award_data_archive/",
       "fy_archives": [
         {
           "fy": 2022,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2022_070_Contracts_Full_20260406.zip",
-          "filename": "FY2022_070_Contracts_Full_20260406.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2022_070_Contracts_Full_20260506.zip",
+          "filename": "FY2022_070_Contracts_Full_20260506.zip"
         },
         {
           "fy": 2023,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2023_070_Contracts_Full_20260406.zip",
-          "filename": "FY2023_070_Contracts_Full_20260406.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2023_070_Contracts_Full_20260506.zip",
+          "filename": "FY2023_070_Contracts_Full_20260506.zip"
         },
         {
           "fy": 2024,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2024_070_Contracts_Full_20260406.zip",
-          "filename": "FY2024_070_Contracts_Full_20260406.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2024_070_Contracts_Full_20260506.zip",
+          "filename": "FY2024_070_Contracts_Full_20260506.zip"
         },
         {
           "fy": 2025,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2025_070_Contracts_Full_20260406.zip",
-          "filename": "FY2025_070_Contracts_Full_20260406.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2025_070_Contracts_Full_20260506.zip",
+          "filename": "FY2025_070_Contracts_Full_20260506.zip"
         },
         {
           "fy": 2026,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2026_070_Contracts_Full_20260406.zip",
-          "filename": "FY2026_070_Contracts_Full_20260406.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2026_070_Contracts_Full_20260506.zip",
+          "filename": "FY2026_070_Contracts_Full_20260506.zip"
         }
       ]
     }
@@ -152,6 +152,11 @@
       "dollars": 234117265.65
     },
     {
+      "agency": "Department of Homeland Security",
+      "contracts": 39,
+      "dollars": 200208233.88000003
+    },
+    {
       "agency": "Transportation Security Administration",
       "contracts": 30,
       "dollars": 94321934.24999997
@@ -160,11 +165,6 @@
       "agency": "Federal Emergency Management Agency",
       "contracts": 6,
       "dollars": 30573696.84
-    },
-    {
-      "agency": "Department of Homeland Security",
-      "contracts": 8,
-      "dollars": 27006326.95
     },
     {
       "agency": "U.S. Customs and Border Protection",
@@ -240,6 +240,33 @@
       "mod_text": "OBIMS MISSION IS TO PROVIDE ENDURING IDENTITY SERVICES TO DHS AND ITS MISSION PARTNERS THAT ADVANCE INFORMED DECISION MAKING BY PRODUCING ACCURATE, TIMELY, AND HIGH ASSURANCE BIOMETRIC IDENTITY INFORMATION AND ANALYSIS. | OBIMS MISSION IS TO PROVIDE ENDURING IDENTITY SERVICES TO DHS AND ITS MISSION PARTNERS THAT ADVANCE INFORMED DECISION MAKING BY PRODUCING ACCURATE TIMELY AND HIGH ASSURANCE BIOMETRIC IDENTITY INFORMATION AND ANALYSIS. | OBIMS MISSION IS TO PROVIDE ENDURING IDENTITY SERVICES TO "
     },
     {
+      "award_id": "HSTS0411JCT2079",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 74828056.29,
+      "description": "PASSENGER SCREENING PROGRAM ADVANCED IMAGING TECHNOLOGY PROJECT  PROCURE 500 ADVANCED IMAGING TECHNOLOGY (AIT) SYSTEMS WITH THE AUTOMATIC TARGET RECOGNITION UPGRADE",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSTS0410DST2003",
+      "explanation": "Yes \u2014 automatic target recognition in advanced imaging systems indicates computer vision/ML-based detection and recognition capability, which falls under AI/ML work.",
+      "generated_internal_id": "CONT_AWD_HSTS0411JCT2079_7013_HSTS0410DST2003_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0411JCT2079_7013_HSTS0410DST2003_7013",
+      "raw_url": "raw.html?piid=HSTS0411JCT2079",
+      "source": "idv_expansion",
+      "idv_parent": "HSTS0410DST2003",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0415JCT2018",
+          "amount": 3736592.85,
+          "description": "CLOSEOUT",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT2018_7013_HSTS0410DST2003_7013",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly mentions rapid algorithm development and a tier IV algorithm with dynamic switching capability, which indicates model/algorithm development rather than general IT or rule-based automation."
+        }
+      ]
+    },
+    {
       "award_id": "HSSCCG15J00087",
       "vendor": "PYRAMID SYSTEMS, INC.",
       "agency": "U.S. Citizenship and Immigration Services",
@@ -255,6 +282,33 @@
       "raw_url": "raw.html?piid=HSSCCG15J00087",
       "source": "modification_text",
       "mod_text": "IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF::OT::IGF BIOMETRICS JETS | IGF:"
+    },
+    {
+      "award_id": "70B03C23F00000456",
+      "vendor": "DIGNARI, LLC",
+      "agency": "Department of Homeland Security",
+      "amount": 52869936.02,
+      "description": "CBP IDENTITY VERIFICATION, SCREENING AND ACCESS MANAGEMENT SERVICES",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RDAD21A00000010",
+      "explanation": "The contract description indicates identity verification and screening services, which commonly involve automated biometric matching or recognition systems that fall under AI/ML-related identity verification.",
+      "generated_internal_id": "CONT_AWD_70B03C23F00000456_7014_70RDAD21A00000010_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B03C23F00000456_7014_70RDAD21A00000010_7001",
+      "raw_url": "raw.html?piid=70B03C23F00000456",
+      "source": "idv_expansion",
+      "idv_parent": "70RDAD21A00000010",
+      "idv_siblings": [
+        {
+          "award_id": "70T02021F7573N005",
+          "amount": 34843596.3,
+          "description": "THE TSA REQUIRES IDENTITY CREDENTIALING AND ACCESS MANAGEMENT (ICAM) SUPPORT SERVICES.  SPECIFICALLY, THE TSA IS SEEKING TO EMPLOY IDENTITY BEST PRACTICES AND STANDARDIZED METHODS OF LEVERAGING BIOMET",
+          "generated_internal_id": "CONT_AWD_70T02021F7573N005_7013_70RDAD21A00000010_7001",
+          "source": "modification_text",
+          "explanation": "The contract includes biometric and digital identity (DI) support, which can involve AI/ML-enabled identity verification and matching systems, so it should be treated as AI-related."
+        }
+      ]
     },
     {
       "award_id": "70T02021F7573N005",
@@ -400,6 +454,57 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "HSHQDC15J00016",
+      "vendor": "THE MITRE CORPORATION",
+      "agency": "Department of Homeland Security",
+      "amount": 7723073.0,
+      "description": "IGF::CL::IGF THE PURPOSE OF THIS TASK ORDER IS TO PROVIDE FUNDING TO ESTABLISH A NEW TASK UNDER U.S. DEPARTMENT OF HOMELAND SECURITY (DHS) CONTRACT PROCUREMENT INSTRUMENT IDENTIFIER (PIID) HSHQDC-14-D-00006 (THE \"IDIQ\") TO SUPPORT THE  DHS, SCIENCE AND TECHNOLOGY DIRECTORATE (S&T), HOMELAND SECURITY",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC14D00006",
+      "explanation": "Yes\u2014this task order supports DHS HSARPA\u2019s Big Data and Analytics Engine Program, which indicates AI/ML-related analytics and advanced data modeling work rather than routine IT operations.",
+      "generated_internal_id": "CONT_AWD_HSHQDC15J00016_7001_HSHQDC14D00006_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC15J00016_7001_HSHQDC14D00006_7001",
+      "raw_url": "raw.html?piid=HSHQDC15J00016",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC14D00006",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0216JOIA170",
+          "amount": 1387496.55,
+          "description": "THIS MODIFICATION IS BEING PROCESSED TO REMOVE UNBILLED CANCELLING FUNDS FROM THE AWARD IN ACCORDANCE TO TSA YEAR END PROCEDURES.",
+          "generated_internal_id": "CONT_AWD_HSTS0216JOIA170_7013_HSHQDC14D00006_7001",
+          "source": "keyword_search",
+          "explanation": "This contract is for an independent assessment of the Secure Flight vetting algorithm, which is an algorithmic/ML-related system rather than general IT operations."
+        },
+        {
+          "award_id": "HSSCCG16J00127",
+          "amount": 2978104.0,
+          "description": "CLOSEOUT OF IGF OT IGF FDNS PREDICTIVE ANALYTICS SUPPORT- PHASE 5",
+          "generated_internal_id": "CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly provides FDNS predictive analytics support, which indicates modeling/predictive analytics work consistent with AI/ML rather than general IT operations."
+        },
+        {
+          "award_id": "7003",
+          "amount": 2978104.0,
+          "description": "IGF::OT::IGF FDNS PREDICTIVE ANALYTICS SUPPORT- PHASE 5",
+          "generated_internal_id": "CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001",
+          "source": "idv_expansion",
+          "explanation": "The contract explicitly references predictive analytics support, which indicates AI/ML-style predictive modeling rather than general IT or RPA."
+        },
+        {
+          "award_id": "70RSAT18FR0000120",
+          "amount": 446031.54,
+          "description": "AUTONOMOUS AI-BASED COOPERATIVE CONTROL OF SURVEILLANCE DRONES",
+          "generated_internal_id": "CONT_AWD_70RSAT18FR0000120_7001_HSHQDC14D00006_7001",
+          "source": "idv_expansion",
+          "explanation": "The description explicitly refers to autonomous AI-based cooperative control of surveillance drones, which indicates AI/ML-driven decision-making and control."
+        }
+      ]
+    },
+    {
       "award_id": "70T04020C9NRCA366",
       "vendor": "STRATOVAN CORPORATION",
       "agency": "Transportation Security Administration",
@@ -433,6 +538,33 @@
       "mod_text": "THE TRANSFORMATION DATA SCIENCE SERVICES - III (TDSS III) TEAMS SHALL PROVIDE DATA ANALYTICS SERVICES WITHIN THE DEVOPS FRAMEWORK PERFORM ANALYSIS OF THE USCIS ELECTRONIC IMMIGRATION SYSTEM (USCIS ELIS) | THE TRANSFORMATION DATA SCIENCE SERVICES - III (TDSS III) TEAMS SHALL PROVIDE DATA ANALYTICS SERVICES WITHIN THE DEVOPS FRAMEWORK; PERFORM ANALYSIS OF THE USCIS ELECTRONIC IMMIGRATION SYSTEM (USCIS ELIS) | EO14042. THE TRANSFORMATION DATA SCIENCE SERVICES - III (TDSS III) WILL INCORPORATE FAR 5"
     },
     {
+      "award_id": "70SBUR23F00000239",
+      "vendor": "THUNDERCAT TECHNOLOGY, LLC",
+      "agency": "Department of Homeland Security",
+      "amount": 6380500.0,
+      "description": "HYPERSCIENCE SOFTWARE, AN INTELLIGENT DOCUMENT PROCESSING (IDP) SOLUTION FOR THE AUTOMATION OF DATA EXTRACTION TO CLASSIFY AND EXTRACT PRINTED AND HANDWRITTEN TEXT FROM ANY DOCUMENT.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:NNG15SD26B",
+      "explanation": "Hyperscience is an intelligent document processing system that uses AI/ML for document classification and automated extraction of printed and handwritten text, which falls under computer vision/NLP-style machine learning work.",
+      "generated_internal_id": "CONT_AWD_70SBUR23F00000239_7003_NNG15SD26B_8000",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR23F00000239_7003_NNG15SD26B_8000",
+      "raw_url": "raw.html?piid=70SBUR23F00000239",
+      "source": "idv_expansion",
+      "idv_parent": "NNG15SD26B",
+      "idv_siblings": [
+        {
+          "award_id": "70B04C23F00001150",
+          "amount": 770700.0,
+          "description": "OPTICAL CHARACTER RECOGNITION SOFTWARE REQUIREMENT.",
+          "generated_internal_id": "CONT_AWD_70B04C23F00001150_7014_NNG15SD26B_8000",
+          "source": "keyword_search",
+          "explanation": "Optical character recognition is an AI/ML-enabled document understanding capability, so this requirement is primarily for AI-related software work."
+        }
+      ]
+    },
+    {
       "award_id": "70RSAT23CB0000003",
       "vendor": "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
       "agency": "Office of Procurement Operations",
@@ -447,6 +579,49 @@
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23CB0000003_7001_-NONE-_-NONE-",
       "raw_url": "raw.html?piid=70RSAT23CB0000003",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "70B03C23F00001053",
+      "vendor": "PANAMERICA COMPUTERS, INC.",
+      "agency": "Department of Homeland Security",
+      "amount": 5906000.98,
+      "description": "BABEL STREET LICENSES IN SUPPORT OF CBP/NTC OPERATORS AND ANALYSTS ACROSS THE ENTERPRISE",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC12D00013",
+      "explanation": "Babel Street is commonly used for AI/ML-enabled open-source intelligence, entity resolution, and automated analysis tools, so this license support likely involves AI-enabled software rather than generic IT.",
+      "generated_internal_id": "CONT_AWD_70B03C23F00001053_7014_HSHQDC12D00013_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B03C23F00001053_7014_HSHQDC12D00013_7001",
+      "raw_url": "raw.html?piid=70B03C23F00001053",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC12D00013",
+      "idv_siblings": [
+        {
+          "award_id": "70B03C22F00001238",
+          "amount": 850897.05,
+          "description": "BIOMETRIC SCANNERS AND CAMERAS",
+          "generated_internal_id": "CONT_AWD_70B03C22F00001238_7014_HSHQDC12D00013_7001",
+          "source": "modification_text",
+          "explanation": "Biometric scanners and cameras commonly use AI/ML for facial recognition, identity matching, and other automated biometric analysis, so this is likely AI-related."
+        },
+        {
+          "award_id": "70B03C21F00001121",
+          "amount": 3799814.18,
+          "description": "BABEL STREET SOFTWARE",
+          "generated_internal_id": "CONT_AWD_70B03C21F00001121_7014_HSHQDC12D00013_7001",
+          "source": "idv_expansion",
+          "explanation": "Babel Street is known for AI/ML-powered analytics and identity intelligence software, which typically includes automated entity matching, NLP, and predictive analysis rather than simple IT or RPA."
+        },
+        {
+          "award_id": "70SBUR20F00000305",
+          "amount": 733000.0,
+          "description": "EXABEAM SOFTWARE",
+          "generated_internal_id": "CONT_AWD_70SBUR20F00000305_7003_HSHQDC12D00013_7001",
+          "source": "idv_expansion",
+          "explanation": "Exabeam is a security analytics platform that uses machine learning and behavioral analytics to detect anomalies and threats, which qualifies as AI/ML work."
+        }
+      ]
     },
     {
       "award_id": "70SBUR19F00000140",
@@ -730,6 +905,49 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "70B03C21F00001121",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 3799814.18,
+      "description": "BABEL STREET SOFTWARE",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC12D00013",
+      "explanation": "Babel Street is known for AI/ML-powered analytics and identity intelligence software, which typically includes automated entity matching, NLP, and predictive analysis rather than simple IT or RPA.",
+      "generated_internal_id": "CONT_AWD_70B03C21F00001121_7014_HSHQDC12D00013_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B03C21F00001121_7014_HSHQDC12D00013_7001",
+      "raw_url": "raw.html?piid=70B03C21F00001121",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC12D00013",
+      "idv_siblings": [
+        {
+          "award_id": "70B03C22F00001238",
+          "amount": 850897.05,
+          "description": "BIOMETRIC SCANNERS AND CAMERAS",
+          "generated_internal_id": "CONT_AWD_70B03C22F00001238_7014_HSHQDC12D00013_7001",
+          "source": "modification_text",
+          "explanation": "Biometric scanners and cameras commonly use AI/ML for facial recognition, identity matching, and other automated biometric analysis, so this is likely AI-related."
+        },
+        {
+          "award_id": "70B03C23F00001053",
+          "amount": 5906000.98,
+          "description": "BABEL STREET LICENSES IN SUPPORT OF CBP/NTC OPERATORS AND ANALYSTS ACROSS THE ENTERPRISE",
+          "generated_internal_id": "CONT_AWD_70B03C23F00001053_7014_HSHQDC12D00013_7001",
+          "source": "idv_expansion",
+          "explanation": "Babel Street is commonly used for AI/ML-enabled open-source intelligence, entity resolution, and automated analysis tools, so this license support likely involves AI-enabled software rather than generic IT."
+        },
+        {
+          "award_id": "70SBUR20F00000305",
+          "amount": 733000.0,
+          "description": "EXABEAM SOFTWARE",
+          "generated_internal_id": "CONT_AWD_70SBUR20F00000305_7003_HSHQDC12D00013_7001",
+          "source": "idv_expansion",
+          "explanation": "Exabeam is a security analytics platform that uses machine learning and behavioral analytics to detect anomalies and threats, which qualifies as AI/ML work."
+        }
+      ]
+    },
+    {
       "award_id": "70CMSD25P00000111",
       "vendor": "CLEARVIEW AI, INC.",
       "agency": "U.S. Immigration and Customs Enforcement",
@@ -809,6 +1027,76 @@
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B04C19F00001210_7014_GS07F5525R_4730",
       "raw_url": "raw.html?piid=70B04C19F00001210",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "70RSAT19FR0000043",
+      "vendor": "BATTELLE MEMORIAL INSTITUTE",
+      "agency": "Department of Homeland Security",
+      "amount": 3454865.18,
+      "description": "NEW TASK ORDER $1,000K UNDER IDIQ FOR DEVELOPMENTAL TEST AND EVALUATION FOR ADVANCED IMAGING TECHNOLOGY AUTOMATED TARGET RECOGNITION",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT18D00000003",
+      "explanation": "Yes \u2014 automated target recognition using advanced imaging technology implies computer vision/ML-based detection or classification rather than generic IT or hardware.",
+      "generated_internal_id": "CONT_AWD_70RSAT19FR0000043_7001_70RSAT18D00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT19FR0000043_7001_70RSAT18D00000003_7001",
+      "raw_url": "raw.html?piid=70RSAT19FR0000043",
+      "source": "idv_expansion",
+      "idv_parent": "70RSAT18D00000003",
+      "idv_siblings": [
+        {
+          "award_id": "70RSAT22FR0000123",
+          "amount": 275802.19,
+          "description": "NEW TASK ORDER FOR MACHINE LEARNING ALGORITHM TEST AND EVALUATION REQUIREMENT.",
+          "generated_internal_id": "CONT_AWD_70RSAT22FR0000123_7001_70RSAT18D00000003_7001",
+          "source": "keyword_search",
+          "explanation": "The task order explicitly calls for machine learning algorithm test and evaluation, which is directly AI/ML work."
+        },
+        {
+          "award_id": "70RSAT20FR0000016",
+          "amount": 797530.72,
+          "description": "DE-OBLIGATION AND CLOSEOUT",
+          "generated_internal_id": "CONT_AWD_70RSAT20FR0000016_7001_70RSAT18D00000003_7001",
+          "source": "keyword_search",
+          "explanation": "This task involves an automated algorithm that analyzes X-ray image information in real time, which is consistent with computer vision/AI-based image analysis."
+        },
+        {
+          "award_id": "70RSAT23FR0000028",
+          "amount": 615213.36,
+          "description": "NEW TASK ORDER FOR TSL IDIQ TO SUPPORT THE DEVELOPMENTAL TEST AND EVALUATION AIR CARGO TESTING SUPPORT FOR EVALUATING PROTOTYPE SKID SCREENING SCANNERS AND AUTOMATED THREAT RECOGNITION SOFTWARE PROJEC",
+          "generated_internal_id": "CONT_AWD_70RSAT23FR0000028_7001_70RSAT18D00000003_7001",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014this task order explicitly mentions automated threat recognition software, which indicates AI/ML-based detection or recognition capability rather than generic IT or hardware support."
+        }
+      ]
+    },
+    {
+      "award_id": "HSTS0217FOIA047",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 3385038.09,
+      "description": "IGF::OT::IGF   PR 2117207OIA047 IN THE AMOUNT OF $3,400,928.00 FUNDS THE BIOMETRIC SUBJECT MATTER EXPERTISE (SME) SUPPORT FOR CURRENT AND FUTURE WORK RELATED TO BIOMETRIC TECHNOLOGIES IN SUPPORT OF OIA PMD AND OIT TSD.   TWIC:          $1,219,991.00 TIM/TWIC    $   700,941.80 AVIATION:       $1,479,",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSTS0215AOIA033",
+      "explanation": "This contract funds biometric SME support for biometric technologies, which can include automated identity verification and biometric matching systems that use AI/ML.",
+      "generated_internal_id": "CONT_AWD_HSTS0217FOIA047_7013_HSTS0215AOIA033_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0217FOIA047_7013_HSTS0215AOIA033_7013",
+      "raw_url": "raw.html?piid=HSTS0217FOIA047",
+      "source": "idv_expansion",
+      "idv_parent": "HSTS0215AOIA033",
+      "idv_siblings": [
+        {
+          "award_id": "70T02019F1NOIA011",
+          "amount": 4529182.93,
+          "description": "THE PURPOSE OF THIS CONTRACT IS TO SUPPORT TRANSPORTATION SECURITY ADMINISTRATION (TSA) INTELLIGENCE AND ANALYSIS (I&A) PROGRAM MANAGEMENT DIVISIONS (PMD) PROCUREMENT OF MISSION CRITICAL BIOMETRIC SUB",
+          "generated_internal_id": "CONT_AWD_70T02019F1NOIA011_7013_HSTS0215AOIA033_7013",
+          "source": "modification_text",
+          "explanation": "The contract supports biometric expertise, testing tools, and identity verification/vetting functions that commonly involve AI/ML methods such as biometrics, pattern matching, and automated decision support."
+        }
+      ]
     },
     {
       "award_id": "70RSAT20FR0000147",
@@ -906,6 +1194,81 @@
           "generated_internal_id": "CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001",
           "source": "keyword_search",
           "explanation": "The contract explicitly provides FDNS predictive analytics support, which indicates modeling/predictive analytics work consistent with AI/ML rather than general IT operations."
+        },
+        {
+          "award_id": "70RSAT18FR0000120",
+          "amount": 446031.54,
+          "description": "AUTONOMOUS AI-BASED COOPERATIVE CONTROL OF SURVEILLANCE DRONES",
+          "generated_internal_id": "CONT_AWD_70RSAT18FR0000120_7001_HSHQDC14D00006_7001",
+          "source": "idv_expansion",
+          "explanation": "The description explicitly refers to autonomous AI-based cooperative control of surveillance drones, which indicates AI/ML-driven decision-making and control."
+        },
+        {
+          "award_id": "HSHQDC15J00016",
+          "amount": 7723073.0,
+          "description": "IGF::CL::IGF THE PURPOSE OF THIS TASK ORDER IS TO PROVIDE FUNDING TO ESTABLISH A NEW TASK UNDER U.S. DEPARTMENT OF HOMELAND SECURITY (DHS) CONTRACT PROCUREMENT INSTRUMENT IDENTIFIER (PIID) HSHQDC-14-D",
+          "generated_internal_id": "CONT_AWD_HSHQDC15J00016_7001_HSHQDC14D00006_7001",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014this task order supports DHS HSARPA\u2019s Big Data and Analytics Engine Program, which indicates AI/ML-related analytics and advanced data modeling work rather than routine IT operations."
+        }
+      ]
+    },
+    {
+      "award_id": "HSTS0415JCT1042",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 2692213.94,
+      "description": "IGF::CT::IGF THIS TASK ORDER IS FOR THE DEVELOPMENT AND TESTING OF HOME MADE EXPLOSIVE (HME) ALGORITHM SOFTWARE FOR LEGACY EDS MODELS CTX 9000 AND CTX 9400.   THE PERIOD OF PERFORMANCE EXPIRES 32 MONTHS FROM THE DATE OF AWARD.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSTS0412DCT1173",
+      "explanation": "Yes\u2014developing and testing algorithm software for explosive detection systems indicates machine-learning/computer-vision style automated detection, which falls within AI/ML work.",
+      "generated_internal_id": "CONT_AWD_HSTS0415JCT1042_7013_HSTS0412DCT1173_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0415JCT1042_7013_HSTS0412DCT1173_7013",
+      "raw_url": "raw.html?piid=HSTS0415JCT1042",
+      "source": "idv_expansion",
+      "idv_parent": "HSTS0412DCT1173",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0416JCT1188",
+          "amount": 674125.54,
+          "description": "THE PURPOSE OF THIS ADMINISTRATIVE MODIFICATION IS TO DE-OBLIGATE FY16/17 CANCELING FUNDS.",
+          "generated_internal_id": "CONT_AWD_HSTS0416JCT1188_7013_HSTS0412DCT1173_7013",
+          "source": "keyword_search",
+          "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development consistent with AI/ML work."
+        },
+        {
+          "award_id": "HSTS0415JCT1167",
+          "amount": 198538.3,
+          "description": "IGF::CT::IGF THIS DO IS FOR THE PROCUREMENT OF ENGINEERING SUPPORT SERVICES RELATED TO THE OPPERATION TESTING, WHICH IS PHASE 5 OF THE HOME-MADE EXPLOSIVES ALGORITHM DELIVERY PROCESS. THIS TESTS THE E",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1167_7013_HSTS0412DCT1173_7013",
+          "source": "modification_text",
+          "explanation": "The contract supports operation testing for a homemade explosives algorithm and EDS detection standards, which indicates work related to deploying/testing an algorithmic detection system and thus AI/ML-adjacent work."
+        },
+        {
+          "award_id": "HSTS0415JCT1182",
+          "amount": 749558.61,
+          "description": "IGF::CT::IGF  TSA IS TASKING THE CONTRACTOR TO CONDUCT TRANSPORTATION SECURITY INTEGRATION FACILITIES TESTING AND FIELD OPERATIONAL TESTING OF THE CTX 9800 DSI SINGLE COMPUTER UPGRADE KIT. THE INTENDE",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1182_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014this work explicitly mentions new detection algorithms and targeted false alarm reduction for explosives detection, which indicates ML/AI-based model development or deployment rather than generic IT or hardware support."
+        },
+        {
+          "award_id": "HSTS0415JCT1009",
+          "amount": 421111.0,
+          "description": "IGF::CT::IGF PHASE 1 OF LEGACY HME DETECTION ALGORITHM DEVELOPMENT IN SUPPORT OF TSA'S FLEET OF MORPHO DETECTION 9000/9400 EXPLOSIVE DETECTION SYSTEMS (EDS). FFP - TASK ORDER",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1009_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "This task order explicitly involves development of a detection algorithm for TSA explosive detection systems, which indicates AI/ML-style model or algorithm development rather than generic IT or hardware support."
+        },
+        {
+          "award_id": "HSTS0414JCT1153",
+          "amount": 230930.0,
+          "description": "DELIVERY ORDER HSTS04-14-J-CT1153 IS FOR THE SUPPLIES AND SERVICES FOR RAPID DETECTION ALGORITHM DEVELOPMENT. IGF::OT::IGF",
+          "generated_internal_id": "CONT_AWD_HSTS0414JCT1153_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "The order explicitly calls for rapid detection algorithm development, which indicates development of an automated detection algorithm and is consistent with AI/ML work."
         }
       ]
     },
@@ -957,6 +1320,14 @@
           "generated_internal_id": "CONT_IDV_70B06C21D00000022_7014",
           "source": "keyword_search",
           "explanation": "Object detection software is a computer vision AI application, so this contract is primarily for AI/ML work."
+        },
+        {
+          "award_id": "70B06C22F00001447",
+          "amount": 600000.0,
+          "description": "AUTONOMOUS OBJECT IDENTIFICATION",
+          "generated_internal_id": "CONT_AWD_70B06C22F00001447_7014_70B06C21D00000022_7014",
+          "source": "idv_expansion",
+          "explanation": "Autonomous object identification implies automated recognition/classification of objects, which is a computer vision AI/ML capability."
         }
       ]
     },
@@ -1104,6 +1475,89 @@
       "raw_url": "raw.html?piid=70T03019F3BOGS009",
       "source": "modification_text",
       "mod_text": "SERVICES FOR PROGRAM MANAGEMENT SUPPORT, APPLICATION DEVELOPMENT AND INTEGRATION SERVICES, OPERATION AND MAINTENANCE SUPPORT SERVICES, AND TRANSITION OUT SERVICES FOR THE GLOBAL RISK ANALYSIS AND DECISION SUPPORT (GRADS) SYSTEM. | THE PURPOSE OF MODIFICATION P00001 AGAINST TASK ORDER 70T03019F3BOGS009 IS TO UPDATE THE COR AND TO RE-ALIGN FUNDING FROM CLIN 00004 TO CLIN 00003. | CLOSEOUT"
+    },
+    {
+      "award_id": "70RSAT24FR0000055",
+      "vendor": "THE MITRE CORPORATION",
+      "agency": "Department of Homeland Security",
+      "amount": 1880000.0,
+      "description": "THE PURPOSE OF THIS NEW HSSEDI TASK ORDER AWARD IS FOR PROBABILISTIC ESTIMATION AND FORECASTING OF US MIGRATION FLOWS  (PUSH PULL MIGRATION) EFFORT.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT20D00000001",
+      "explanation": "This task order is for probabilistic estimation and forecasting of migration flows, which is predictive modeling and therefore falls within AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70RSAT24FR0000055_7001_70RSAT20D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT24FR0000055_7001_70RSAT20D00000001_7001",
+      "raw_url": "raw.html?piid=70RSAT24FR0000055",
+      "source": "idv_expansion",
+      "idv_parent": "70RSAT20D00000001",
+      "idv_siblings": [
+        {
+          "award_id": "70T02022F7500N005",
+          "amount": 1500007.0,
+          "description": "THE PURPOSE OF THIS MODIFICATION P00001 IS TO EXERCISE OPTION PERIOD 1, CLINS 1001 AND 1002 IN SUPPORT OF THE TRANSPORTATION VETTING SYSTEM PROGRAM (TVS) MATCHING ALGORITHMS.",
+          "generated_internal_id": "CONT_AWD_70T02022F7500N005_7013_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract supports the Transportation Vetting System Program\u2019s matching algorithms, which indicates development or enhancement of algorithmic/ML-based decision support rather than general IT operations."
+        },
+        {
+          "award_id": "70CMSD22FR0000068",
+          "amount": 551000.0,
+          "description": "CHANGE INVOICING INSTRUCTIONS FOR NATURAL LANGUAGE PROCESSING SUPPORT SERVICES",
+          "generated_internal_id": "CONT_AWD_70CMSD22FR0000068_7012_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly calls for natural language processing support services, which is a core AI/ML capability involving NLP models and related machine learning work."
+        },
+        {
+          "award_id": "70T02020F2KCOO166",
+          "amount": 1168663.0,
+          "description": "THE PURPOSE OF THIS MODIFICATION IS TO EXTEND THE PERIOD OF PERFORMANCE END DATE FROM OCTOBER 31, 2021 TO DECEMBER 20, 2021.",
+          "generated_internal_id": "CONT_AWD_70T02020F2KCOO166_7013_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract is focused on testing the Transportation Vetting System\u2019s matching algorithms using a ground-truth test dataset, which indicates work centered on algorithmic/ML evaluation rather than general IT operations."
+        },
+        {
+          "award_id": "70RSAT23FR0000136",
+          "amount": 1150000.0,
+          "description": "NEW HSSEDI TASK ORDER FOR FORCED LABOR ANALYTICS LARGE LANGUAGE MODEL (LLM) EVALUATION AND DEMONSTRATION.",
+          "generated_internal_id": "CONT_AWD_70RSAT23FR0000136_7001_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "This task order explicitly involves evaluation and demonstration of a large language model (LLM) for forced labor analytics, which is AI/ML work."
+        },
+        {
+          "award_id": "70T02024F7500N005",
+          "amount": 1492528.0,
+          "description": "PROVIDE SYSTEMS ENGINEERING & TECHNICAL EXPERTISE IN CONTINUOUS EVALUATION TO IMPROVE/REFINE VCS PROGRAM MATCH EFFECTIVENESS WHILE INVESTIGATING USE OF AI AND LARGE LANGUAGE MODELS FOR IDENTITY MATCHI",
+          "generated_internal_id": "CONT_AWD_70T02024F7500N005_7013_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly includes investigating and applying AI and large language models to improve identity matching and resolution, which makes AI/ML a primary component."
+        },
+        {
+          "award_id": "70Z02320FP0403E00",
+          "amount": 248585.9,
+          "description": "THE PURPOSE OF THIS MODIFICATION IS TO DE-OBLIGATE EXCESS FUNDS IN THE AMOUNT OF $1,430.10 TO CLOSE THE CONTRACT.  TOTAL CONTRACT VALUE IS HEREBY DECREASED BY $1,430.10 FROM $250,016.00 TO $248,585.90",
+          "generated_internal_id": "CONT_AWD_70Z02320FP0403E00_7008_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly references automatic identification system machine learning, indicating it is primarily for developing or applying machine learning capabilities."
+        },
+        {
+          "award_id": "7012",
+          "amount": 551000.0,
+          "description": "NATURAL LANGUAGE PROCESSING SUPPORT SERVICES",
+          "generated_internal_id": "CONT_AWD_70CMSD22FR0000068_7012_70RSAT20D00000001_7001",
+          "source": "idv_expansion",
+          "explanation": "Natural language processing is an AI/ML area, so support services for NLP indicate AI-related work."
+        },
+        {
+          "award_id": "70CMSD21FR0000047",
+          "amount": 330285.0,
+          "description": "NATURAL LANGUAGE PROCESSING SUPPORT SERVICES",
+          "generated_internal_id": "CONT_AWD_70CMSD21FR0000047_7012_70RSAT20D00000001_7001",
+          "source": "idv_expansion",
+          "explanation": "Natural language processing is an AI/ML area, so support services for NLP indicate AI-related work."
+        }
+      ]
     },
     {
       "award_id": "70SBUR22C00000004",
@@ -1541,6 +1995,57 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "HSCG3207J100023",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 1080638.0,
+      "description": "MARITIME BIOMETRIC IDENTIFICATION SYSTEM PHASE 2: INTEGRATING A PROOF OF CONCEPT MARITIME BIOMETRIC SYSTEM WITH FLEET 55 COMMUNICATIONS TO CONDUCT ALIEN ILLEGAL MIGRANT OPERATIONS IN THE MONA PASS",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSCG3205DR00010",
+      "explanation": "This involves a maritime biometric identification system and biometric identity matching for operations, which falls under AI/ML because automated biometric recognition/matching uses machine learning-based identity verification.",
+      "generated_internal_id": "CONT_AWD_HSCG3207J100023_7008_HSCG3205DR00010_7008",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSCG3207J100023_7008_HSCG3205DR00010_7008",
+      "raw_url": "raw.html?piid=HSCG3207J100023",
+      "source": "idv_expansion",
+      "idv_parent": "HSCG3205DR00010",
+      "idv_siblings": [
+        {
+          "award_id": "HSCG3206J100017",
+          "amount": 689025.0,
+          "description": "MARITIME BIOMETRIC IDENTIFICATION SYSTEM FOR MONA PASS AT-SEA ALIEN ILLEGAL MIGRANT OPERATIONS",
+          "generated_internal_id": "CONT_AWD_HSCG3206J100017_7008_HSCG3205DR00010_7008",
+          "source": "modification_text",
+          "explanation": "A maritime biometric identification system likely uses biometric matching and automated identification algorithms, which falls within AI/ML-adjacent work."
+        },
+        {
+          "award_id": "HSCG3208J100046",
+          "amount": 137549.0,
+          "description": "BIOMETRICS DATABASE REQUIREMENTS STUDY",
+          "generated_internal_id": "CONT_AWD_HSCG3208J100046_7008_HSCG3205DR00010_7008",
+          "source": "modification_text",
+          "explanation": "A biometrics database requirements study is likely related to biometric identification/recognition systems, which commonly involve computer vision and machine learning components, so it should be treated as AI/ML-adjacent."
+        },
+        {
+          "award_id": "HSCG3209J100057",
+          "amount": 100731.0,
+          "description": "THIS TASK ORDER WILL ASSIST THE RDC IN DEVELOPING AN IN-HOUSE HSI MODELING CAPABILITLY USING IMPRINT HSI MODELING SOFTWARE.  TWO MAJOR AREAS OF EMPHASIS: 1) CREATION OF AN HSI MODELING DEVELOPMENT PLA",
+          "generated_internal_id": "CONT_AWD_HSCG3209J100057_7008_HSCG3205DR00010_7008",
+          "source": "idv_expansion",
+          "explanation": "The task order is for developing and demonstrating an HSI modeling capability and stand-alone model, which indicates predictive modeling/AI-style model development rather than general IT or RPA."
+        },
+        {
+          "award_id": "HSCG3208J100039",
+          "amount": 277908.0,
+          "description": "MARITIME BIOMETRICS IDENTIFICATION SYSTEM, PROOF-OF-CONCEPT EXPANSION TO CONDUCT OPERATIONS IN THE SEVENTH DISTRICT",
+          "generated_internal_id": "CONT_AWD_HSCG3208J100039_7008_HSCG3205DR00010_7008",
+          "source": "idv_expansion",
+          "explanation": "This appears to be a biometric identification system that performs automated identity matching/recognition, which falls under AI/ML work."
+        }
+      ]
+    },
+    {
       "award_id": "70RSAT20C00000014",
       "vendor": "SYNTHETIK APPLIED TECHNOLOGIES LLC",
       "agency": "Office of Procurement Operations",
@@ -1717,6 +2222,41 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "70RTAC24FR0000098",
+      "vendor": "THE RAND CORPORATION",
+      "agency": "Department of Homeland Security",
+      "amount": 899999.99,
+      "description": "THE PURPOSE OF THIS PR IS TO SUPPORT MARITIME DOMAIN AWARENESS (MDA), INCLUDING ASSESSING REQUIREMENTS RELATED TO APPLYING AI CAPABILITIES TO ADDRESS THIS PROBLEM. THIS WORK ALSO INCLUDES IDENTIFYING AVAILABLE COMMERCIAL AND GOVERNMENT SOLUTIONS RE",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT22D00000001",
+      "explanation": "The description explicitly mentions assessing requirements for applying AI capabilities to maritime domain awareness, which indicates AI-related analysis and solution identification.",
+      "generated_internal_id": "CONT_AWD_70RTAC24FR0000098_7001_70RSAT22D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RTAC24FR0000098_7001_70RSAT22D00000001_7001",
+      "raw_url": "raw.html?piid=70RTAC24FR0000098",
+      "source": "idv_expansion",
+      "idv_parent": "70RSAT22D00000001",
+      "idv_siblings": [
+        {
+          "award_id": "70RTAC23FR0000086",
+          "amount": 500000.0,
+          "description": "THE PURPOSE OF THIS TASK ORDER IS FOR DHS ARTIFICIAL INTELLIGENCE POLICY IMPLICATION REVIEW",
+          "generated_internal_id": "CONT_AWD_70RTAC23FR0000086_7001_70RSAT22D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The task order is explicitly for an artificial intelligence policy implications review, which is directly tied to AI work rather than general IT or administrative support."
+        },
+        {
+          "award_id": "70FB8024F00000074",
+          "amount": 798883.75,
+          "description": "FUTURE PRICE FORECAST DEVELOPMENT FOR THE COMMONWEALTH OF THE NORTHERN MARIANA ISLANDS - CNMI AND GUAM",
+          "generated_internal_id": "CONT_AWD_70FB8024F00000074_7022_70RSAT22D00000001_7001",
+          "source": "idv_expansion",
+          "explanation": "This appears to involve predictive modeling/forecasting, which falls under AI/ML work even though the description is brief and does not specify the exact methods used."
+        }
+      ]
+    },
+    {
       "award_id": "70FA4024F00000327",
       "vendor": "TECOLOTE RESEARCH, INC.",
       "agency": "Federal Emergency Management Agency",
@@ -1798,6 +2338,41 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "70FB8024F00000074",
+      "vendor": "THE RAND CORPORATION",
+      "agency": "Department of Homeland Security",
+      "amount": 798883.75,
+      "description": "FUTURE PRICE FORECAST DEVELOPMENT FOR THE COMMONWEALTH OF THE NORTHERN MARIANA ISLANDS - CNMI AND GUAM",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT22D00000001",
+      "explanation": "This appears to involve predictive modeling/forecasting, which falls under AI/ML work even though the description is brief and does not specify the exact methods used.",
+      "generated_internal_id": "CONT_AWD_70FB8024F00000074_7022_70RSAT22D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70FB8024F00000074_7022_70RSAT22D00000001_7001",
+      "raw_url": "raw.html?piid=70FB8024F00000074",
+      "source": "idv_expansion",
+      "idv_parent": "70RSAT22D00000001",
+      "idv_siblings": [
+        {
+          "award_id": "70RTAC23FR0000086",
+          "amount": 500000.0,
+          "description": "THE PURPOSE OF THIS TASK ORDER IS FOR DHS ARTIFICIAL INTELLIGENCE POLICY IMPLICATION REVIEW",
+          "generated_internal_id": "CONT_AWD_70RTAC23FR0000086_7001_70RSAT22D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The task order is explicitly for an artificial intelligence policy implications review, which is directly tied to AI work rather than general IT or administrative support."
+        },
+        {
+          "award_id": "70RTAC24FR0000098",
+          "amount": 899999.99,
+          "description": "THE PURPOSE OF THIS PR IS TO SUPPORT MARITIME DOMAIN AWARENESS (MDA), INCLUDING ASSESSING REQUIREMENTS RELATED TO APPLYING AI CAPABILITIES TO ADDRESS THIS PROBLEM. THIS WORK ALSO INCLUDES IDENTIFYING ",
+          "generated_internal_id": "CONT_AWD_70RTAC24FR0000098_7001_70RSAT22D00000001_7001",
+          "source": "idv_expansion",
+          "explanation": "The description explicitly mentions assessing requirements for applying AI capabilities to maritime domain awareness, which indicates AI-related analysis and solution identification."
+        }
+      ]
+    },
+    {
       "award_id": "70RSAT20FR0000016",
       "vendor": "BATTELLE MEMORIAL INSTITUTE",
       "agency": "Office of Procurement Operations",
@@ -1830,6 +2405,65 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "HSTS0415JCT1182",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 749558.61,
+      "description": "IGF::CT::IGF  TSA IS TASKING THE CONTRACTOR TO CONDUCT TRANSPORTATION SECURITY INTEGRATION FACILITIES TESTING AND FIELD OPERATIONAL TESTING OF THE CTX 9800 DSI SINGLE COMPUTER UPGRADE KIT. THE INTENDED PURPOSE OF THE SINGLE COMPUTER UPGRADE KIT IS TO INCORPORATE A MORE RELIABLE COMPUTER AND SOFTWARE",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSTS0412DCT1173",
+      "explanation": "Yes\u2014this work explicitly mentions new detection algorithms and targeted false alarm reduction for explosives detection, which indicates ML/AI-based model development or deployment rather than generic IT or hardware support.",
+      "generated_internal_id": "CONT_AWD_HSTS0415JCT1182_7013_HSTS0412DCT1173_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0415JCT1182_7013_HSTS0412DCT1173_7013",
+      "raw_url": "raw.html?piid=HSTS0415JCT1182",
+      "source": "idv_expansion",
+      "idv_parent": "HSTS0412DCT1173",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0416JCT1188",
+          "amount": 674125.54,
+          "description": "THE PURPOSE OF THIS ADMINISTRATIVE MODIFICATION IS TO DE-OBLIGATE FY16/17 CANCELING FUNDS.",
+          "generated_internal_id": "CONT_AWD_HSTS0416JCT1188_7013_HSTS0412DCT1173_7013",
+          "source": "keyword_search",
+          "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development consistent with AI/ML work."
+        },
+        {
+          "award_id": "HSTS0415JCT1167",
+          "amount": 198538.3,
+          "description": "IGF::CT::IGF THIS DO IS FOR THE PROCUREMENT OF ENGINEERING SUPPORT SERVICES RELATED TO THE OPPERATION TESTING, WHICH IS PHASE 5 OF THE HOME-MADE EXPLOSIVES ALGORITHM DELIVERY PROCESS. THIS TESTS THE E",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1167_7013_HSTS0412DCT1173_7013",
+          "source": "modification_text",
+          "explanation": "The contract supports operation testing for a homemade explosives algorithm and EDS detection standards, which indicates work related to deploying/testing an algorithmic detection system and thus AI/ML-adjacent work."
+        },
+        {
+          "award_id": "HSTS0415JCT1042",
+          "amount": 2692213.94,
+          "description": "IGF::CT::IGF THIS TASK ORDER IS FOR THE DEVELOPMENT AND TESTING OF HOME MADE EXPLOSIVE (HME) ALGORITHM SOFTWARE FOR LEGACY EDS MODELS CTX 9000 AND CTX 9400.   THE PERIOD OF PERFORMANCE EXPIRES 32 MONT",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1042_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014developing and testing algorithm software for explosive detection systems indicates machine-learning/computer-vision style automated detection, which falls within AI/ML work."
+        },
+        {
+          "award_id": "HSTS0415JCT1009",
+          "amount": 421111.0,
+          "description": "IGF::CT::IGF PHASE 1 OF LEGACY HME DETECTION ALGORITHM DEVELOPMENT IN SUPPORT OF TSA'S FLEET OF MORPHO DETECTION 9000/9400 EXPLOSIVE DETECTION SYSTEMS (EDS). FFP - TASK ORDER",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1009_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "This task order explicitly involves development of a detection algorithm for TSA explosive detection systems, which indicates AI/ML-style model or algorithm development rather than generic IT or hardware support."
+        },
+        {
+          "award_id": "HSTS0414JCT1153",
+          "amount": 230930.0,
+          "description": "DELIVERY ORDER HSTS04-14-J-CT1153 IS FOR THE SUPPLIES AND SERVICES FOR RAPID DETECTION ALGORITHM DEVELOPMENT. IGF::OT::IGF",
+          "generated_internal_id": "CONT_AWD_HSTS0414JCT1153_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "The order explicitly calls for rapid detection algorithm development, which indicates development of an automated detection algorithm and is consistent with AI/ML work."
+        }
+      ]
+    },
+    {
       "award_id": "70T02018F2NOIA150",
       "vendor": "RUTGERS, THE STATE UNIVERSITY",
       "agency": "Transportation Security Administration",
@@ -1844,6 +2478,76 @@
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T02018F2NOIA150_7013_HSHQDC16AB0005_7001",
       "raw_url": "raw.html?piid=70T02018F2NOIA150",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "70SBUR20F00000305",
+      "vendor": "PANAMERICA COMPUTERS, INC.",
+      "agency": "Department of Homeland Security",
+      "amount": 733000.0,
+      "description": "EXABEAM SOFTWARE",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC12D00013",
+      "explanation": "Exabeam is a security analytics platform that uses machine learning and behavioral analytics to detect anomalies and threats, which qualifies as AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70SBUR20F00000305_7003_HSHQDC12D00013_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR20F00000305_7003_HSHQDC12D00013_7001",
+      "raw_url": "raw.html?piid=70SBUR20F00000305",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC12D00013",
+      "idv_siblings": [
+        {
+          "award_id": "70B03C22F00001238",
+          "amount": 850897.05,
+          "description": "BIOMETRIC SCANNERS AND CAMERAS",
+          "generated_internal_id": "CONT_AWD_70B03C22F00001238_7014_HSHQDC12D00013_7001",
+          "source": "modification_text",
+          "explanation": "Biometric scanners and cameras commonly use AI/ML for facial recognition, identity matching, and other automated biometric analysis, so this is likely AI-related."
+        },
+        {
+          "award_id": "70B03C23F00001053",
+          "amount": 5906000.98,
+          "description": "BABEL STREET LICENSES IN SUPPORT OF CBP/NTC OPERATORS AND ANALYSTS ACROSS THE ENTERPRISE",
+          "generated_internal_id": "CONT_AWD_70B03C23F00001053_7014_HSHQDC12D00013_7001",
+          "source": "idv_expansion",
+          "explanation": "Babel Street is commonly used for AI/ML-enabled open-source intelligence, entity resolution, and automated analysis tools, so this license support likely involves AI-enabled software rather than generic IT."
+        },
+        {
+          "award_id": "70B03C21F00001121",
+          "amount": 3799814.18,
+          "description": "BABEL STREET SOFTWARE",
+          "generated_internal_id": "CONT_AWD_70B03C21F00001121_7014_HSHQDC12D00013_7001",
+          "source": "idv_expansion",
+          "explanation": "Babel Street is known for AI/ML-powered analytics and identity intelligence software, which typically includes automated entity matching, NLP, and predictive analysis rather than simple IT or RPA."
+        }
+      ]
+    },
+    {
+      "award_id": "70T05021F7573N005",
+      "vendor": "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
+      "agency": "Department of Homeland Security",
+      "amount": 727222.41,
+      "description": "THIS IS A FIXED PRICE BPA ORDER FOR ENHANCED SCREENING MODEL (ESM) RATES AND STANDARDS VALIDATION FOR THE ENHANCED SCREENING MODEL (ESM) CPSS-CT",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70T04020A9NAP6414",
+      "explanation": "The order is for validation of an Enhanced Screening Model, which indicates work on a predictive/automated screening model rather than general IT or RPA.",
+      "generated_internal_id": "CONT_AWD_70T05021F7573N005_7013_70T04020A9NAP6414_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T05021F7573N005_7013_70T04020A9NAP6414_7013",
+      "raw_url": "raw.html?piid=70T05021F7573N005",
+      "source": "idv_expansion",
+      "idv_parent": "70T04020A9NAP6414",
+      "idv_siblings": [
+        {
+          "award_id": "70T04020F1NRCA146",
+          "amount": 1155439.37,
+          "description": "OTSS BPA ORDER 12 70T04020F1NRCA146 IN SUPPORT OF BIOMETRICS PILOT TESTING. ALL WORK SHALL BE IN ACCORDANCE WITH THE BASE BPA AND SOW.",
+          "generated_internal_id": "CONT_AWD_70T04020F1NRCA146_7013_70T04020A9NAP6414_7013",
+          "source": "modification_text",
+          "explanation": "This order supports biometrics pilot testing, which commonly involves AI/ML-enabled biometric matching, classification, or recognition systems."
+        }
+      ]
     },
     {
       "award_id": "HSCG3206J100017",
@@ -1942,6 +2646,92 @@
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSHQDC11C00117_7001_-NONE-_-NONE-",
       "raw_url": "raw.html?piid=HSHQDC11C00117",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "70RSAT23FR0000028",
+      "vendor": "BATTELLE MEMORIAL INSTITUTE",
+      "agency": "Department of Homeland Security",
+      "amount": 615213.36,
+      "description": "NEW TASK ORDER FOR TSL IDIQ TO SUPPORT THE DEVELOPMENTAL TEST AND EVALUATION AIR CARGO TESTING SUPPORT FOR EVALUATING PROTOTYPE SKID SCREENING SCANNERS AND AUTOMATED THREAT RECOGNITION SOFTWARE PROJECT",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT18D00000003",
+      "explanation": "Yes\u2014this task order explicitly mentions automated threat recognition software, which indicates AI/ML-based detection or recognition capability rather than generic IT or hardware support.",
+      "generated_internal_id": "CONT_AWD_70RSAT23FR0000028_7001_70RSAT18D00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT23FR0000028_7001_70RSAT18D00000003_7001",
+      "raw_url": "raw.html?piid=70RSAT23FR0000028",
+      "source": "idv_expansion",
+      "idv_parent": "70RSAT18D00000003",
+      "idv_siblings": [
+        {
+          "award_id": "70RSAT22FR0000123",
+          "amount": 275802.19,
+          "description": "NEW TASK ORDER FOR MACHINE LEARNING ALGORITHM TEST AND EVALUATION REQUIREMENT.",
+          "generated_internal_id": "CONT_AWD_70RSAT22FR0000123_7001_70RSAT18D00000003_7001",
+          "source": "keyword_search",
+          "explanation": "The task order explicitly calls for machine learning algorithm test and evaluation, which is directly AI/ML work."
+        },
+        {
+          "award_id": "70RSAT20FR0000016",
+          "amount": 797530.72,
+          "description": "DE-OBLIGATION AND CLOSEOUT",
+          "generated_internal_id": "CONT_AWD_70RSAT20FR0000016_7001_70RSAT18D00000003_7001",
+          "source": "keyword_search",
+          "explanation": "This task involves an automated algorithm that analyzes X-ray image information in real time, which is consistent with computer vision/AI-based image analysis."
+        },
+        {
+          "award_id": "70RSAT19FR0000043",
+          "amount": 3454865.18,
+          "description": "NEW TASK ORDER $1,000K UNDER IDIQ FOR DEVELOPMENTAL TEST AND EVALUATION FOR ADVANCED IMAGING TECHNOLOGY AUTOMATED TARGET RECOGNITION",
+          "generated_internal_id": "CONT_AWD_70RSAT19FR0000043_7001_70RSAT18D00000003_7001",
+          "source": "idv_expansion",
+          "explanation": "Yes \u2014 automated target recognition using advanced imaging technology implies computer vision/ML-based detection or classification rather than generic IT or hardware."
+        }
+      ]
+    },
+    {
+      "award_id": "70B06C22F00001447",
+      "vendor": "MATROID, INC.",
+      "agency": "Department of Homeland Security",
+      "amount": 600000.0,
+      "description": "AUTONOMOUS OBJECT IDENTIFICATION",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70B06C21D00000022",
+      "explanation": "Autonomous object identification implies automated recognition/classification of objects, which is a computer vision AI/ML capability.",
+      "generated_internal_id": "CONT_AWD_70B06C22F00001447_7014_70B06C21D00000022_7014",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70B06C22F00001447_7014_70B06C21D00000022_7014",
+      "raw_url": "raw.html?piid=70B06C22F00001447",
+      "source": "idv_expansion",
+      "idv_parent": "70B06C21D00000022",
+      "idv_siblings": [
+        {
+          "award_id": "70B06C25F00000538",
+          "amount": 2613620.0,
+          "description": "OBJECT DETECTION SOFTWARE LICENSES.",
+          "generated_internal_id": "CONT_AWD_70B06C25F00000538_7014_70B06C21D00000022_7014",
+          "source": "keyword_search",
+          "explanation": "Object detection software is a computer vision AI/ML capability, and the contract is for licenses to use that software."
+        },
+        {
+          "award_id": "70B06C21D00000022",
+          "amount": 0.0,
+          "description": "OBJECT DETECTION SOFTWARE LICENSING.",
+          "generated_internal_id": "CONT_IDV_70B06C21D00000022_7014",
+          "source": "keyword_search",
+          "explanation": "Object detection software is a computer vision AI application, so this contract is primarily for AI/ML work."
+        },
+        {
+          "award_id": "7014",
+          "amount": 2613620.0,
+          "description": "OBJECT DETECTION SOFTWARE LICENSES.",
+          "generated_internal_id": "CONT_AWD_70B06C25F00000538_7014_70B06C21D00000022_7014",
+          "source": "idv_expansion",
+          "explanation": "Object detection software typically uses computer vision and machine learning models to identify objects in images or video, which falls within AI/ML work."
+        }
+      ]
     },
     {
       "award_id": "70B05C20F00000034",
@@ -2055,6 +2845,22 @@
           "generated_internal_id": "CONT_AWD_70Z02320FP0403E00_7008_70RSAT20D00000001_7001",
           "source": "keyword_search",
           "explanation": "The contract explicitly references automatic identification system machine learning, indicating it is primarily for developing or applying machine learning capabilities."
+        },
+        {
+          "award_id": "70RSAT24FR0000055",
+          "amount": 1880000.0,
+          "description": "THE PURPOSE OF THIS NEW HSSEDI TASK ORDER AWARD IS FOR PROBABILISTIC ESTIMATION AND FORECASTING OF US MIGRATION FLOWS  (PUSH PULL MIGRATION) EFFORT.",
+          "generated_internal_id": "CONT_AWD_70RSAT24FR0000055_7001_70RSAT20D00000001_7001",
+          "source": "idv_expansion",
+          "explanation": "This task order is for probabilistic estimation and forecasting of migration flows, which is predictive modeling and therefore falls within AI/ML work."
+        },
+        {
+          "award_id": "70CMSD21FR0000047",
+          "amount": 330285.0,
+          "description": "NATURAL LANGUAGE PROCESSING SUPPORT SERVICES",
+          "generated_internal_id": "CONT_AWD_70CMSD21FR0000047_7012_70RSAT20D00000001_7001",
+          "source": "idv_expansion",
+          "explanation": "Natural language processing is an AI/ML area, so support services for NLP indicate AI-related work."
         }
       ]
     },
@@ -2140,6 +2946,178 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "70SBUR19F00000579",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 469062.1,
+      "description": "SALESFORCE PLATFORM PROGRAM ARCHITECT AND EINSTEIN ANALYTICS PLUS SOFTWARE LICENSES",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC13D00010",
+      "explanation": "This includes Salesforce Einstein Analytics, which is an AI/ML-enabled analytics and predictive platform, so it involves AI-related software licensing.",
+      "generated_internal_id": "CONT_AWD_70SBUR19F00000579_7003_HSHQDC13D00010_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR19F00000579_7003_HSHQDC13D00010_7001",
+      "raw_url": "raw.html?piid=70SBUR19F00000579",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC13D00010",
+      "idv_siblings": [
+        {
+          "award_id": "70SBUR24F00000261",
+          "amount": 1440047.28,
+          "description": "THE PURPOSE OF THIS ACTION IS TO ADD GOVERNMENT FURNISHED  EQUIPMENT (GFE) REQUIREMENTS TO THIS ARTIFICIAL INTELLIGENCE  (AI) GATEWAY (LASSO) ORDER.",
+          "generated_internal_id": "CONT_AWD_70SBUR24F00000261_7003_HSHQDC13D00010_7001",
+          "source": "keyword_search",
+          "explanation": "The order explicitly describes an Artificial Intelligence (AI) Gateway (LASSO), indicating the contract is primarily for AI-related work rather than general IT services."
+        }
+      ]
+    },
+    {
+      "award_id": "70RSAT18FR0000120",
+      "vendor": "THE MITRE CORPORATION",
+      "agency": "Department of Homeland Security",
+      "amount": 446031.54,
+      "description": "AUTONOMOUS AI-BASED COOPERATIVE CONTROL OF SURVEILLANCE DRONES",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC14D00006",
+      "explanation": "The description explicitly refers to autonomous AI-based cooperative control of surveillance drones, which indicates AI/ML-driven decision-making and control.",
+      "generated_internal_id": "CONT_AWD_70RSAT18FR0000120_7001_HSHQDC14D00006_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT18FR0000120_7001_HSHQDC14D00006_7001",
+      "raw_url": "raw.html?piid=70RSAT18FR0000120",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC14D00006",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0216JOIA170",
+          "amount": 1387496.55,
+          "description": "THIS MODIFICATION IS BEING PROCESSED TO REMOVE UNBILLED CANCELLING FUNDS FROM THE AWARD IN ACCORDANCE TO TSA YEAR END PROCEDURES.",
+          "generated_internal_id": "CONT_AWD_HSTS0216JOIA170_7013_HSHQDC14D00006_7001",
+          "source": "keyword_search",
+          "explanation": "This contract is for an independent assessment of the Secure Flight vetting algorithm, which is an algorithmic/ML-related system rather than general IT operations."
+        },
+        {
+          "award_id": "HSSCCG16J00127",
+          "amount": 2978104.0,
+          "description": "CLOSEOUT OF IGF OT IGF FDNS PREDICTIVE ANALYTICS SUPPORT- PHASE 5",
+          "generated_internal_id": "CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly provides FDNS predictive analytics support, which indicates modeling/predictive analytics work consistent with AI/ML rather than general IT operations."
+        },
+        {
+          "award_id": "7003",
+          "amount": 2978104.0,
+          "description": "IGF::OT::IGF FDNS PREDICTIVE ANALYTICS SUPPORT- PHASE 5",
+          "generated_internal_id": "CONT_AWD_HSSCCG16J00127_7003_HSHQDC14D00006_7001",
+          "source": "idv_expansion",
+          "explanation": "The contract explicitly references predictive analytics support, which indicates AI/ML-style predictive modeling rather than general IT or RPA."
+        },
+        {
+          "award_id": "HSHQDC15J00016",
+          "amount": 7723073.0,
+          "description": "IGF::CL::IGF THE PURPOSE OF THIS TASK ORDER IS TO PROVIDE FUNDING TO ESTABLISH A NEW TASK UNDER U.S. DEPARTMENT OF HOMELAND SECURITY (DHS) CONTRACT PROCUREMENT INSTRUMENT IDENTIFIER (PIID) HSHQDC-14-D",
+          "generated_internal_id": "CONT_AWD_HSHQDC15J00016_7001_HSHQDC14D00006_7001",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014this task order supports DHS HSARPA\u2019s Big Data and Analytics Engine Program, which indicates AI/ML-related analytics and advanced data modeling work rather than routine IT operations."
+        }
+      ]
+    },
+    {
+      "award_id": "HSTS0415JCT1009",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 421111.0,
+      "description": "IGF::CT::IGF PHASE 1 OF LEGACY HME DETECTION ALGORITHM DEVELOPMENT IN SUPPORT OF TSA'S FLEET OF MORPHO DETECTION 9000/9400 EXPLOSIVE DETECTION SYSTEMS (EDS). FFP - TASK ORDER",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSTS0412DCT1173",
+      "explanation": "This task order explicitly involves development of a detection algorithm for TSA explosive detection systems, which indicates AI/ML-style model or algorithm development rather than generic IT or hardware support.",
+      "generated_internal_id": "CONT_AWD_HSTS0415JCT1009_7013_HSTS0412DCT1173_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0415JCT1009_7013_HSTS0412DCT1173_7013",
+      "raw_url": "raw.html?piid=HSTS0415JCT1009",
+      "source": "idv_expansion",
+      "idv_parent": "HSTS0412DCT1173",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0416JCT1188",
+          "amount": 674125.54,
+          "description": "THE PURPOSE OF THIS ADMINISTRATIVE MODIFICATION IS TO DE-OBLIGATE FY16/17 CANCELING FUNDS.",
+          "generated_internal_id": "CONT_AWD_HSTS0416JCT1188_7013_HSTS0412DCT1173_7013",
+          "source": "keyword_search",
+          "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development consistent with AI/ML work."
+        },
+        {
+          "award_id": "HSTS0415JCT1167",
+          "amount": 198538.3,
+          "description": "IGF::CT::IGF THIS DO IS FOR THE PROCUREMENT OF ENGINEERING SUPPORT SERVICES RELATED TO THE OPPERATION TESTING, WHICH IS PHASE 5 OF THE HOME-MADE EXPLOSIVES ALGORITHM DELIVERY PROCESS. THIS TESTS THE E",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1167_7013_HSTS0412DCT1173_7013",
+          "source": "modification_text",
+          "explanation": "The contract supports operation testing for a homemade explosives algorithm and EDS detection standards, which indicates work related to deploying/testing an algorithmic detection system and thus AI/ML-adjacent work."
+        },
+        {
+          "award_id": "HSTS0415JCT1182",
+          "amount": 749558.61,
+          "description": "IGF::CT::IGF  TSA IS TASKING THE CONTRACTOR TO CONDUCT TRANSPORTATION SECURITY INTEGRATION FACILITIES TESTING AND FIELD OPERATIONAL TESTING OF THE CTX 9800 DSI SINGLE COMPUTER UPGRADE KIT. THE INTENDE",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1182_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014this work explicitly mentions new detection algorithms and targeted false alarm reduction for explosives detection, which indicates ML/AI-based model development or deployment rather than generic IT or hardware support."
+        },
+        {
+          "award_id": "HSTS0415JCT1042",
+          "amount": 2692213.94,
+          "description": "IGF::CT::IGF THIS TASK ORDER IS FOR THE DEVELOPMENT AND TESTING OF HOME MADE EXPLOSIVE (HME) ALGORITHM SOFTWARE FOR LEGACY EDS MODELS CTX 9000 AND CTX 9400.   THE PERIOD OF PERFORMANCE EXPIRES 32 MONT",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1042_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014developing and testing algorithm software for explosive detection systems indicates machine-learning/computer-vision style automated detection, which falls within AI/ML work."
+        },
+        {
+          "award_id": "HSTS0414JCT1153",
+          "amount": 230930.0,
+          "description": "DELIVERY ORDER HSTS04-14-J-CT1153 IS FOR THE SUPPLIES AND SERVICES FOR RAPID DETECTION ALGORITHM DEVELOPMENT. IGF::OT::IGF",
+          "generated_internal_id": "CONT_AWD_HSTS0414JCT1153_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "The order explicitly calls for rapid detection algorithm development, which indicates development of an automated detection algorithm and is consistent with AI/ML work."
+        }
+      ]
+    },
+    {
+      "award_id": "HSTS0413JCT1269",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 407644.1,
+      "description": "DELIVERY ORDER 16 AUTHORIZES L-3 TO SUPPORT THE SERVICES AND MATERIALS NECESSARY FOR THE CERTIFICATION, PILOTING, TESTING AND FIELDING OF HOMEMADE EXPLOSIVE (HME) ALGORITHMS FOR DEPLOYED EXPLOSIVE DETECTION SYSTEM (EDS) MODELS.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSTS0412DCT1200",
+      "explanation": "The order explicitly mentions supporting certification, piloting, testing, and fielding of HME algorithms for explosive detection system models, which indicates deployment and validation of algorithmic/ML-based detection work.",
+      "generated_internal_id": "CONT_AWD_HSTS0413JCT1269_7013_HSTS0412DCT1200_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0413JCT1269_7013_HSTS0412DCT1200_7013",
+      "raw_url": "raw.html?piid=HSTS0413JCT1269",
+      "source": "idv_expansion",
+      "idv_parent": "HSTS0412DCT1200",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0416JCT1029",
+          "amount": 804689.77,
+          "description": "THE PURPOSE OF THIS MODIFICATION IS TO RESTORE FUNDING THAT WAS PREVIOUSLY REMOVED AS PART OF AN ADMINISTRATIVE EFFORT TO ADDRESS CANCELING APPROPRIATIONS.  THE RESTORATION OF FUNDS WILL ENSURE FINAL ",
+          "generated_internal_id": "CONT_AWD_HSTS0416JCT1029_7013_HSTS0412DCT1200_7013",
+          "source": "keyword_search",
+          "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development rather than general IT work."
+        },
+        {
+          "award_id": "HSTS0414JCT1154",
+          "amount": 223464.95,
+          "description": "DELIVERY ORDER HSTS04-14-J-CT1154 IS FOR THE LABOR, TRAVEL, AND MATERIAL FOR RAPID DETECTION ALGORITHM DEVELOPMENT.",
+          "generated_internal_id": "CONT_AWD_HSTS0414JCT1154_7013_HSTS0412DCT1200_7013",
+          "source": "idv_expansion",
+          "explanation": "The order explicitly calls for rapid detection algorithm development, which indicates development of an automated detection algorithm and is consistent with AI/ML work."
+        }
+      ]
+    },
+    {
       "award_id": "70B04C23F00001192",
       "vendor": "CTG FEDERAL, LLC",
       "agency": "U.S. Customs and Border Protection",
@@ -2188,6 +3166,33 @@
       "source": "keyword_search"
     },
     {
+      "award_id": "70RSAT18FR0000142",
+      "vendor": "THE RAND CORPORATION",
+      "agency": "Department of Homeland Security",
+      "amount": 362271.11,
+      "description": "IGF::CL::IGF  CORE PROJECT: HUMAN MIGRATION MODELING",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC16D00007",
+      "explanation": "Human migration modeling indicates predictive modeling/analytics, which falls under AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70RSAT18FR0000142_7001_HSHQDC16D00007_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RSAT18FR0000142_7001_HSHQDC16D00007_7001",
+      "raw_url": "raw.html?piid=70RSAT18FR0000142",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC16D00007",
+      "idv_siblings": [
+        {
+          "award_id": "70RSAT20FR0000089",
+          "amount": 844901.37,
+          "description": "HSOAC POOO3 PERIOD OF PERFORMANCE DATE CHANGE FROM SEPTEMBER 18, 2022 TO MARCH 18,2023.",
+          "generated_internal_id": "CONT_AWD_70RSAT20FR0000089_7001_HSHQDC16D00007_7001",
+          "source": "keyword_search",
+          "explanation": "The award is specifically for work on public perceptions of emerging artificial intelligence, which is directly tied to AI rather than general IT or administrative support."
+        }
+      ]
+    },
+    {
       "award_id": "70RTAC24FR0000059",
       "vendor": "C & C INTERNATIONAL COMPUTERS & CONSULTANTS, INC.",
       "agency": "Office of Procurement Operations",
@@ -2219,6 +3224,202 @@
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70SBUR19F00000316_7003_HSHQDC14DE2051_7001",
       "raw_url": "raw.html?piid=70SBUR19F00000316",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "70CTD021FR0000214",
+      "vendor": "BLUE TECH INC.",
+      "agency": "Department of Homeland Security",
+      "amount": 335096.55,
+      "description": "PURCHASE EXABEAM ADVANCED ANALYTICS, POP AWARD - 12 MONTHS",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC13D00019",
+      "explanation": "Exabeam Advanced Analytics is a security analytics platform that uses machine learning/behavioral analytics to detect anomalies and threats, so this purchase involves AI/ML functionality.",
+      "generated_internal_id": "CONT_AWD_70CTD021FR0000214_7012_HSHQDC13D00019_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CTD021FR0000214_7012_HSHQDC13D00019_7001",
+      "raw_url": "raw.html?piid=70CTD021FR0000214",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC13D00019",
+      "idv_siblings": [
+        {
+          "award_id": "70US0922F1DHS2312",
+          "amount": 144520.0,
+          "description": "ARTIFICIAL INTELLIGENCE/MACHINE LEARNING (AI/ML) SOFTWARE LICENSE PILOT",
+          "generated_internal_id": "CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001",
+          "source": "keyword_search",
+          "explanation": "The contract is explicitly for an artificial intelligence/machine learning software license pilot, which is directly AI/ML work."
+        },
+        {
+          "award_id": "7009",
+          "amount": 144520.0,
+          "description": "ARTIFICIAL INTELLIGENCE/MACHINE LEARNING (AI/ML) SOFTWARE LICENSE PILOT",
+          "generated_internal_id": "CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001",
+          "source": "idv_expansion",
+          "explanation": "The contract explicitly describes an Artificial Intelligence/Machine Learning software license pilot, which indicates AI/ML software use rather than general IT or RPA."
+        }
+      ]
+    },
+    {
+      "award_id": "70CMSD21FR0000047",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 330285.0,
+      "description": "NATURAL LANGUAGE PROCESSING SUPPORT SERVICES",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT20D00000001",
+      "explanation": "Natural language processing is an AI/ML area, so support services for NLP indicate AI-related work.",
+      "generated_internal_id": "CONT_AWD_70CMSD21FR0000047_7012_70RSAT20D00000001_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70CMSD21FR0000047_7012_70RSAT20D00000001_7001",
+      "raw_url": "raw.html?piid=70CMSD21FR0000047",
+      "source": "idv_expansion",
+      "idv_parent": "70RSAT20D00000001",
+      "idv_siblings": [
+        {
+          "award_id": "70T02022F7500N005",
+          "amount": 1500007.0,
+          "description": "THE PURPOSE OF THIS MODIFICATION P00001 IS TO EXERCISE OPTION PERIOD 1, CLINS 1001 AND 1002 IN SUPPORT OF THE TRANSPORTATION VETTING SYSTEM PROGRAM (TVS) MATCHING ALGORITHMS.",
+          "generated_internal_id": "CONT_AWD_70T02022F7500N005_7013_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract supports the Transportation Vetting System Program\u2019s matching algorithms, which indicates development or enhancement of algorithmic/ML-based decision support rather than general IT operations."
+        },
+        {
+          "award_id": "70CMSD22FR0000068",
+          "amount": 551000.0,
+          "description": "CHANGE INVOICING INSTRUCTIONS FOR NATURAL LANGUAGE PROCESSING SUPPORT SERVICES",
+          "generated_internal_id": "CONT_AWD_70CMSD22FR0000068_7012_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly calls for natural language processing support services, which is a core AI/ML capability involving NLP models and related machine learning work."
+        },
+        {
+          "award_id": "70T02020F2KCOO166",
+          "amount": 1168663.0,
+          "description": "THE PURPOSE OF THIS MODIFICATION IS TO EXTEND THE PERIOD OF PERFORMANCE END DATE FROM OCTOBER 31, 2021 TO DECEMBER 20, 2021.",
+          "generated_internal_id": "CONT_AWD_70T02020F2KCOO166_7013_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract is focused on testing the Transportation Vetting System\u2019s matching algorithms using a ground-truth test dataset, which indicates work centered on algorithmic/ML evaluation rather than general IT operations."
+        },
+        {
+          "award_id": "70RSAT23FR0000136",
+          "amount": 1150000.0,
+          "description": "NEW HSSEDI TASK ORDER FOR FORCED LABOR ANALYTICS LARGE LANGUAGE MODEL (LLM) EVALUATION AND DEMONSTRATION.",
+          "generated_internal_id": "CONT_AWD_70RSAT23FR0000136_7001_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "This task order explicitly involves evaluation and demonstration of a large language model (LLM) for forced labor analytics, which is AI/ML work."
+        },
+        {
+          "award_id": "70T02024F7500N005",
+          "amount": 1492528.0,
+          "description": "PROVIDE SYSTEMS ENGINEERING & TECHNICAL EXPERTISE IN CONTINUOUS EVALUATION TO IMPROVE/REFINE VCS PROGRAM MATCH EFFECTIVENESS WHILE INVESTIGATING USE OF AI AND LARGE LANGUAGE MODELS FOR IDENTITY MATCHI",
+          "generated_internal_id": "CONT_AWD_70T02024F7500N005_7013_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly includes investigating and applying AI and large language models to improve identity matching and resolution, which makes AI/ML a primary component."
+        },
+        {
+          "award_id": "70Z02320FP0403E00",
+          "amount": 248585.9,
+          "description": "THE PURPOSE OF THIS MODIFICATION IS TO DE-OBLIGATE EXCESS FUNDS IN THE AMOUNT OF $1,430.10 TO CLOSE THE CONTRACT.  TOTAL CONTRACT VALUE IS HEREBY DECREASED BY $1,430.10 FROM $250,016.00 TO $248,585.90",
+          "generated_internal_id": "CONT_AWD_70Z02320FP0403E00_7008_70RSAT20D00000001_7001",
+          "source": "keyword_search",
+          "explanation": "The contract explicitly references automatic identification system machine learning, indicating it is primarily for developing or applying machine learning capabilities."
+        },
+        {
+          "award_id": "7012",
+          "amount": 551000.0,
+          "description": "NATURAL LANGUAGE PROCESSING SUPPORT SERVICES",
+          "generated_internal_id": "CONT_AWD_70CMSD22FR0000068_7012_70RSAT20D00000001_7001",
+          "source": "idv_expansion",
+          "explanation": "Natural language processing is an AI/ML area, so support services for NLP indicate AI-related work."
+        },
+        {
+          "award_id": "70RSAT24FR0000055",
+          "amount": 1880000.0,
+          "description": "THE PURPOSE OF THIS NEW HSSEDI TASK ORDER AWARD IS FOR PROBABILISTIC ESTIMATION AND FORECASTING OF US MIGRATION FLOWS  (PUSH PULL MIGRATION) EFFORT.",
+          "generated_internal_id": "CONT_AWD_70RSAT24FR0000055_7001_70RSAT20D00000001_7001",
+          "source": "idv_expansion",
+          "explanation": "This task order is for probabilistic estimation and forecasting of migration flows, which is predictive modeling and therefore falls within AI/ML work."
+        }
+      ]
+    },
+    {
+      "award_id": "70T03018F2BOCP018",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 315857.78,
+      "description": "BABEL STREET INVESTIGATIVE SOFTWARE LICENSES FOR USSS CID",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSHQDC12D00011",
+      "explanation": "Babel Street investigative software commonly includes AI/ML-based entity resolution, facial recognition, and automated identity analysis capabilities, which fall within AI/ML work.",
+      "generated_internal_id": "CONT_AWD_70T03018F2BOCP018_7013_HSHQDC12D00011_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T03018F2BOCP018_7013_HSHQDC12D00011_7001",
+      "raw_url": "raw.html?piid=70T03018F2BOCP018",
+      "source": "idv_expansion",
+      "idv_parent": "HSHQDC12D00011",
+      "idv_siblings": [
+        {
+          "award_id": "70RTAC24FR0000059",
+          "amount": 361125.0,
+          "description": "PROCURE MACBOOKS AND PERIPHERAL EQUIPMENT TO SUPPORT THE ARTIFICIAL INTELLIGENCE (AI) MISSION TO SECURE THE HOMELAND FOR THE OFFICE OF THE CHIEF INFORMATION OFFICER (OCIO).",
+          "generated_internal_id": "CONT_AWD_70RTAC24FR0000059_7001_HSHQDC12D00011_7001",
+          "source": "modification_text",
+          "explanation": "The procurement is explicitly to support the DHS Artificial Intelligence mission, so it is AI-related even though it is for hardware and peripherals rather than model development."
+        }
+      ]
+    },
+    {
+      "award_id": "HSCG3208J100039",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 277908.0,
+      "description": "MARITIME BIOMETRICS IDENTIFICATION SYSTEM, PROOF-OF-CONCEPT EXPANSION TO CONDUCT OPERATIONS IN THE SEVENTH DISTRICT",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSCG3205DR00010",
+      "explanation": "This appears to be a biometric identification system that performs automated identity matching/recognition, which falls under AI/ML work.",
+      "generated_internal_id": "CONT_AWD_HSCG3208J100039_7008_HSCG3205DR00010_7008",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSCG3208J100039_7008_HSCG3205DR00010_7008",
+      "raw_url": "raw.html?piid=HSCG3208J100039",
+      "source": "idv_expansion",
+      "idv_parent": "HSCG3205DR00010",
+      "idv_siblings": [
+        {
+          "award_id": "HSCG3206J100017",
+          "amount": 689025.0,
+          "description": "MARITIME BIOMETRIC IDENTIFICATION SYSTEM FOR MONA PASS AT-SEA ALIEN ILLEGAL MIGRANT OPERATIONS",
+          "generated_internal_id": "CONT_AWD_HSCG3206J100017_7008_HSCG3205DR00010_7008",
+          "source": "modification_text",
+          "explanation": "A maritime biometric identification system likely uses biometric matching and automated identification algorithms, which falls within AI/ML-adjacent work."
+        },
+        {
+          "award_id": "HSCG3208J100046",
+          "amount": 137549.0,
+          "description": "BIOMETRICS DATABASE REQUIREMENTS STUDY",
+          "generated_internal_id": "CONT_AWD_HSCG3208J100046_7008_HSCG3205DR00010_7008",
+          "source": "modification_text",
+          "explanation": "A biometrics database requirements study is likely related to biometric identification/recognition systems, which commonly involve computer vision and machine learning components, so it should be treated as AI/ML-adjacent."
+        },
+        {
+          "award_id": "HSCG3209J100057",
+          "amount": 100731.0,
+          "description": "THIS TASK ORDER WILL ASSIST THE RDC IN DEVELOPING AN IN-HOUSE HSI MODELING CAPABILITLY USING IMPRINT HSI MODELING SOFTWARE.  TWO MAJOR AREAS OF EMPHASIS: 1) CREATION OF AN HSI MODELING DEVELOPMENT PLA",
+          "generated_internal_id": "CONT_AWD_HSCG3209J100057_7008_HSCG3205DR00010_7008",
+          "source": "idv_expansion",
+          "explanation": "The task order is for developing and demonstrating an HSI modeling capability and stand-alone model, which indicates predictive modeling/AI-style model development rather than general IT or RPA."
+        },
+        {
+          "award_id": "HSCG3207J100023",
+          "amount": 1080638.0,
+          "description": "MARITIME BIOMETRIC IDENTIFICATION SYSTEM PHASE 2: INTEGRATING A PROOF OF CONCEPT MARITIME BIOMETRIC SYSTEM WITH FLEET 55 COMMUNICATIONS TO CONDUCT ALIEN ILLEGAL MIGRANT OPERATIONS IN THE MONA PASS",
+          "generated_internal_id": "CONT_AWD_HSCG3207J100023_7008_HSCG3205DR00010_7008",
+          "source": "idv_expansion",
+          "explanation": "This involves a maritime biometric identification system and biometric identity matching for operations, which falls under AI/ML because automated biometric recognition/matching uses machine learning-based identity verification."
+        }
+      ]
     },
     {
       "award_id": "70RSAT22FR0000123",
@@ -2299,6 +3500,100 @@
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70RDAD23FR0000022_7001_HSHQDC12D00014_7001",
       "raw_url": "raw.html?piid=70RDAD23FR0000022",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "HSTS0414JCT1153",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 230930.0,
+      "description": "DELIVERY ORDER HSTS04-14-J-CT1153 IS FOR THE SUPPLIES AND SERVICES FOR RAPID DETECTION ALGORITHM DEVELOPMENT. IGF::OT::IGF",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSTS0412DCT1173",
+      "explanation": "The order explicitly calls for rapid detection algorithm development, which indicates development of an automated detection algorithm and is consistent with AI/ML work.",
+      "generated_internal_id": "CONT_AWD_HSTS0414JCT1153_7013_HSTS0412DCT1173_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0414JCT1153_7013_HSTS0412DCT1173_7013",
+      "raw_url": "raw.html?piid=HSTS0414JCT1153",
+      "source": "idv_expansion",
+      "idv_parent": "HSTS0412DCT1173",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0416JCT1188",
+          "amount": 674125.54,
+          "description": "THE PURPOSE OF THIS ADMINISTRATIVE MODIFICATION IS TO DE-OBLIGATE FY16/17 CANCELING FUNDS.",
+          "generated_internal_id": "CONT_AWD_HSTS0416JCT1188_7013_HSTS0412DCT1173_7013",
+          "source": "keyword_search",
+          "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development consistent with AI/ML work."
+        },
+        {
+          "award_id": "HSTS0415JCT1167",
+          "amount": 198538.3,
+          "description": "IGF::CT::IGF THIS DO IS FOR THE PROCUREMENT OF ENGINEERING SUPPORT SERVICES RELATED TO THE OPPERATION TESTING, WHICH IS PHASE 5 OF THE HOME-MADE EXPLOSIVES ALGORITHM DELIVERY PROCESS. THIS TESTS THE E",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1167_7013_HSTS0412DCT1173_7013",
+          "source": "modification_text",
+          "explanation": "The contract supports operation testing for a homemade explosives algorithm and EDS detection standards, which indicates work related to deploying/testing an algorithmic detection system and thus AI/ML-adjacent work."
+        },
+        {
+          "award_id": "HSTS0415JCT1182",
+          "amount": 749558.61,
+          "description": "IGF::CT::IGF  TSA IS TASKING THE CONTRACTOR TO CONDUCT TRANSPORTATION SECURITY INTEGRATION FACILITIES TESTING AND FIELD OPERATIONAL TESTING OF THE CTX 9800 DSI SINGLE COMPUTER UPGRADE KIT. THE INTENDE",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1182_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014this work explicitly mentions new detection algorithms and targeted false alarm reduction for explosives detection, which indicates ML/AI-based model development or deployment rather than generic IT or hardware support."
+        },
+        {
+          "award_id": "HSTS0415JCT1042",
+          "amount": 2692213.94,
+          "description": "IGF::CT::IGF THIS TASK ORDER IS FOR THE DEVELOPMENT AND TESTING OF HOME MADE EXPLOSIVE (HME) ALGORITHM SOFTWARE FOR LEGACY EDS MODELS CTX 9000 AND CTX 9400.   THE PERIOD OF PERFORMANCE EXPIRES 32 MONT",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1042_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "Yes\u2014developing and testing algorithm software for explosive detection systems indicates machine-learning/computer-vision style automated detection, which falls within AI/ML work."
+        },
+        {
+          "award_id": "HSTS0415JCT1009",
+          "amount": 421111.0,
+          "description": "IGF::CT::IGF PHASE 1 OF LEGACY HME DETECTION ALGORITHM DEVELOPMENT IN SUPPORT OF TSA'S FLEET OF MORPHO DETECTION 9000/9400 EXPLOSIVE DETECTION SYSTEMS (EDS). FFP - TASK ORDER",
+          "generated_internal_id": "CONT_AWD_HSTS0415JCT1009_7013_HSTS0412DCT1173_7013",
+          "source": "idv_expansion",
+          "explanation": "This task order explicitly involves development of a detection algorithm for TSA explosive detection systems, which indicates AI/ML-style model or algorithm development rather than generic IT or hardware support."
+        }
+      ]
+    },
+    {
+      "award_id": "HSTS0414JCT1154",
+      "vendor": "",
+      "agency": "Department of Homeland Security",
+      "amount": 223464.95,
+      "description": "DELIVERY ORDER HSTS04-14-J-CT1154 IS FOR THE LABOR, TRAVEL, AND MATERIAL FOR RAPID DETECTION ALGORITHM DEVELOPMENT.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSTS0412DCT1200",
+      "explanation": "The order explicitly calls for rapid detection algorithm development, which indicates development of an automated detection algorithm and is consistent with AI/ML work.",
+      "generated_internal_id": "CONT_AWD_HSTS0414JCT1154_7013_HSTS0412DCT1200_7013",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSTS0414JCT1154_7013_HSTS0412DCT1200_7013",
+      "raw_url": "raw.html?piid=HSTS0414JCT1154",
+      "source": "idv_expansion",
+      "idv_parent": "HSTS0412DCT1200",
+      "idv_siblings": [
+        {
+          "award_id": "HSTS0416JCT1029",
+          "amount": 804689.77,
+          "description": "THE PURPOSE OF THIS MODIFICATION IS TO RESTORE FUNDING THAT WAS PREVIOUSLY REMOVED AS PART OF AN ADMINISTRATIVE EFFORT TO ADDRESS CANCELING APPROPRIATIONS.  THE RESTORATION OF FUNDS WILL ENSURE FINAL ",
+          "generated_internal_id": "CONT_AWD_HSTS0416JCT1029_7013_HSTS0412DCT1200_7013",
+          "source": "keyword_search",
+          "explanation": "The contract is for software development to improve explosive detection system algorithms, which indicates model/algorithm development rather than general IT work."
+        },
+        {
+          "award_id": "HSTS0413JCT1269",
+          "amount": 407644.1,
+          "description": "DELIVERY ORDER 16 AUTHORIZES L-3 TO SUPPORT THE SERVICES AND MATERIALS NECESSARY FOR THE CERTIFICATION, PILOTING, TESTING AND FIELDING OF HOMEMADE EXPLOSIVE (HME) ALGORITHMS FOR DEPLOYED EXPLOSIVE DET",
+          "generated_internal_id": "CONT_AWD_HSTS0413JCT1269_7013_HSTS0412DCT1200_7013",
+          "source": "idv_expansion",
+          "explanation": "The order explicitly mentions supporting certification, piloting, testing, and fielding of HME algorithms for explosive detection system models, which indicates deployment and validation of algorithmic/ML-based detection work."
+        }
+      ]
     },
     {
       "award_id": "70CMSD19FR0000138",
@@ -2421,6 +3716,49 @@
           "generated_internal_id": "CONT_AWD_70RDAD21FR0000159_7001_70RSAT21G00000003_7001",
           "source": "keyword_search",
           "explanation": "This contract is centered on studying facial recognition technology, which is an AI/computer vision application, even though the deliverable is policy and research rather than model development."
+        },
+        {
+          "award_id": "70FA2024F00000077",
+          "amount": 157500.0,
+          "description": "WILDFIRE RISK MODELING AND AI RESEARCH PER THE ATTACHED STATEMENT OF WORK DATED JULY 17, 2024.",
+          "generated_internal_id": "CONT_AWD_70FA2024F00000077_7022_70RSAT21G00000003_7001",
+          "source": "idv_expansion",
+          "explanation": "The statement explicitly describes wildfire risk modeling and AI research, which falls within AI/ML work because it involves predictive modeling and AI research."
+        }
+      ]
+    },
+    {
+      "award_id": "70FA2024F00000077",
+      "vendor": "NATIONAL ACADEMY OF SCIENCES",
+      "agency": "Department of Homeland Security",
+      "amount": 157500.0,
+      "description": "WILDFIRE RISK MODELING AND AI RESEARCH PER THE ATTACHED STATEMENT OF WORK DATED JULY 17, 2024.",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:70RSAT21G00000003",
+      "explanation": "The statement explicitly describes wildfire risk modeling and AI research, which falls within AI/ML work because it involves predictive modeling and AI research.",
+      "generated_internal_id": "CONT_AWD_70FA2024F00000077_7022_70RSAT21G00000003_7001",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_70FA2024F00000077_7022_70RSAT21G00000003_7001",
+      "raw_url": "raw.html?piid=70FA2024F00000077",
+      "source": "idv_expansion",
+      "idv_parent": "70RSAT21G00000003",
+      "idv_siblings": [
+        {
+          "award_id": "70RDAD21FR0000159",
+          "amount": 380756.0,
+          "description": "THE SCOPE OF THIS ACQUISITION IS TO CARRY OUT AND DISSEMINATE RESULTS OF A STUDY OF FACIAL RECOGNITION (FR) TECHNOLOGIES THAT WOULD RECOMMEND POLICIES NEEDED TO BRING CLARITY AND KNOWLEDGE TO PUBLIC D",
+          "generated_internal_id": "CONT_AWD_70RDAD21FR0000159_7001_70RSAT21G00000003_7001",
+          "source": "keyword_search",
+          "explanation": "This contract is centered on studying facial recognition technology, which is an AI/computer vision application, even though the deliverable is policy and research rather than model development."
+        },
+        {
+          "award_id": "7022",
+          "amount": 157500.0,
+          "description": "WILDFIRE RISK MODELING AND AI RESEARCH PER THE ATTACHED STATEMENT OF WORK DATED JULY 17, 2024.",
+          "generated_internal_id": "CONT_AWD_70FA2024F00000077_7022_70RSAT21G00000003_7001",
+          "source": "idv_expansion",
+          "explanation": "The contract explicitly calls for wildfire risk modeling and AI research, which indicates AI/ML work such as predictive modeling and AI development."
         }
       ]
     },
@@ -2673,6 +4011,14 @@
           "generated_internal_id": "CONT_AWD_70US0922F1DHS2312_7009_HSHQDC13D00019_7001",
           "source": "keyword_search",
           "explanation": "The contract is explicitly for an artificial intelligence/machine learning software license pilot, which is directly AI/ML work."
+        },
+        {
+          "award_id": "70CTD021FR0000214",
+          "amount": 335096.55,
+          "description": "PURCHASE EXABEAM ADVANCED ANALYTICS, POP AWARD - 12 MONTHS",
+          "generated_internal_id": "CONT_AWD_70CTD021FR0000214_7012_HSHQDC13D00019_7001",
+          "source": "idv_expansion",
+          "explanation": "Exabeam Advanced Analytics is a security analytics platform that uses machine learning/behavioral analytics to detect anomalies and threats, so this purchase involves AI/ML functionality."
         }
       ]
     },
@@ -2790,6 +4136,57 @@
       "permalink": "https://www.usaspending.gov/award/CONT_AWD_70T04024C7573N002_7013_-NONE-_-NONE-",
       "raw_url": "raw.html?piid=70T04024C7573N002",
       "source": "keyword_search"
+    },
+    {
+      "award_id": "HSCG3209J100057",
+      "vendor": "LEIDOS, INC.",
+      "agency": "Department of Homeland Security",
+      "amount": 100731.0,
+      "description": "THIS TASK ORDER WILL ASSIST THE RDC IN DEVELOPING AN IN-HOUSE HSI MODELING CAPABILITLY USING IMPRINT HSI MODELING SOFTWARE.  TWO MAJOR AREAS OF EMPHASIS: 1) CREATION OF AN HSI MODELING DEVELOPMENT PLAN AND 2) DEVELOPMENT AND DEMONSTRATION OF A STAND-ALONE HSI MODEL",
+      "naics": "",
+      "psc": "",
+      "start_date": "",
+      "keyword": "idv_sibling:HSCG3205DR00010",
+      "explanation": "The task order is for developing and demonstrating an HSI modeling capability and stand-alone model, which indicates predictive modeling/AI-style model development rather than general IT or RPA.",
+      "generated_internal_id": "CONT_AWD_HSCG3209J100057_7008_HSCG3205DR00010_7008",
+      "permalink": "https://www.usaspending.gov/award/CONT_AWD_HSCG3209J100057_7008_HSCG3205DR00010_7008",
+      "raw_url": "raw.html?piid=HSCG3209J100057",
+      "source": "idv_expansion",
+      "idv_parent": "HSCG3205DR00010",
+      "idv_siblings": [
+        {
+          "award_id": "HSCG3206J100017",
+          "amount": 689025.0,
+          "description": "MARITIME BIOMETRIC IDENTIFICATION SYSTEM FOR MONA PASS AT-SEA ALIEN ILLEGAL MIGRANT OPERATIONS",
+          "generated_internal_id": "CONT_AWD_HSCG3206J100017_7008_HSCG3205DR00010_7008",
+          "source": "modification_text",
+          "explanation": "A maritime biometric identification system likely uses biometric matching and automated identification algorithms, which falls within AI/ML-adjacent work."
+        },
+        {
+          "award_id": "HSCG3208J100046",
+          "amount": 137549.0,
+          "description": "BIOMETRICS DATABASE REQUIREMENTS STUDY",
+          "generated_internal_id": "CONT_AWD_HSCG3208J100046_7008_HSCG3205DR00010_7008",
+          "source": "modification_text",
+          "explanation": "A biometrics database requirements study is likely related to biometric identification/recognition systems, which commonly involve computer vision and machine learning components, so it should be treated as AI/ML-adjacent."
+        },
+        {
+          "award_id": "HSCG3208J100039",
+          "amount": 277908.0,
+          "description": "MARITIME BIOMETRICS IDENTIFICATION SYSTEM, PROOF-OF-CONCEPT EXPANSION TO CONDUCT OPERATIONS IN THE SEVENTH DISTRICT",
+          "generated_internal_id": "CONT_AWD_HSCG3208J100039_7008_HSCG3205DR00010_7008",
+          "source": "idv_expansion",
+          "explanation": "This appears to be a biometric identification system that performs automated identity matching/recognition, which falls under AI/ML work."
+        },
+        {
+          "award_id": "HSCG3207J100023",
+          "amount": 1080638.0,
+          "description": "MARITIME BIOMETRIC IDENTIFICATION SYSTEM PHASE 2: INTEGRATING A PROOF OF CONCEPT MARITIME BIOMETRIC SYSTEM WITH FLEET 55 COMMUNICATIONS TO CONDUCT ALIEN ILLEGAL MIGRANT OPERATIONS IN THE MONA PASS",
+          "generated_internal_id": "CONT_AWD_HSCG3207J100023_7008_HSCG3205DR00010_7008",
+          "source": "idv_expansion",
+          "explanation": "This involves a maritime biometric identification system and biometric identity matching for operations, which falls under AI/ML because automated biometric recognition/matching uses machine learning-based identity verification."
+        }
+      ]
     },
     {
       "award_id": "70RDAD22FR0000035",
