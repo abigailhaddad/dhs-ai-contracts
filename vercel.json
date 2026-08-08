@@ -3,5 +3,31 @@
   "installCommand": null,
   "framework": null,
   "outputDirectory": "web",
-  "alias": ["dhs-ai-contracts.vercel.app"]
+  "alias": [
+    "dhs-ai-contracts.vercel.app"
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "dhs-ai-contracts.vercel.app"
+        }
+      ],
+      "destination": "https://dhs-ai-contracts.abigailhaddad.com/",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dhs-ai-contracts.vercel.app"
+        }
+      ],
+      "destination": "https://dhs-ai-contracts.abigailhaddad.com/:path*",
+      "permanent": false
+    }
+  ]
 }
