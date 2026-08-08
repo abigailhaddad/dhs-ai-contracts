@@ -2,7 +2,7 @@
 
 Open analysis of DHS contract spending on AI/ML work, FY2022–FY2026.
 
-**Dashboard:** https://dhs-ai-contracts.vercel.app
+**Dashboard:** https://dhs-ai-contracts.abigailhaddad.com
 
 **User-facing methodology:** the dashboard's Methodology tab is the single source of truth — it documents every variable, the upstream USASpending column it lives in, the join key, and how AI classification works. This README is intentionally short to avoid drift; it's for developers running the pipeline.
 
@@ -16,7 +16,7 @@ GitHub Actions on `abigailhaddad/dhs-ai-contracts`:
 
 | Workflow | Cadence | What it does |
 |---|---|---|
-| `weekly.yml` | Mondays 08:00 UTC | Run `run_pipeline.py` (fetch → classify → enrich → build), run pytest, live-check a sample of emitted URLs, then auto-commit `web/data/results.json` to `main`. The push triggers Vercel to rebuild the static site at `dhs-ai-contracts.vercel.app`. |
+| `weekly.yml` | Mondays 08:00 UTC | Run `run_pipeline.py` (fetch → classify → enrich → build), run pytest, live-check a sample of emitted URLs, then auto-commit `web/data/results.json` to `main`. The push triggers Vercel to rebuild the static site at `dhs-ai-contracts.abigailhaddad.com`. |
 
 `workflow_dispatch` exposes two flags for manual reruns: `skip_fetch` (data already fresh) and `skip_enrich` (skip the LLM-heavy modification + IDV passes).
 
