@@ -73,3 +73,14 @@ jobs:
             git commit -m "Weekly pipeline: ${CONTRACTS} AI contracts, ${DOLLARS} [skip ci]"
             git push
           fi
+
+      # Publishing used to happen on its own: Vercel watched this repo and built
+      # on every push. Cloudflare Pages is a direct upload, so the deploy has to
+      # be an explicit step. It runs whether or not results.json changed --
+      # web/ holds hand-edited files too, and a run that skipped the deploy
+      # because the data was unchanged would silently strand those.
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 pages deploy web --project-name=dhs-ai-contracts --branch=main --commit-dirty=true
