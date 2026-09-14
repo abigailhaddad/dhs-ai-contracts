@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-11T13:20Z",
+  "generated_at": "2026-09-14T16:37Z",
   "summary": {
     "total_ai_contracts": 199,
     "total_ai_dollars": 952799598.8,
@@ -20,35 +20,35 @@
     "fy_range": "FY2022\u2013FY2026",
     "keyword_count": 40,
     "fetch_metadata": {
-      "fetched_at": "2026-05-11T09:07Z",
-      "datestamp": "20260506",
+      "fetched_at": "2026-09-14T16:18Z",
+      "datestamp": "20260906",
       "agency_code": "070",
       "archive_base": "https://files.usaspending.gov/award_data_archive/",
       "fy_archives": [
         {
           "fy": 2022,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2022_070_Contracts_Full_20260506.zip",
-          "filename": "FY2022_070_Contracts_Full_20260506.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2022_070_Contracts_Full_20260906.zip",
+          "filename": "FY2022_070_Contracts_Full_20260906.zip"
         },
         {
           "fy": 2023,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2023_070_Contracts_Full_20260506.zip",
-          "filename": "FY2023_070_Contracts_Full_20260506.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2023_070_Contracts_Full_20260906.zip",
+          "filename": "FY2023_070_Contracts_Full_20260906.zip"
         },
         {
           "fy": 2024,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2024_070_Contracts_Full_20260506.zip",
-          "filename": "FY2024_070_Contracts_Full_20260506.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2024_070_Contracts_Full_20260906.zip",
+          "filename": "FY2024_070_Contracts_Full_20260906.zip"
         },
         {
           "fy": 2025,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2025_070_Contracts_Full_20260506.zip",
-          "filename": "FY2025_070_Contracts_Full_20260506.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2025_070_Contracts_Full_20260906.zip",
+          "filename": "FY2025_070_Contracts_Full_20260906.zip"
         },
         {
           "fy": 2026,
-          "url": "https://files.usaspending.gov/award_data_archive/FY2026_070_Contracts_Full_20260506.zip",
-          "filename": "FY2026_070_Contracts_Full_20260506.zip"
+          "url": "https://files.usaspending.gov/award_data_archive/FY2026_070_Contracts_Full_20260906.zip",
+          "filename": "FY2026_070_Contracts_Full_20260906.zip"
         }
       ]
     }
