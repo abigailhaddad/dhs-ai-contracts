@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T16:37Z",
+  "generated_at": "2026-09-21T16:58Z",
   "summary": {
     "total_ai_contracts": 199,
     "total_ai_dollars": 952799598.8,
@@ -20,7 +20,7 @@
     "fy_range": "FY2022\u2013FY2026",
     "keyword_count": 40,
     "fetch_metadata": {
-      "fetched_at": "2026-09-14T16:18Z",
+      "fetched_at": "2026-09-21T14:39Z",
       "datestamp": "20260906",
       "agency_code": "070",
       "archive_base": "https://files.usaspending.gov/award_data_archive/",
