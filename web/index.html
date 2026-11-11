@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DHS AI Contracts</title>
+  <title>DHS AI Contracts: AI and machine learning contract spending, FY2022-FY2026</title>
+  <meta name="description" content="AI and machine learning contract spending at the Department of Homeland Security, FY2022-FY2026, sourced from USASpending.gov and classified by LLM." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DHS AI Contracts" />
+  <meta property="og:description" content="AI and machine learning contract spending at the Department of Homeland Security, FY2022-FY2026, sourced from USASpending.gov and classified by LLM." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231B4332'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='700' text-anchor='middle' fill='%23fff'%3EAI%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -47,6 +52,7 @@
 
     .chart-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 0.5rem; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
     .chart-card canvas { max-height: 320px; }
+    @media (max-width: 600px) { .chart-card canvas { max-height: none; } }
 
     .narrative { font-size: 0.9375rem; color: var(--color-text); line-height: 1.7; margin: 0 0 1.25rem; max-width: 720px; }
     .narrative a { color: var(--color-accent); }
@@ -54,6 +60,9 @@
 
     .num { text-align: right; font-family: var(--font-mono); font-size: 0.8125rem; }
     .desc { max-width: 340px; }
+    #contractTable td code { overflow-wrap: anywhere; display: inline-block; min-width: 9rem; }
+    .table-scroll-hint { display: block; font-size: 0.8125rem; color: var(--color-text-muted); margin: 0 0 0.5rem; }
+    header .updated { margin-top: 0.5rem; font-size: 0.8125rem; opacity: 0.85; }
     .expl { max-width: 260px; color: var(--color-text-muted); font-style: italic; }
     a.award-link { color: var(--color-accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; }
     a.award-link:hover { text-decoration: underline; }
@@ -64,7 +73,7 @@
     .kw-grid { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
     .kw-pill { background: #E8F4ED; color: var(--color-header); font-family: var(--font-mono); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 1rem; }
     .kw-pill.zero { background: #F3F4F6; color: var(--color-text-muted); }
-    .source-badge { font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 3px; white-space: nowrap; }
+    .source-badge { font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 3px; white-space: nowrap; }
     .source-keyword-search    { background: #E8F4ED; color: var(--color-header); }
     .source-modification-text { background: #FEF3C7; color: #92400E; }
     .source-idv-expansion     { background: #EDE9FE; color: #5B21B6; }
@@ -126,7 +135,7 @@
     .stat-card.clickable { cursor: pointer; transition: background 0.15s; }
     .stat-card.clickable:hover { background: var(--color-bg); }
     .stat-card .hint {
-      font-size: 0.7rem; color: var(--color-text-muted);
+      font-size: 0.78rem; color: var(--color-text-muted);
       margin-top: 0.2rem; opacity: 0.8;
     }
 
@@ -200,6 +209,7 @@
   <div style="max-width:960px;margin:0 auto;padding:0 1.5rem;">
     <h1>DHS AI Contracts</h1>
     <p>AI and machine learning contract spending at the Department of Homeland Security, FY2022–FY2026 — sourced from USASpending.gov and classified by LLM.</p>
+    <p class="updated">Data updated <span id="generated-at-top">—</span></p>
   </div>
 </header>
 
@@ -255,6 +265,7 @@
     <strong style="color:var(--color-text);">No contracts match these filters.</strong>
     <p style="margin:0.5rem 0 0;font-size:0.85rem;">Try removing a chip from the bar above, or <a href="#" onclick="document.querySelector('.clear-filters-btn')?.click();return false;">clear all filters</a>.</p>
   </div>
+  <p class="table-scroll-hint">Scroll the table sideways to see all columns, including Description and Why AI.</p>
   <div id="tableWrap" style="overflow-x:auto;">
     <table id="contractTable" class="display" style="width:100%">
       <thead>
@@ -313,7 +324,7 @@
     <h3>Where each variable comes from</h3>
     <p>The table below is the single source of truth: every dashboard variable, the upstream dataset and column it lives in, and what it populates on the site. Per-row provenance (with the USASpending column name beside each value) is rendered on raw.html — click any contract.</p>
     <div style="overflow-x:auto;margin-bottom:1rem">
-      <table style="border-collapse:collapse;width:100%;font-size:0.85rem">
+<div style="overflow-x:auto">      <table style="border-collapse:collapse;width:100%;font-size:0.85rem">
         <thead>
           <tr style="border-bottom:2px solid var(--color-border);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--color-text-muted)">
             <th style="text-align:left;padding:6px 8px;width:200px">Variable group</th>
@@ -360,7 +371,7 @@
             <td style="padding:6px 8px">Stat cards on the Dashboard expand into list modals showing the items behind each count (sub-agencies, vendors, keywords). The agency bar chart drills into the per-agency contract list at <code>raw.html?flag=agency</code>; per-row provenance lives at <code>raw.html?piid=…</code>.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <h3>Caveats that don't fit the table</h3>
@@ -377,7 +388,7 @@
 
     <h3>Field-level provenance map</h3>
     <p style="font-size:0.875rem;">Every value shown on a contract row, mapped to its upstream USASpending column. The full <a href="https://www.usaspending.gov/data-dictionary" target="_blank" rel="noopener">USASpending data dictionary</a> defines every column referenced.</p>
-    <table id="fields-glossary" style="width:100%;border-collapse:collapse;font-size:0.8125rem;margin-top:0.5rem;">
+<div style="overflow-x:auto">    <table id="fields-glossary" style="width:100%;border-collapse:collapse;font-size:0.8125rem;margin-top:0.5rem;">
       <thead>
         <tr style="background:#fbf6ed;border-bottom:1px solid var(--color-border);">
           <th style="text-align:left;padding:0.4rem 0.6rem;">Dashboard field</th>
@@ -387,7 +398,7 @@
         </tr>
       </thead>
       <tbody></tbody>
-    </table>
+    </table></div>
 
     <h3>Source code</h3>
     <p>All ingestion, keyword search, classification, and dashboard build code: <a href="https://github.com/abigailhaddad/dhs-ai-contracts" target="_blank" rel="noopener">github.com/abigailhaddad/dhs-ai-contracts</a> &mdash; the README has the technical setup.</p>
@@ -542,7 +553,12 @@ async function load() {
   if (kwCount2) kwCount2.textContent = d.keywords_searched.length;
   const llmModel2 = document.getElementById('llm-model2');
   if (llmModel2 && d.methodology?.llm_model) llmModel2.textContent = d.methodology.llm_model;
-  document.getElementById('generated-at').textContent   = d.generated_at;
+  // Show the date readably; fall back to the raw value if it does not parse.
+  const genDate = new Date(d.generated_at);
+  const genText = isNaN(genDate) ? d.generated_at
+    : genDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+  document.getElementById('generated-at').textContent   = genText;
+  document.getElementById('generated-at-top').textContent = genText;
 
   // Agency chart with toggle
   const byDollars = d.by_agency.slice(0, 12);
@@ -556,6 +572,8 @@ async function load() {
     },
     options: {
       indexAxis: 'y',
+      // Taller bars on phones so every sub-agency gets a label.
+      aspectRatio: window.innerWidth < 600 ? 0.55 : 2,
       plugins: { legend: { display: false } },
       // Click a bar → open the per-agency raw view in a new tab. The label
       // at index `idx` is the canonical agency name we filter on.
@@ -570,7 +588,12 @@ async function load() {
       },
       scales: {
         x: { ticks: { callback: v => '$' + (v/1e6).toFixed(0) + 'M' } },
-        y: { ticks: { font: { size: 11 } } }
+        y: { ticks: { font: { size: 12 }, autoSkip: false, callback: function(v) {
+          // Wrap long sub-agency names onto two or three lines instead of clipping them.
+          const words = String(this.getLabelForValue(v)).split(' '), lines = [''];
+          words.forEach(w => { if ((lines[lines.length-1] + ' ' + w).trim().length > 22) lines.push(w); else lines[lines.length-1] = (lines[lines.length-1] + ' ' + w).trim(); });
+          return lines;
+        } } }
       }
     }
   });
@@ -679,6 +702,7 @@ async function load() {
 
     $('#contractTable').DataTable({
       pageLength: 25,
+      autoWidth: false, // let the browser fit the columns to the page instead of fixing widths from the first layout
       order: [[3, 'desc']],
       columnDefs: [{ targets: 3, type: 'num' }],
     });
