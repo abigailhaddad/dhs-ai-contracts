@@ -21,6 +21,7 @@ Skips automatically when:
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
@@ -354,3 +355,80 @@ def test_source_badges_link_to_raw_html(page: Page):
         return out;
     }""")
     assert not bad, f"{len(bad)} table rows have source badges not wrapped in raw.html link: {bad[:3]}"
+
+
+# ---------------------------------------------------------------------------
+# "Data updated" dates (#generated-at-top header, #generated-at footer).
+# The page shows generated_at as a long date ("October 19, 2026"); a reader
+# cites it as the data's freshness, so it must be the same calendar day as the
+# raw value in results.json, read in UTC. These tests run the browser in a
+# timezone far ahead of UTC so formatting in local time would show the next day.
+# ---------------------------------------------------------------------------
+FAR_AHEAD_TZ = "Pacific/Kiritimati"  # UTC+14: local date != UTC date for most of each day
+
+
+def _utc_long_date(raw: str) -> str:
+    """Independent of the page: 'October 19, 2026' from a raw ISO string, in UTC."""
+    dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    dt = dt.astimezone(timezone.utc)
+    return f"{dt.strftime('%B')} {dt.day}, {dt.year}"
+
+
+def _open(browser, base: str, generated_at: str | None = None):
+    """Load the dashboard; if generated_at is given, serve results.json with that value."""
+    ctx = browser.new_context(timezone_id=FAR_AHEAD_TZ)
+    page = ctx.new_page()
+    if generated_at is not None:
+        data = json.loads(RESULTS.read_text())
+        data["generated_at"] = generated_at
+        page.route("**/data/results.json",
+                   lambda route: route.fulfill(status=200, content_type="application/json",
+                                               body=json.dumps(data)))
+    page.goto(base + "/index.html")
+    page.wait_for_selector("#contractTable tbody tr", timeout=15_000)
+    return ctx, page
+
+
+def _shown(page) -> tuple[str, str]:
+    return (page.locator("#generated-at-top").inner_text().strip(),
+            page.locator("#generated-at").inner_text().strip())
+
+
+def test_header_and_footer_show_data_file_date_in_utc(browser, fixture_server):
+    raw = json.loads(RESULTS.read_text())["generated_at"]
+    expected = _utc_long_date(raw)
+    ctx, page = _open(browser, fixture_server)
+    try:
+        top, footer = _shown(page)
+    finally:
+        ctx.close()
+    assert top == expected, f"header shows {top!r}, results.json {raw!r} is {expected!r} in UTC"
+    assert footer == expected, f"footer shows {footer!r}, results.json {raw!r} is {expected!r} in UTC"
+
+
+@pytest.mark.parametrize("raw", [
+    "2026-10-19T23:59Z",   # late evening UTC: next day in UTC+14
+    "2026-10-20T00:01Z",   # just after midnight UTC
+    "2026-12-31T23:30Z",   # year boundary
+])
+def test_date_uses_utc_day_not_browser_local_day(browser, fixture_server, raw):
+    ctx, page = _open(browser, fixture_server, generated_at=raw)
+    try:
+        top, footer = _shown(page)
+    finally:
+        ctx.close()
+    expected = _utc_long_date(raw)
+    assert (top, footer) == (expected, expected), (
+        f"{raw!r}: header {top!r}, footer {footer!r}, expected {expected!r}")
+
+
+def test_unparseable_generated_at_falls_back_to_raw_text(browser, fixture_server):
+    raw = "sometime last week"
+    ctx, page = _open(browser, fixture_server, generated_at=raw)
+    try:
+        top, footer = _shown(page)
+    finally:
+        ctx.close()
+    assert top == raw and footer == raw, f"header {top!r}, footer {footer!r}; expected raw {raw!r}"
